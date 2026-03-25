@@ -10,7 +10,7 @@
       </div>
       <div class="bottom-section">
         <div class="bottom-container">
-          <div class="bottom-title">Luvie AI</div>
+          <div class="bottom-title">Seicos AI</div>
           <div class="bottom-text">Hi! I’m Kico, your friendly AI companion here to chat about all your passions and interests. Whether you love fashion, art, music, or anything in between, I’m here to explore ideas, share tips, and keep the conversation fun and inspiring. Ready to dive into your favorite hobbies together? Let’s talk and discover something new every day!</div>
         <!-- 购买 -->
         <div class="purchase-container" @click="handlePurchaseClick">

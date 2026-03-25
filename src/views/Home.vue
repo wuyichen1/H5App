@@ -33,8 +33,8 @@
 }
 
 .email {
-  background: white;
-  color: black;
+  background: black;
+  color: white;
   padding: 1.3vh 2vw;
   border-radius: 1vw;
   font-size: 2vw;
