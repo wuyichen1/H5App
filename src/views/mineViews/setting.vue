@@ -106,7 +106,7 @@ function handleAction(isDelete) {
 }
 
 .title {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
@@ -136,7 +136,7 @@ function handleAction(isDelete) {
 }
 
 .option-text {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   color: #fff;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
@@ -165,7 +165,7 @@ function handleAction(isDelete) {
   width: calc(100vw * 229 / 375);
   height: calc(100vh * 62 / 812);
   border-radius: calc(100vw * 40 / 375);
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   box-shadow:inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.6),inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.5);

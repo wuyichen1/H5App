@@ -403,7 +403,7 @@ function sendComment() {
 
 .post-desc {
   margin-right: auto; /* 第二个靠左 */
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   color: #fff;
   line-height: calc(100vw * 18 / 375);
@@ -468,7 +468,7 @@ function sendComment() {
 .user-name {
   width: calc(100vw * 46 / 375);
   height: calc(100vw * 19 / 375);
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -493,7 +493,7 @@ function sendComment() {
 }
 
 .like-count {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   color: #fff;
   text-align: center;
@@ -513,7 +513,7 @@ function sendComment() {
 }
 
 .comments-title-text {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -554,7 +554,7 @@ function sendComment() {
 }
 
 .comment-list-bottom {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 12 / 375);
   width: 400;
   color: rgba(255, 255, 255, 1);
@@ -580,7 +580,7 @@ function sendComment() {
 }
 
 .comment-user-name {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -622,7 +622,7 @@ function sendComment() {
   border: none;
   outline: none;
   background: transparent;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400; /* 可选字体粗细 */
   color: #000; /* 输入文本颜色 */
@@ -631,7 +631,7 @@ function sendComment() {
 
 .input-field::placeholder {
   color: rgba(105, 71, 65, 1); /* 提示文本颜色 */
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375); /* 提示文本大小 */
   font-weight: 400; /* 可选字体粗细 */
 }

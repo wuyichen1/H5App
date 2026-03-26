@@ -1,7 +1,15 @@
 <template>
   <div class="page">
-    <div class="aiusermodel"></div>
-    <div class="aichatmodel"></div>
+    <!-- 顶部的机器人形象和卡片 -->
+    <div class="top-card-container">
+      <div class="top-card">
+        <div class="card-left">
+          <div class="card-title">Intelligent AI, cosplay costume analysis</div>
+          <div class="card-tag">Welcome to</div>
+        </div>
+        <div class="card-image"></div>
+      </div>
+    </div>
 
     <!-- 页面内容 -->
     <div class="page-content">
@@ -11,66 +19,71 @@
       <div class="bottom-section">
         <div class="bottom-container">
           <div class="bottom-title">Seicos AI</div>
-          <div class="bottom-text">Hi! I’m Kico, your friendly AI companion here to chat about all your passions and interests. Whether you love fashion, art, music, or anything in between, I’m here to explore ideas, share tips, and keep the conversation fun and inspiring. Ready to dive into your favorite hobbies together? Let’s talk and discover something new every day!</div>
-        <!-- 购买 -->
-        <div class="purchase-container" @click="handlePurchaseClick">
-          <div class="purchase-info">
-            <div class="purchase-icon"></div>
-            <div class="purchase-count">100</div>
+          <div class="bottom-text">
+            Hello everyone! I'm Seicos AI, a passionate cosplay buddy, and together we'll
+            explore the world of costumes, characters, and creativity. Whether you're
+            passionate about creating beautiful costumes, cosplaying your favorite heroes,
+            or exploring new techniques, I'll share my insights here to inspire your
+            designs and make your cosplay journey fun and fulfilling. Ready to bring your
+            favorite characters to life and unleash your creativity? Let's immerse
+            ourselves in the world of cosplay and create unforgettable experiences every
+            day!
           </div>
-          <div class="chat-box">Chat</div>
-        </div>
+          <!-- 购买 -->
+          <div class="purchase-container" @click="handlePurchaseClick">
+            <div class="purchase-info">
+              <div class="purchase-icon"></div>
+              <div class="purchase-count">100</div>
+            </div>
+            <div class="chat-box">Chat</div>
+          </div>
         </div>
       </div>
     </div>
-    <div
-      class="dialog"
-      v-if="showCoinNot"
-      @click.self="showCoinNot = false"
-    >
+    <div class="dialog" v-if="showCoinNot" @click.self="showCoinNot = false">
       <CoinNotDialog @recharge="handleRechargeEvent" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useCurrentUserStore } from '@/stores/currentUser'
-import { useUserStore } from '@/stores/user'
-import { useUIStore } from '@/stores/ui'
-import BackButton from '@/components/back.vue'
-import CoinNotDialog from '@/views/aiViews/coinNot.vue'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useCurrentUserStore } from "@/stores/currentUser";
+import { useUserStore } from "@/stores/user";
+import { useUIStore } from "@/stores/ui";
+import BackButton from "@/components/back.vue";
+import CoinNotDialog from "@/views/aiViews/coinNot.vue";
 
-const showCoinNot = ref(false)
+const showCoinNot = ref(false);
 
-const currentUserStore = useCurrentUserStore()
-const uiStore = useUIStore()
-const userStore =  useUserStore()
+const currentUserStore = useCurrentUserStore();
+const uiStore = useUIStore();
+const userStore = useUserStore();
 function handlePurchaseClick() {
   if (currentUserStore.currentUser.coins >= 100) {
-    if (uiStore.loading) return
-    uiStore.showLoading()
+    if (uiStore.loading) return;
+    uiStore.showLoading();
 
-    const currentCoins = currentUserStore.currentUser.coins - 100
-    userStore.updateUser(currentUserStore.currentUser.userId, { coins: currentCoins })
+    const currentCoins = currentUserStore.currentUser.coins - 100;
+    userStore.updateUser(currentUserStore.currentUser.userId, { coins: currentCoins });
 
-    const delay = Math.floor(Math.random() * 1500) + 500
+    const delay = Math.floor(Math.random() * 1500) + 500;
 
     setTimeout(() => {
-      uiStore.hideLoading()
-      router.push({ name: 'aiChat' })
-    }, delay)
+      uiStore.hideLoading();
+      router.push({ name: "aiChat" });
+    }, delay);
   } else {
-    showCoinNot.value = true
+    showCoinNot.value = true;
   }
 }
 
-const router = useRouter()
+const router = useRouter();
 function handleRechargeEvent(value) {
-  showCoinNot.value = false
+  showCoinNot.value = false;
   if (value === true) {
-    router.push({ name: 'coins' })
+    router.push({ name: "coins" });
   }
 }
 </script>
@@ -80,45 +93,76 @@ function handleRechargeEvent(value) {
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* prevent scrolling */
-  background-color: #000; /* black background */
-  background-image: url('@/assets/aibgc.png'); /* replace with your asset filename */
+  background: linear-gradient(180deg, #f6e6ff 0%, #ffffff 100%);
+}
+
+.top-card-container {
+  position: absolute;
+  top: calc(100vh * 120 / 812);
+  left: calc(100vw * 20 / 375);
+  right: calc(100vw * 20 / 375);
+  z-index: 10;
+}
+
+.top-card {
+  width: 100%;
+  height: calc(100vh * 140 / 812);
+  background-image: url("@/assets/coinbgc.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: calc(100vw * 20 / 375);
+  padding: calc(100vh * 24 / 812) calc(100vw * 20 / 375);
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.aiusermodel {
-  position: absolute;
-  left: 0;
-  top: calc(100vh * 68 / 812); /* adapt top spacing */
-  width: calc(100vw * 229 / 375);
-  height: calc(100vh * 402 / 812);
-  opacity: 1;
-  background-image: url('@/assets/aiusermodel.png'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.card-left {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(100vh * 12 / 812);
 }
 
-.aichatmodel {
+.card-title {
+  font-family: "PangMenZhengDao", sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  line-height: 1.2;
+  color: #4a2019;
+  text-align: left;
+}
+
+.card-tag {
+  width: fit-content;
+  background: #000;
+  color: #fff;
+  padding: calc(100vh * 6 / 812) calc(100vw * 16 / 375);
+  border-radius: calc(100vw * 20 / 375);
+  font-family: "PangMenZhengDao", sans-serif;
+  font-size: calc(100vw * 14 / 375);
+}
+
+.card-image {
   position: absolute;
-  left: calc(100vw * 197 / 375);
-  top: calc(100vh * 134 / 812);
-  width: calc(100vw * 104 / 375);
-  height: calc(100vh * 38 / 812);
-  opacity: 1;
-  background-image: url('@/assets/aichatmodel.png'); 
-  background-size: cover;
-  background-position: center;
+  right: calc(100vw * -10 / 375);
+  top: calc(100vh * -60 / 812);
+  width: calc(100vw * 150 / 375);
+  height: calc(100vh * 200 / 812);
+  background-image: url("@/assets/aiusermodel.png");
+  background-size: contain;
+  background-position: bottom center;
   background-repeat: no-repeat;
 }
 
 .page-content {
-  width: auto;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* top内容在上，bottom内容在下 */
+  justify-content: space-between;
   box-sizing: border-box;
 }
 
@@ -134,93 +178,83 @@ function handleRechargeEvent(value) {
   z-index: 99;
 }
 
-.bottom-container { 
+.bottom-container {
   width: 100%;
-  background: rgba(255, 255, 255, 1);
+  background: #ffffff;
   border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: calc(100vh * 24 / 812); /* top spacing for first text */
+  padding: calc(100vh * 26 / 812) calc(100vw * 20 / 375) calc(100vh * 20 / 812);
   box-sizing: border-box;
+  box-shadow: 0 -10px 0px rgba(0, 0, 0, 0.05);
 }
 
 .bottom-title {
-  font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 24 / 375);
+  font-family: "PangMenZhengDao", sans-serif;
+  font-size: calc(100vw * 30 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 27.72 / 375);
-  letter-spacing: 0;
-  color: rgba(74, 32, 25, 1);
+  color: #27244F;
   text-align: center;
-  margin-bottom: calc(100vh * 20 / 812); /* space before second text */
+  margin-bottom: calc(100vh * 20 / 812);
 }
 
 .bottom-text {
-  font-family: 'Archivo', sans-serif;
+  font-family: "PangMenZhengDao", sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 24 / 375);
-  letter-spacing: 0;
-  color: rgba(74, 32, 25, 1);
+  line-height: 1.6;
+  color: #27244F;
   text-align: center;
-  margin: 0 calc(100vw * 28 / 375) 0 calc(100vw * 28 / 375); /* horizontal padding */
+  margin-bottom: calc(100vh * 40 / 812);
 }
 
 .purchase-container {
-  margin-top: calc(100vh * 15 / 812);
-  margin-bottom: calc(100vh * 25 / 812);
-  width: calc(100vw * 281 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 335 / 375);
+  height: calc(100vh * 80 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  box-shadow: inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375) rgba(255, 255, 255, 0.6), inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375) rgba(255, 255, 255, 0.5);
+  background: linear-gradient(90deg, #a18dff 0%, #e2a1ff 100%);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: calc(100vw * 46 / 375);
-  padding-right: calc(100vw * 11 / 375);
+  padding: 0 calc(100vw * 20 / 375);
   box-sizing: border-box;
 }
 
 .purchase-info {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 13 / 375);
+  gap: calc(100vw * 12 / 375);
 }
 
 .purchase-icon {
-  width: calc(100vw * 33 / 375);
-  height: calc(100vh * 39 / 812);
-  background-image: url('@/assets/coin.png'); /* replace with your local image */
-  background-size: cover;
+  width: calc(100vw * 32 / 375);
+  height: calc(100vw * 32 / 375);
+  background-image: url("@/assets/coin.png");
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .purchase-count {
-  font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 23.1 / 375);
-  letter-spacing: 0;
-  color: rgba(74, 32, 25, 1);
+  font-family: "PangMenZhengDao", sans-serif;
+  font-size: calc(100vw * 24 / 375);
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .chat-box {
-  width: calc(100vw * 73 / 375);
-  height: calc(100vh * 38 / 812);
-  border-radius: calc(100vw * 40 / 375);
-  background: rgba(74, 32, 25, 1);
+  width: calc(100vw * 100 / 375);
+  height: calc(100vh * 48 / 812);
+  border-radius: calc(100vw * 24 / 375);
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Archivo', sans-serif;
-  font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 17.41 / 375);
-  letter-spacing: 0;
-  color: rgba(255, 255, 255, 1);
+  font-family: "PangMenZhengDao", sans-serif;
+  font-size: calc(100vw * 18 / 375);
+  font-weight: 600;
+  color: #a18dff;
   box-sizing: border-box;
 }
 

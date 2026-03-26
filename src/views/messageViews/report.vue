@@ -128,7 +128,7 @@ function handleSubmit() {
 .report-content {
   padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375) 0;
   color: rgba(74, 32, 25, 1);
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);
@@ -137,7 +137,7 @@ function handleSubmit() {
 .input-title {
   padding-top: calc(100vh * 30 / 812);
   padding-left: calc(100vw * 20 / 375);
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
@@ -162,7 +162,7 @@ function handleSubmit() {
   resize: none;
   outline: none;
   background: transparent;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: normal;
   color: rgba(0,0,0,1); /* 输入文本颜色 */
@@ -171,7 +171,7 @@ function handleSubmit() {
 
 .input-field::placeholder {
   color: rgba(105, 71, 65, 1);
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375); /* 提示文本大小 */
   font-weight: 400; /* 提示文本粗细 */
   line-height: calc(100vw * 15.23 / 375);
@@ -181,7 +181,7 @@ function handleSubmit() {
   position: absolute;
   right: calc(100vw * 8 / 375);
   bottom: calc(100vh * 13 / 812);
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 12 / 375);
   color: rgba(74, 32, 25, 0.6);
 }
@@ -199,7 +199,7 @@ function handleSubmit() {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);

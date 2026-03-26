@@ -397,7 +397,7 @@ function commentReportSelect(value) {
 }
 
 .username {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -409,7 +409,7 @@ function commentReportSelect(value) {
 }
 
 .video-desc {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   letter-spacing: 0px;
@@ -448,7 +448,7 @@ function commentReportSelect(value) {
 }
 
 .action-button span {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);

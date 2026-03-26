@@ -169,7 +169,7 @@ watch(
 }
 
 .header-title {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -235,7 +235,7 @@ watch(
 }
 
 .username {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -252,7 +252,7 @@ watch(
 }
 
 .comment-text {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 12 / 375);
   font-weight: 400;
   line-height: calc(100vw * 13.06 / 375);
@@ -283,7 +283,7 @@ watch(
   border: none;
   outline: none;
   background: transparent;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
@@ -292,7 +292,7 @@ watch(
 }
 
 .bottom-input input::placeholder {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);

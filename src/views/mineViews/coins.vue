@@ -86,7 +86,7 @@ function handleCoinClick(item) {
 }
 
 .edit-title {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
@@ -116,9 +116,9 @@ function handleCoinClick(item) {
 
 /* 上部分标题 */
 .coin-box-header {
-  font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 18 / 375);
-  font-weight: 400;
+  font-family: 'PangMenZhengDao', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 500;
   letter-spacing: 0px;
   line-height: calc(100vw * 20.79 / 375);
   color: rgba(74, 32, 25, 1);
@@ -129,10 +129,11 @@ function handleCoinClick(item) {
   display: inline-flex;       /* 内部内容水平排列 */
   align-items: center;
   justify-content: flex-start;
-  border-radius: calc(100vw * 40 / 375);
-  background: rgba(74, 32, 25, 1);
-  border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1);
-  padding: calc(100vh * 10 / 812) calc(100vw * 22 / 375);
+  /* border-radius: calc(100vw * 40 / 375); */
+  /* background: rgba(74, 32, 25, 1); */
+  /* border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1); */
+  padding: calc(100vh * 6 / 812) 0;
+  /* padding: calc(100vh * 10 / 812) calc(100vw * 22 / 375); */
   gap: calc(100vw * 8 / 375);
 
   width: fit-content;         /* 核心：宽度自适应内容 */
@@ -143,13 +144,13 @@ function handleCoinClick(item) {
 
 /* coin 图标 */
 .coin-icon {
-  width: calc(100vw * 20 / 375);
-  height: calc(100vh * 24 / 812);
+  width: calc(100vw * 33 / 375);
+  height: calc(100vh * 33 / 812);
 }
 
 /* 金币数量文字 */
 .coin-number {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   letter-spacing: 0px;
@@ -159,10 +160,10 @@ function handleCoinClick(item) {
 
 .coinbgc {
   position: absolute;
-  top: calc(100vh * 16 / 812);
+  top: calc(100vh * 66 / 812);
   right: calc(100vh * 27 / 812);
-  width: calc(100vw * 167 / 375);
-  height: calc(100vh * 297 / 812);
+  width: calc(100vw * 120 / 375);
+  height: calc(100vh * 190 / 812);
   background-image: url('@/assets/coinsbgc.png');
   background-size: cover; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
@@ -209,12 +210,12 @@ function handleCoinClick(item) {
 }
 
 .coin-item-icon {
-  width: calc(100vw * 28 / 375);
-  height: calc(100vh * 34 / 812);
+  width: calc(100vw * 33 / 375);
+  height: calc(100vh * 33 / 812);
 }
 
 .coin-count {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
@@ -232,7 +233,7 @@ function handleCoinClick(item) {
 }
 
 .coin-price {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);

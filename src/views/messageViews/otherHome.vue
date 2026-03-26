@@ -333,7 +333,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   overflow: hidden;
@@ -360,7 +360,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .stat-number {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
@@ -368,7 +368,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .stat-label {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
@@ -389,7 +389,7 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .intro-text {
   flex: 1;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: normal;
   line-height: calc(100vw * 15.23 / 375);
@@ -423,7 +423,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .chat-text {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
@@ -434,7 +434,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .post-title {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 24 / 375);
   font-weight: 400;
   line-height: calc(100vw * 27.72 / 375);
@@ -464,7 +464,7 @@ function toPostDetail(dynamicId, dynamicType) {
   background: rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -532,7 +532,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .post-username {
-  font-family: 'YesevaOne', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 16.17 / 375);
@@ -600,7 +600,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .overlay-count {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);
@@ -608,7 +608,7 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .post-type {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'PangMenZhengDao', sans-serif;
   text-align: left;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;

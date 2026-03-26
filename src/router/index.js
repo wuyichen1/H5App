@@ -13,13 +13,13 @@ const router = createRouter({
       path: '/picPostDetails/:postId',
       name: 'picPostDetails',
       component: () => import('../views/postViews/picPostDetails.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/videoPostDetails/:postId',
       name: 'videoPostDetails',
       component: () => import('../views/postViews/videoPostDetails.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/publishPicPost',
@@ -36,13 +36,13 @@ const router = createRouter({
       path: '/chat/:chatId',
       name: 'chat',
       component: () => import('../views/messageViews/chat.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/otherHome/:userId',
       name: 'otherHome',
       component: () => import('../views/messageViews/otherHome.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/report',
