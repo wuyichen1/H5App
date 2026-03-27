@@ -211,7 +211,7 @@ const handleRelease = async () => {
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(39, 36, 79, 1);
   text-align: left;
 }
 
@@ -227,7 +227,7 @@ const handleRelease = async () => {
   width: calc(100vw * 94 / 375);
   height: calc(100vh * 44 / 812);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.16);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -241,8 +241,8 @@ const handleRelease = async () => {
 }
 
 .theme-item.selected {
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  color: rgba(74, 32, 25, 1);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
+  color: #fff;
 }
 
 .upload-list {
@@ -264,7 +264,7 @@ const handleRelease = async () => {
   height: calc(100vw * 108 / 375);
   flex-shrink: 0;
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(234, 150, 255, 1);
   backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
@@ -307,8 +307,7 @@ const handleRelease = async () => {
   width: calc(100vw * 229 / 375);
   height: calc(100vh * 62 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  box-shadow: inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375) rgba(255, 255, 255, 0.6), inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375) rgba(255, 255, 255, 0.5);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,7 +315,7 @@ const handleRelease = async () => {
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  color: rgba(74, 32, 25, 1);
+  color: #fff;
   cursor: pointer;
   margin: calc(100vh * 117 / 812) auto calc(100vh * 34 / 812) auto;
 }

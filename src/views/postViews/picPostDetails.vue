@@ -282,7 +282,11 @@ function sendComment() {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 1);
+  /* background-color: rgba(0, 0, 0, 1); */
+  background-image: url('@/assets/pagebgc.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -303,7 +307,7 @@ function sendComment() {
 }
 
 .not-found p {
-  color: #fff;
+  color: #000;
   font-size: 0.48rem; /* 移动端适配 */
   line-height: 1.5rem;
   word-break: break-word; /* 长文本自动换行 */
@@ -405,11 +409,12 @@ function sendComment() {
   margin-right: auto; /* 第二个靠左 */
   font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
-  color: #fff;
+  color: #000;
   line-height: calc(100vw * 18 / 375);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3; /* 超过三行省略 */
+  line-clamp: 3; /* 标准属性（兼容性） */
   overflow: hidden;
   text-align: left;
 }
@@ -418,13 +423,7 @@ function sendComment() {
   display: inline-flex; /* 内容撑开宽度 */
   height: calc(100vh * 26 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
+  background: rgba(234, 150, 255, 1);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -432,7 +431,7 @@ function sendComment() {
 
 .tag-text {
   font-size: calc(100vw * 12 / 375);
-  color: rgba(74, 32, 25, 1);
+  color: #fff;
   padding: 0 calc(100vw * 10 / 375);
   text-align: center;
 }
@@ -447,13 +446,7 @@ function sendComment() {
   height: calc(100vw * 36 / 375);
   border-radius: 50%;
   padding: calc(100vw * 1 / 375); /* 渐变边框宽度 */
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   box-sizing: border-box;
 }
 
@@ -472,7 +465,7 @@ function sendComment() {
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
 
   overflow: hidden;
   white-space: nowrap;
@@ -488,14 +481,14 @@ function sendComment() {
 }
 
 .like-icon {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: 28PX;
+  height: 28PX;
 }
 
 .like-count {
   font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 14 / 375);
-  color: #fff;
+  color: #000;
   text-align: center;
 }
 
@@ -509,7 +502,7 @@ function sendComment() {
 .comments-box1 {
   width: calc(100vw * 31 / 375);
   height: calc(100vh * 1 / 812);
-  background-color: #fff;
+  background-color: #000;
 }
 
 .comments-title-text {
@@ -517,13 +510,13 @@ function sendComment() {
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
 }
 
 .comments-box2 {
   flex: 1; /* 自动填充剩余宽度 */
   height: calc(100vh * 1 / 812);
-  background-color: #fff;
+  background-color: #000;
 }
 
 .comments-list {
@@ -539,7 +532,7 @@ function sendComment() {
   gap: calc(100vh * 4 / 812); /* 评论上下间隔10 */
   padding: calc(100vh * 14 / 812) calc(100vw * 16 / 375);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
 }
 
 .comment-list-top {
@@ -566,7 +559,7 @@ function sendComment() {
   height: calc(100vw * 32 / 375);
   border-radius: 50%;
   padding: calc(100vw * 1 / 375); /* border width */
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   box-sizing: border-box;
   display: flex;
 }
@@ -607,7 +600,7 @@ function sendComment() {
   bottom: calc(100vh * 29 / 812);
   width: auto;
   height: calc(100vh * 54 / 812);
-  background: rgba(201, 255, 221, 1);
+  background: rgba(39, 36, 79, 1);
   border-radius: calc(100vw * 40 / 375);
   display: flex;
   align-items: center;
@@ -622,16 +615,16 @@ function sendComment() {
   border: none;
   outline: none;
   background: transparent;
-  font-family: 'PangMenZhengDao', sans-serif;
+  /* font-family: 'PangMenZhengDao', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400; /* 可选字体粗细 */
-  color: #000; /* 输入文本颜色 */
+  color: #fff; /* 输入文本颜色 */
   padding: 0;
 }
 
 .input-field::placeholder {
-  color: rgba(105, 71, 65, 1); /* 提示文本颜色 */
-  font-family: 'PangMenZhengDao', sans-serif;
+  color: rgba(255, 255, 255, 0.6); /* 提示文本颜色 */
+  /* font-family: 'PangMenZhengDao', sans-serif; */
   font-size: calc(100vw * 14 / 375); /* 提示文本大小 */
   font-weight: 400; /* 可选字体粗细 */
 }

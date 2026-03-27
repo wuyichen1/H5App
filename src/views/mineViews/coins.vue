@@ -30,7 +30,7 @@
           </div>
 
           <div class="coin-right">
-            <span class="coin-price" :class="{ 'coin-price-selected': selectedIndex === index }">{{ item.money }}</span>
+            <span class="coin-price" :class="{ 'coin-price-selected': selectedIndex === index }">${{ item.money }}</span>
             <div class="coin-radio" :class="{ 'coin-radio-selected': selectedIndex === index }"></div>
           </div>
         </div>
@@ -87,11 +87,12 @@ function handleCoinClick(item) {
 
 .edit-title {
   font-family: 'PangMenZhengDao', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: 22PX;
   font-weight: 400;
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff; /* 白色填充 */
+  -webkit-text-stroke: 2px rgba(234, 150, 255, 1); /* 粉色描边 */
+  border: 2px rgba(234, 150, 255, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 1); /* 外阴影 */
 }
 
 /* 金币盒子外层 */
@@ -199,8 +200,8 @@ function handleCoinClick(item) {
 
 .coin-item-selected {
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 159, 142, 1);
-  border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1);
+  background: rgba(234, 150, 255, 1);
+  /* border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1); */
 }
 
 .coin-left {
@@ -237,7 +238,7 @@ function handleCoinClick(item) {
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
-  color: rgba(105, 71, 65, 1);
+  color: rgba(39, 36, 79, 1);
 }
 
 .coin-price-selected {
@@ -248,19 +249,13 @@ function handleCoinClick(item) {
   width: calc(100vw * 15 / 375);
   height: calc(100vw * 15 / 375);
   border-radius: 50%;
-  background: rgba(105, 71, 65, 1);
+  background: rgba(39, 36, 79, 1);
 }
 
 .coin-radio-selected {
   width: calc(100vw * 14 / 375);
   height: calc(100vw * 14 / 375);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
+  background: rgba(145, 229, 255, 1);
   border: calc(100vw * 1 / 375) solid rgba(255, 255, 255, 1);
 }
 </style>

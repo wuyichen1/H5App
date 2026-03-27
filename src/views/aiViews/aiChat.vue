@@ -421,7 +421,7 @@ async function sendMessage() {
 
 .chat-message {
   border-radius: 0 calc(100vw * 10 / 375) calc(100vw * 10 / 375) calc(100vw * 10 / 375);
-  background: rgba(255, 159, 142, 1);
+  background: rgba(234, 150, 255, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -437,7 +437,7 @@ async function sendMessage() {
 
 .chat-message-rigth {
   border-radius: calc(100vw * 10 / 375) 0 calc(100vw * 10 / 375) calc(100vw * 10 / 375);
-  background: rgba(201, 255, 221, 1);
+  background: rgba(145, 229, 255, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -460,7 +460,7 @@ async function sendMessage() {
   display: flex;
   align-items: center;
   gap: calc(100vw * 10 / 375);
-  background: rgba(201, 255, 221, 1);
+  background: rgba(39, 36, 79, 1);
   border-radius: calc(100vw * 40 / 375);
   backdrop-filter: blur(calc(100vw * 32 / 375));
   box-sizing: border-box;
@@ -477,8 +477,8 @@ async function sendMessage() {
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
   letter-spacing: 0;
-  font-family: "PangMenZhengDao", sans-serif;
-  color: rgba(0, 0, 0, 1);
+  /* font-family: "PangMenZhengDao", sans-serif; */
+  color: #fff;
 }
 
 .bottom-input input::placeholder {
@@ -486,8 +486,8 @@ async function sendMessage() {
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
   letter-spacing: 0;
-  font-family: "PangMenZhengDao", sans-serif;
-  color: rgba(105, 71, 65, 1);
+  /* font-family: "PangMenZhengDao", sans-serif; */
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .send-icon {

@@ -170,7 +170,7 @@ function handleFollow() {
   }
 
   // Update post user's fans list
-  const postUserFans = currentUser.fans ? [...currentUser.fans] : []
+  const postUserFans = currentUser.value.fans ? [...currentUser.value.fans] : []
   if (!postUserFans.includes(currentUserId)) {
     postUserFans.unshift(currentUserId)
   }
@@ -249,6 +249,10 @@ function toPostDetail(dynamicId, dynamicType) {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 1);
+  background-image: url('@/assets/pagebgc.png');
+  background-size: cover; /* 等比缩放覆盖 */
+  background-position: center; /* 居中显示 */
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -259,7 +263,7 @@ function toPostDetail(dynamicId, dynamicType) {
   width: 100vw; /* 375px in design, scale to screen width */
   height: calc(100vh * 348 / 812); /* 348px scaled */
   opacity: 1;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), var(--avatar-url);
+  background-image: linear-gradient(to top, rgba(204, 204, 204, 0.82), rgba(204, 204, 204, 0)), var(--avatar-url);
   background-size: cover; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
   background-repeat: no-repeat;
@@ -334,7 +338,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
   font-family: 'PangMenZhengDao', sans-serif;
-  color: rgba(255, 255, 255, 1);
+  color: #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -364,7 +368,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
 }
 
 .stat-label {
@@ -372,7 +376,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
 }
 
 .intro-chat {
@@ -393,7 +397,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 14 / 375);
   font-weight: normal;
   line-height: calc(100vw * 15.23 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
   word-break: break-word;
 }
 
@@ -404,8 +408,9 @@ function toPostDetail(dynamicId, dynamicType) {
   gap: calc(100vw * 10 / 375); /* 两个元素间距10 */
   width: calc(100vw * 119 / 375);
   height: calc(100vh * 53 / 812);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: calc(100vw * 20 / 375);
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
+  border-radius: 20PX;
   cursor: pointer;
 }
 
@@ -427,7 +432,8 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: rgba(255, 255, 255, 1);
+  /* background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%); */
   -webkit-background-clip: text;
   background-clip: text; /* 添加标准属性 */
   -webkit-text-fill-color: transparent;
@@ -438,7 +444,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 24 / 375);
   font-weight: 400;
   line-height: calc(100vw * 27.72 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
   text-align: left; /* 确保左对齐 */
   margin-top: calc(100vh * 38 / 812);
   padding-left: calc(100vw * 20 / 375); /* 左间距，与页面内容对齐 */
@@ -480,7 +486,7 @@ function toPostDetail(dynamicId, dynamicType) {
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
   border-radius: inherit;
   padding: calc(100vw * 2 / 375); /* border thickness */
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
@@ -517,7 +523,7 @@ function toPostDetail(dynamicId, dynamicType) {
   height: calc(100vw * 35 / 375);
   border-radius: 50%;
   padding: calc(100vw * 1 / 375); /* gradient border thickness */
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   box-sizing: border-box;
   display: flex;
 }
@@ -536,7 +542,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 16.17 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -545,7 +551,7 @@ function toPostDetail(dynamicId, dynamicType) {
 .post-report {
   width: calc(100vw * 24 / 375);
   height: calc(100vw * 24 / 375);
-  background-image: url('@/assets/postpiccommentreport.png');
+  background-image: url('@/assets/reportblack.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -564,23 +570,25 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .post-image-overlay {
   position: absolute;
-  right: calc(100vw * 6 / 375);
-  bottom: calc(100vh * 6 / 812);
+  right: 6PX;
+  bottom: 6PX;
   display: flex;
-  gap: calc(100vw * 14 / 375);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6PX;
 }
 
 .overlay-item {
-  width: calc(100vw * 91 / 375);
-  height: calc(100vw * 32 / 375);
+  /* width: 90PX; */
+  /* min-height: 58PX; */
+  padding: 6PX 10PX;
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: inset calc(100vw * -1 / 375) calc(100vw * -1 / 375) calc(100vw * 1 / 375) rgba(255, 255, 255, 0.6), inset calc(100vw * 1 / 375) calc(100vw * 1 / 375) calc(100vw * 1 / 375) rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(calc(100vw * 10 / 375));
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: calc(100vw * 10 / 375);
+  gap: 2PX;
 }
 
 .overlay-icon {
@@ -613,7 +621,7 @@ function toPostDetail(dynamicId, dynamicType) {
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: #000;
 }
 
 .top-btn {
