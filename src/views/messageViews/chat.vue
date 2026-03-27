@@ -242,7 +242,7 @@ function reportSelect(value) {
 .top-background {
   height: calc(100vh * 162 / 812);
   opacity: 1;
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   width: 100%;
 }
 
@@ -290,7 +290,7 @@ function reportSelect(value) {
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
   letter-spacing: 0;
-  color: rgba(74, 32, 25, 1);
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -345,7 +345,7 @@ function reportSelect(value) {
   height: calc(100vw * 44 / 375);
   border-radius: 50%;
   padding: calc(100vw * 1 / 375); /* border thickness */
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -369,7 +369,7 @@ function reportSelect(value) {
   color: rgba(105, 71, 65, 1);
   padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
   border-radius: 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375) calc(100vw * 10 / 375);
-  background: rgba(201, 255, 221, 1);
+  background: rgba(145, 229, 255, 1);
 }
 
 .chat-time {
@@ -392,7 +392,7 @@ function reportSelect(value) {
 
 .chat-item.own-message .chat-message {
   border-radius: calc(100vw * 10 / 375) 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375);
-  background: rgba(255, 159, 142, 1);
+  background: rgba(234, 150, 255, 1);
 }
 
 /* image message styles */
@@ -416,7 +416,7 @@ function reportSelect(value) {
   bottom: calc(100vh * 29 / 812);
   height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(201, 255, 221, 1);
+  background: rgba(39, 36, 79, 1);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(calc(100vw * 32 / 375));
   display: flex;
@@ -431,16 +431,16 @@ function reportSelect(value) {
   border: none;
   outline: none;
   background: transparent;
-  font-family: 'PangMenZhengDao', sans-serif;
+  /* font-family: 'PangMenZhengDao', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
   letter-spacing: 0;
-  color: #000;
+  color: #fff;
 }
 
 .bottom-input input::placeholder {
-  color: rgba(105, 71, 65, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .send-btn {

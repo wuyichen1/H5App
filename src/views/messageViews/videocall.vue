@@ -65,7 +65,7 @@ function hangup() {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, rgba(255, 159, 142, 1) 0%, rgba(255, 255, 255, 0) 99.84%);
+  background: linear-gradient(0deg, rgba(234, 150, 255, 1) 0%, rgba(255, 255, 255, 0) 99.84%);
   z-index: 0;
 }
 
@@ -83,10 +83,10 @@ function hangup() {
 }
 
 .avatar-outer {
-  margin-top: calc(100vh * 257 / 812);
+  margin-top: 380PX;
   width: calc(100vw * 166 / 375);
   height: calc(100vw * 166 / 375);
-  border-radius: calc(100vw * 50 / 375);
+  border-radius: 100%;
   background: rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
@@ -96,9 +96,9 @@ function hangup() {
 .avatar-inner {
   width: calc(100vw * 144 / 375);
   height: calc(100vw * 144 / 375);
-  border-radius: calc(100vw * 40 / 375);
+  border-radius: 100%;
   padding: calc(100vw * 3 / 375);
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -110,7 +110,7 @@ function hangup() {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: calc(100vw * 37 / 375);
+  border-radius: 100%;
   display: block;
 }
 
@@ -120,7 +120,7 @@ function hangup() {
   bottom: calc(100vh * 40 / 812);
   width: calc(100% - (calc(100vw * 50 / 375)));
   height: calc(100vh * 80 / 812);
-  border-radius: calc(100vw * 40 / 375);
+  border-radius: 60PX;
   background: rgba(255, 255, 255, 1);
   display: flex;
   align-items: center;
