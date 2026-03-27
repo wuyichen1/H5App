@@ -62,27 +62,55 @@ const videoFirstFrame = ref('') // store the preview image
 const handleAddVideo = async (event) => {
   const file = event.target.files[0];
   if (!file) return;
+
   uploadedVideo.value = file;
 
-  const video = document.createElement('video');
-  video.src = URL.createObjectURL(file);
-  video.muted = true;
-  video.playsInline = true;
+  // 使用 URL.createObjectURL(file) 创建临时 URL
+  const videoUrl = URL.createObjectURL(file);
 
-  // Wait until the video can play to draw the first frame
-  video.addEventListener('loadeddata', () => {
-    video.currentTime = 0;
-  }, { once: true });
+  console.log(videoUrl);
+  // 获取首帧封面
+  videoFirstFrame.value = await getVideoInfo(videoUrl);
 
-  video.addEventListener('seeked', () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    videoFirstFrame.value = canvas.toDataURL('image/png');
-  }, { once: true });
-}
+  // 释放 URL，防止内存泄漏
+  // URL.revokeObjectURL(videoUrl); // 可在确认首帧生成后释放
+};
+
+const getVideoInfo = async (videoUrl) => {
+  return new Promise((resolve) => {
+    let video = document.createElement("video");
+    video.src = videoUrl;
+    video.currentTime = 0.1; // 截取首帧
+    video.preload = "metadata";
+
+    video.addEventListener("loadeddata", async () => {
+      let canvas = document.createElement("canvas"),
+          width = video.videoWidth,
+          height = video.videoHeight;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // 等 100ms 渲染完成
+      await new Promise((r) => setTimeout(r, 100));
+
+      canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const thumb = canvas.toDataURL("image/jpeg");
+
+      // 释放资源
+      canvas.width = 0;
+      canvas.height = 0;
+      video.src = "";
+      video.load();
+      video.remove();
+      video = null;
+      canvas = null;
+
+      resolve(thumb);
+    });
+  });
+};
 
 const handleRemoveVideo = () => {
   uploadedVideo.value = null

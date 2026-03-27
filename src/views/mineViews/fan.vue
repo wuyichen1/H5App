@@ -108,11 +108,12 @@ function addFollow(userId) {
 
 .edit-title {
   font-family: 'PangMenZhengDao', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: 22PX;
   font-weight: 400;
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff; /* 白色填充 */
+  -webkit-text-stroke: 2px rgba(234, 150, 255, 1); /* 粉色描边 */
+  border: 2px rgba(234, 150, 255, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 1); /* 外阴影 */
 }
 
 .container {
@@ -136,7 +137,7 @@ function addFollow(userId) {
   align-items: center;
   height: calc(100vh * 76 / 812);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(234, 150, 255, 1);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
   padding: 0 calc(100vw * 16 / 375);
   box-sizing: border-box;

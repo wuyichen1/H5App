@@ -107,11 +107,13 @@ function handleAction(isDelete) {
 
 .title {
   font-family: 'PangMenZhengDao', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: 22PX;
   font-weight: 400;
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff; /* 白色填充 */
+  -webkit-text-stroke: 2px rgba(234, 150, 255, 1); /* 粉色描边 */
+  border: 2px rgba(234, 150, 255, 1);
+  /*  text-stroke: 2px rgba(234, 150, 255, 1); 针对部分浏览器 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 1); /* 外阴影 */
 }
 
 /* Options List */
@@ -126,7 +128,7 @@ function handleAction(isDelete) {
 
 .option {
   height: calc(100vh * 52 / 812);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(234, 150, 255, 1);
   border-radius: calc(100vw * 20 / 375);
   box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
   display: flex;
@@ -168,16 +170,17 @@ function handleAction(isDelete) {
   font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
-  box-shadow:inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.6),inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.5);
+  border: none; /* 不需要按钮边框 */
+  /* box-shadow:inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.6),inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375)  rgba(255, 255, 255, 0.5); */
 }
 
 .delete-btn {
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
-  color: rgba(74, 32, 25, 1);
+  background: linear-gradient(90deg, rgba(146, 115, 240, 1) 0%, rgba(199, 130, 237, 1) 99.84%);
+  color: rgba(255, 255, 255, 1);
 }
 
 .logout-btn {
-  background: rgba(74, 32, 25, 1);
+  background: rgba(39, 36, 79, 1);
   color: rgba(255, 255, 255, 1);
 }
 </style>
