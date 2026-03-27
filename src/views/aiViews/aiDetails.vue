@@ -98,9 +98,12 @@ function handleRechargeEvent(value) {
 
 .top-card-container {
   position: absolute;
-  top: calc(100vh * 120 / 812);
+  top: 120PX;
+  left: 20PX;
+  right: 20PX;
+  /* top: calc(100vh * 120 / 812);
   left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
+  right: calc(100vw * 20 / 375); */
   z-index: 10;
 }
 
@@ -111,8 +114,8 @@ function handleRechargeEvent(value) {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: calc(100vw * 20 / 375);
-  padding: calc(100vh * 24 / 812) calc(100vw * 20 / 375);
+  border-radius: 20PX;
+  padding: 24PX 20PX;
   box-sizing: border-box;
   display: flex;
   position: relative;
@@ -124,12 +127,12 @@ function handleRechargeEvent(value) {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: calc(100vh * 12 / 812);
+  gap: 12PX;
 }
 
 .card-title {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: 20PX;
   line-height: 1.2;
   color: #4a2019;
   text-align: left;
@@ -139,18 +142,18 @@ function handleRechargeEvent(value) {
   width: fit-content;
   background: #000;
   color: #fff;
-  padding: calc(100vh * 6 / 812) calc(100vw * 16 / 375);
+  padding: 6PX 16PX;
   border-radius: calc(100vw * 20 / 375);
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: 14PX;
 }
 
 .card-image {
   position: absolute;
-  right: calc(100vw * -10 / 375);
-  top: calc(100vh * -60 / 812);
-  width: calc(100vw * 150 / 375);
-  height: calc(100vh * 200 / 812);
+  right: 0PX;
+  top: -40PX;
+  width: 146PX;
+  height: 186PX;
   background-image: url("@/assets/aiusermodel.png");
   background-size: contain;
   background-position: bottom center;
@@ -167,8 +170,8 @@ function handleRechargeEvent(value) {
 }
 
 .top-section {
-  margin-top: calc(100vh * 56 / 812);
-  margin-left: calc(100vw * 20 / 375);
+  margin-top: 56PX;
+  margin-left: 20PX;
   z-index: 100;
 }
 
@@ -181,55 +184,55 @@ function handleRechargeEvent(value) {
 .bottom-container {
   width: 100%;
   background: #ffffff;
-  border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0 0;
+  border-radius: 40PX 40PX 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: calc(100vh * 26 / 812) calc(100vw * 20 / 375) calc(100vh * 20 / 812);
+  padding: 26PX 20PX 20PX;
   box-sizing: border-box;
   box-shadow: 0 -10px 0px rgba(0, 0, 0, 0.05);
 }
 
 .bottom-title {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 30 / 375);
+  font-size: 30PX;
   font-weight: 400;
   color: #27244F;
   text-align: center;
-  margin-bottom: calc(100vh * 20 / 812);
+  margin-bottom: 20PX;
 }
 
 .bottom-text {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 16 / 375);
+  font-size: 16PX;
   font-weight: 400;
   line-height: 1.6;
   color: #27244F;
   text-align: center;
-  margin-bottom: calc(100vh * 40 / 812);
+  margin-bottom: 40PX;
 }
 
 .purchase-container {
-  width: calc(100vw * 335 / 375);
-  height: calc(100vh * 80 / 812);
-  border-radius: calc(100vw * 40 / 375);
+  width: 335PX;
+  height: 80PX;
+  border-radius: 40PX;
   background: linear-gradient(90deg, #a18dff 0%, #e2a1ff 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 calc(100vw * 20 / 375);
+  padding: 0 20PX;
   box-sizing: border-box;
 }
 
 .purchase-info {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 12 / 375);
+  gap: 12PX;
 }
 
 .purchase-icon {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: 32PX;
+  height: 32PX;
   background-image: url("@/assets/coin.png");
   background-size: contain;
   background-position: center;
@@ -238,21 +241,21 @@ function handleRechargeEvent(value) {
 
 .purchase-count {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 24 / 375);
+  font-size: 24PX;
   font-weight: 600;
   color: #ffffff;
 }
 
 .chat-box {
-  width: calc(100vw * 100 / 375);
-  height: calc(100vh * 48 / 812);
-  border-radius: calc(100vw * 24 / 375);
+  width: 100PX;
+  height: 48PX;
+  border-radius: 24PX;
   background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 18 / 375);
+  font-size: 18PX;
   font-weight: 600;
   color: #a18dff;
   box-sizing: border-box;
