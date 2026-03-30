@@ -109,21 +109,16 @@ import optionsBgImage from "@/assets/reportchoosebgc.png";
 
 .cancel {
   width: 164PX;
-  height: 56PX;
+  height: 55PX;
   border-radius: 40PX;
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: inset calc(100vw * -1 / 375) calc(100vw * -1 / 375) calc(100vw * 1 / 375)
-      rgba(255, 255, 255, 0.6),
-    inset calc(100vw * 1 / 375) calc(100vw * 1 / 375) calc(100vw * 1 / 375)
-      rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(calc(100vw * 10 / 375));
+  background: linear-gradient(90deg, #9273F0 0%, #C782ED 99.84%);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "PangMenZhengDao", sans-serif;
   font-size: 19PX;
   font-weight: 400;
-  color: rgba(74, 32, 25, 1);
+  color: #fff;
   text-align: center;
 }
 </style>
