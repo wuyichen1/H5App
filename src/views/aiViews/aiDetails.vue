@@ -109,7 +109,7 @@ function handleRechargeEvent(value) {
 
 .top-card {
   width: 100%;
-  height: calc(100vh * 140 / 812);
+  height: 150PX;
   background-image: url("@/assets/coinbgc.png");
   background-size: cover;
   background-position: center;
@@ -132,7 +132,7 @@ function handleRechargeEvent(value) {
 
 .card-title {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: 20PX;
+  font-size: 22PX;
   line-height: 1.2;
   color: #4a2019;
   text-align: left;
@@ -142,8 +142,9 @@ function handleRechargeEvent(value) {
   width: fit-content;
   background: #000;
   color: #fff;
-  padding: 6PX 16PX;
-  border-radius: calc(100vw * 20 / 375);
+  /* padding: 6PX 16PX; */
+  padding: calc(100vh * 6 / 812) calc(100vw * 16 / 375);
+  border-radius: 20PX;
   font-family: "PangMenZhengDao", sans-serif;
   font-size: 14PX;
 }
@@ -165,7 +166,9 @@ function handleRechargeEvent(value) {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow-y: auto; /* 让除返回按钮外的内容可滚动 */
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
 }
 
@@ -173,12 +176,16 @@ function handleRechargeEvent(value) {
   margin-top: 56PX;
   margin-left: 20PX;
   z-index: 100;
+  position: sticky; /* 滚动时返回按钮保持可见 */
+  top: 56PX;
 }
 
 .bottom-section {
   display: flex;
   justify-content: flex-start;
   z-index: 99;
+  margin-top: 200PX;
+  flex: 1; /* 撑满剩余高度 */
 }
 
 .bottom-container {
@@ -190,6 +197,8 @@ function handleRechargeEvent(value) {
   align-items: center;
   padding: 26PX 20PX 20PX;
   box-sizing: border-box;
+  flex: 1; /* 让内部卡片也随高度拉伸 */
+  min-height: 0; /* 防止 flex 子项溢出导致撑不开 */
   box-shadow: 0 -10px 0px rgba(0, 0, 0, 0.05);
 }
 

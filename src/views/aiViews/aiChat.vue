@@ -242,7 +242,7 @@ async function sendMessage() {
 
 .card-title {
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: 22PX;
   line-height: 1.2;
   color: #4a2019;
   text-align: left;
@@ -252,10 +252,11 @@ async function sendMessage() {
   width: fit-content;
   background: #000;
   color: #fff;
+  /* padding: 6PX 16PX; */
   padding: calc(100vh * 6 / 812) calc(100vw * 16 / 375);
-  border-radius: calc(100vw * 20 / 375);
+  border-radius: 20PX;
   font-family: "PangMenZhengDao", sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: 14PX;
 }
 
 .card-image {
