@@ -132,7 +132,7 @@ import BackButton from '@/components/back.vue'
   padding:calc(100vh * 58 / 812) calc(100vw * 20 / 375) calc(100vh * 20 / 812);
 }
 
-.title{
+/* .title{
   font-family: 'PangMenZhengDao', sans-serif;
   font-size: calc(100vw * 20 / 375);
   background:linear-gradient(
@@ -144,6 +144,16 @@ import BackButton from '@/components/back.vue'
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+} */
+.title {
+  font-family: 'PangMenZhengDao', sans-serif;
+  font-size: 22PX;
+  font-weight: 400;
+  color: #fff; /* 白色填充 */
+  -webkit-text-stroke: 2px rgba(234, 150, 255, 1); /* 粉色描边 */
+  border: 2px rgba(234, 150, 255, 1);
+  /*  text-stroke: 2px rgba(234, 150, 255, 1); 针对部分浏览器 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 1); /* 外阴影 */
 }
 
 /* 内容 */
@@ -177,7 +187,7 @@ import BackButton from '@/components/back.vue'
   font-size:calc(100vw * 18 / 375);
   margin-top:calc(100vh * 24 / 812);
   margin-bottom:calc(100vh * 10 / 812);
-  color:#ff9f8e;
+  color:#EA96FF;
 }
 
 /* 正文 */
