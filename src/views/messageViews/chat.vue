@@ -366,7 +366,7 @@ function reportSelect(value) {
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);
-  color: rgba(105, 71, 65, 1);
+  color: #27244F;
   padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
   border-radius: 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375) calc(100vw * 10 / 375);
   background: rgba(145, 229, 255, 1);
@@ -393,6 +393,7 @@ function reportSelect(value) {
 .chat-item.own-message .chat-message {
   border-radius: calc(100vw * 10 / 375) 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375);
   background: rgba(234, 150, 255, 1);
+  color: #fff;
 }
 
 /* image message styles */
