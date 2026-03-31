@@ -148,11 +148,11 @@ function removeBlock(userId) {
 
 .avatar-box {
   flex-shrink: 0; /* 禁止收缩 */
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: 32PX;
+  height: 32PX;
   border-radius: 50%;
-  padding: calc(100vw * 1 / 375);
-  background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%);
+  padding: 1PX;
+  background: rgb(39, 36, 79);
   display: flex;
   align-items: center;
   justify-content: center;
