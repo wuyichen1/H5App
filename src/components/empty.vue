@@ -16,8 +16,8 @@
 }
 
 .empty-image {
-  width: calc(100vw * 118 / 375);
-  height: calc(100vw * 118 / 375);
+  width: 150PX;
+  height: 150PX;
 }
 
 .empty-text {
@@ -27,6 +27,6 @@
   font-weight: 400;
   letter-spacing: 0px;
   line-height: calc(100vw * 17.41 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgb(39, 36, 79);
 }
 </style>
