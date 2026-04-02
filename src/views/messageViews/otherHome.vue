@@ -14,12 +14,16 @@
         </div>
       </div>
       <div class="top-name">{{ currentUser.name }}</div>
-      <!-- 用户作品数量、粉丝、关注 -->
+      <!-- jianjie -->
+      <div class="intro-text">{{ currentUser.about }}</div>
+      <!-- guanzhu和chat按钮 -->
+      <div class="intro-chat">
+        <!-- 用户作品数量、粉丝、关注 -->
       <div class="user-stats">
-        <div class="stat-item stat-first">
+        <!-- <div class="stat-item stat-first">
           <div class="stat-number">{{ userPosts.length || 0 }}</div>
           <div class="stat-label">Works</div>
-        </div>
+        </div> -->
         <div class="stat-item">
           <div class="stat-number">{{ currentUser.fans.length || 0 }}</div>
           <div class="stat-label">Fans</div>
@@ -29,9 +33,7 @@
           <div class="stat-label">Follow</div>
         </div>
       </div>
-      <!-- 简介和chat按钮 -->
-      <div class="intro-chat">
-        <div class="intro-text">{{ currentUser.about }}</div>
+        <!-- <div class="intro-text">{{ currentUser.about }}</div> -->
         <template v-if="userId !== currentUserStore.currentUser.userId">
           <div class="chat-btn" @click="handleChat">
               <div class="chat-icon"></div>
@@ -44,7 +46,7 @@
       </div>
       <!-- Post标题 -->
       <div class="post-title-container">
-        <div class="post-title">Post</div>
+        <div class="post-title">Works</div>
       </div>
       <!-- PostList -->
       <div class="post-list">
@@ -68,14 +70,14 @@
                 <div class="post-isvideo-icon" v-if="post.dynamicType === 1"></div>
                 <div class="post-content-button">
                   <div class="post-image-overlay">
-                    <div class="overlay-item">
+                    <div class="overlay-item overlay-like-item">
                       <div class="overlay-icon overlay-like"></div>
                       <div class="overlay-count">{{ post.dynamicLikeCount || 0 }}</div>
                     </div>
-                    <!-- <div class="overlay-item">
+                    <div class="overlay-item overlay-comment-item">
                       <div class="overlay-icon overlay-comment"></div>
                       <div class="overlay-count">{{ post.dynamicCommentCount || 0 }}</div>
-                    </div> -->
+                    </div>
                   </div>
                   <div class="post_details">
                     <div>{{ post.dynamicDesc }}</div>
@@ -112,7 +114,6 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { usePostStore } from '@/stores/post'
-import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useChatsStore } from '@/stores/chat'
 import BackButton from '@/components/back.vue'
@@ -135,7 +136,6 @@ const currentUser = computed(() => {
 // 用户帖子列表
 const postStore = usePostStore()
 const userPosts = computed(() => postStore.getPostsByUserId(userId))
-const otherStore =  useOtherStore()
 const currentUserStore = useCurrentUserStore()
 const chatStore = useChatsStore()
 const router = useRouter()
@@ -183,7 +183,7 @@ function handleFollow() {
   }
 
   // Update post user's fans list
-  const postUserFans = currentUser.fans ? [...currentUser.fans] : []
+  const postUserFans = currentUser.value.fans ? [...currentUser.value.fans] : []
   if (!postUserFans.includes(currentUserId)) {
     postUserFans.unshift(currentUserId)
   }
@@ -279,9 +279,9 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .scroll-content {
   position: relative;
-  padding-top: calc(100vh * 72 / 812); /* 自适应顶部间距 */
+  padding-top: calc(100vh * 117 / 812); /* 自适应顶部间距 */
   width: 100vw;
-  height: calc(100vh - calc(100vh * 72 / 812));
+  height: calc(100vh - calc(100vh * 117 / 812));
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -325,8 +325,8 @@ function toPostDetail(dynamicId, dynamicType) {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: calc(100vw * 24 / 375);
-  height: calc(100vh * 24 / 812);
+  width: calc(100vw * 20 / 375);
+  height: calc(100vh * 20 / 812);
   background-image: url('@/assets/follow.png');
   background-size: cover; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
@@ -337,10 +337,10 @@ function toPostDetail(dynamicId, dynamicType) {
 .top-name {
   padding: calc(100vh * 12 / 812) calc(100vw * 20 / 375) 0;
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-weight: 600;
   line-height: calc(100vw * 21.2 / 375);
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
-  color: rgba(51, 24, 13, 1);
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -352,8 +352,8 @@ function toPostDetail(dynamicId, dynamicType) {
 .user-stats {
   display: flex;
   justify-content: center;
-  gap: calc(100vw * 60 / 375); /* 三个内容间距60 */
-  margin-top: calc(100vh * 16 / 812); /* 顶部间距16 */
+  gap: calc(100vw * 16 / 375); /* 三个内容间距60 */
+  /* margin-top: calc(100vh * 16 / 812); */
 }
 
 .stat-item {
@@ -365,26 +365,26 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .stat-number {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .stat-label {
-  font-family: 'OPPOSansRegular', sans-serif;
+  /* font-family: 'OPPOSansRegular', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .intro-chat {
   display: flex;
   justify-content: space-between; /* 左右对齐 */
   align-items: center;
-  margin-top: calc(100vh * 24 / 812); /* 顶部间距 */
+  margin-top: calc(100vh * 26 / 812); /* 顶部间距 */
   padding-left: calc(100vw * 20 / 375);
   padding-right: calc(100vw * 20 / 375);
   width: 100%;
@@ -395,11 +395,14 @@ function toPostDetail(dynamicId, dynamicType) {
 .intro-text {
   flex: 1;
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
-  color: rgba(51, 24, 13, 1);
+  line-height: calc(100vw * 16 / 375);
+  color: rgba(255, 255, 255, 0.7);
   word-break: break-word;
+  text-align: center; /* 横向居中文案 */
+  width: 100%;
+  margin-top: calc(100vh * 10 / 812);
 }
 
 .chat-btn {
@@ -409,9 +412,9 @@ function toPostDetail(dynamicId, dynamicType) {
   gap: calc(100vw * 10 / 375); /* 两个元素间距10 */
   width: calc(100vw * 142 / 375);
   height: calc(100vh * 53 / 812);
-  background: rgba(0, 0, 0, 1);
-  border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1);
-  border-radius: calc(100vw * 10 / 375);
+  background: rgba(255, 255, 255, 0.2);
+  /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
+  border-radius: calc(100vw * 20 / 375);
   cursor: pointer;
 }
 
@@ -423,13 +426,13 @@ function toPostDetail(dynamicId, dynamicType) {
 .chat-icon {
   width: calc(100vw * 36 / 375);
   height: calc(100vw * 36 / 375);
-  background-image: url('@/assets/chaticon.png');
+  background-image: url('@/assets/chat_oth.png');
   background-size: cover;
   background-position: center;
 }
 
 .chat-text {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 21.2 / 375);
@@ -443,14 +446,14 @@ function toPostDetail(dynamicId, dynamicType) {
 }
 
 .post-title {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 21.2 / 375);
   color: rgba(255, 255, 255, 1);
-  padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  background: #000;
-  border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1);
+  /* padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375); */
+  /* background: #000; */
+  /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
   border-radius: calc(100vw * 10 / 375);
   box-sizing: border-box;
 }
@@ -467,16 +470,17 @@ function toPostDetail(dynamicId, dynamicType) {
 
 /* Post Item new layout */
 .post-item {
-  height: calc(100vh * 261 / 812);
+  height: calc(100vh * 221 / 812);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 0px calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.06);
+  background: transparent;
+  box-shadow: 0px 0px calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: calc(100vh * 10 / 812) calc(100vw * 12 / 375);
-  gap: calc(100vh * 14 / 812);
+  padding: 0;
+  gap: 0;
+  position: relative;
 }
 
 /* Post item new sections */
@@ -494,6 +498,11 @@ function toPostDetail(dynamicId, dynamicType) {
   justify-content: space-between;
   align-items: center;
   gap: calc(100vw * 10 / 375);
+  position: absolute;
+  top: calc(100vh * 14 / 812);
+  left: calc(100vw * 20 / 375);
+  right: calc(100vw * 20 / 375);
+  z-index: 2;
 }
 
 .post-user {
@@ -501,11 +510,11 @@ function toPostDetail(dynamicId, dynamicType) {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 12 / 375);
+  gap: calc(100vw * 10 / 375);
 }
 
 .post-avatar-border {
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
+  background: linear-gradient(141.29deg, rgba(255, 45, 214, 1) 0%, rgba(125, 60, 255, 1) 52.94%, rgba(73, 18, 255, 1) 100%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -531,11 +540,11 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .post-username {
   flex: 1;
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
-  font-size: calc(100vw * 12 / 375);
-  font-weight: 400;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 600;
   line-height: calc(100vw * 12.72 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: rgba(255, 255, 255, 0.95);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -553,7 +562,7 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .post-image {
   flex: 1;
-  border-radius: calc(100vw * 16 / 375);
+  border-radius: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -561,85 +570,116 @@ function toPostDetail(dynamicId, dynamicType) {
   overflow: hidden;
 }
 
+.post-image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+  z-index: 1;
+  pointer-events: none;
+}
+
 .post-isvideo-icon {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
-  background-image: url('@/assets/postvideopulasicon.png');
+  right: calc(100vw * 16 / 375);
+  bottom: calc(100vh * 16 / 812);
+  width: calc(100vw * 50 / 375);
+  height: calc(100vw * 50 / 375);
+  border-radius: 50%;
+  background-image: url('@/assets/videopluse.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 2;
   cursor: pointer;
-  overflow: hidden;
-}
-
-.post-content-button {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  gap: calc(100vh * 10 / 812);
-  align-items: flex-end;
-}
-
-.post-image-overlay {
-  display: flex;
-  justify-content: end;
-}
-
-.overlay-item {
-  border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 1);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: calc(100vh * 2 / 812) calc(100vw * 8 / 375);
-  gap: calc(100vw * 5 / 375);
-  margin-right: calc(100vw * 10 / 375);
+  overflow: hidden;
+}
+
+.post-isvideo-icon::after {
+  /* 改用图片后，禁用原来的伪元素三角形 */
+  content: '';
+  display: none;
+}
+
+.post-content-button {
+  position: absolute;
+  left: calc(100vw * 16 / 375);
+  right: calc(100vw * 16 / 375);
+  bottom: calc(100vh * 20 / 812);
+  z-index: 2;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.post-image-overlay {
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr;
+  width: 100%;
+  align-items: center;
+}
+
+.overlay-item {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: calc(100vw * 8 / 375);
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.overlay-like-item {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.overlay-comment-item {
+  grid-column: 2;
+  justify-self: center;
 }
 
 .overlay-icon {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: 32PX; /* 固定 icon 尺寸 */
+  height: 32PX; /* 固定 icon 尺寸 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .overlay-like {
-  background-image: url('@/assets/likepic.png');
+  background-image: url('@/assets/like_kong.png');
+  background-position: center;
+  background-size: cover;
 }
 
 .overlay-comment {
   background-image: url('@/assets/chaticon.png');
+  background-size: cover;
 }
 
 .overlay-count {
-  font-family: 'OPPOSansBold', sans-serif;
-  font-size: calc(100vw * 12 / 375);
-  font-weight: 700;
-  line-height: calc(100vw * 15.83 / 375);
-  color: rgb(0, 0, 0);
+  /* font-family: 'OPPOSansBold', sans-serif; */
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 400;
+  line-height: calc(100vw * 21.5 / 375);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .post_details {
-  width: 100%;
-  height: calc(100vh * 41 / 812);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(calc(100vw * 4 / 375));
-  border-radius: 0px 0px calc(100vw * 16 / 375) calc(100vw * 16 / 375);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: none; /* 截图样式只保留点赞/评论/播放按钮 */
 }
 
 .post_details div {
   padding: 0 calc(100vw * 10 / 375);
-  font-family: 'OPPOSansRegular', sans-serif;
+  /* font-family: 'OPPOSansRegular', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
