@@ -1,49 +1,35 @@
 <template>
   <div class="page">
-    <!-- <div class="aiusermodel"></div>
-    <div class="aichatmodel"></div> -->
+    <div class="top-section">
+      <BackButton />
+    </div>
 
-    <!-- 页面内容 -->
-    <div class="page-content">
-      <div class="ai-user-container"></div>
-      <div class="top-section">
-        <BackButton />
+    <div class="page-main">
+      <div class="hero-area">
+        <img class="hero-image" src="@/assets/aiuserpic.png" alt="Zelop AI" />
       </div>
-      <div class="bottom-scroll">
-        <div class="bottom-first">
-          <div class="ai-bgc-icon"></div>
-          <div class="ai-title-inter">
-            <div class="ai-title-inter-one">
-              Hi! In Zelop
-            </div>
-            <div class="ai-title-inter-two">
-              Discover more dazzling makeup looks and your beauty transformation plan. I'm here to assist you!
-            </div>
-          </div>
+
+      <div class="info-card">
+        <div class="card-title">Zelop AI</div>
+        <div class="card-desc">
+          Hi! I'm Zelop AI, your personal hip-hop AI assistant. Whether you're a newbie writing
+          your first verse or a seasoned MC crafting fire tracks, I am here to help you with
+          flows, bars, beats, and ideas, and help you shine in every rhyme. Are you ready?
         </div>
-        <div class="bottom-section">
-          <div class="bottom-container">
-            <div class="bottom-top">
-              <!-- <div class="bottom-title">Zelop AI</div> -->
-              <div class="bottom-text">Hi! I'm Zelop, your personal makeup buddy on this app. Looking for a certain beauty style? Want tricks to level up your routine? Or just want to discover new ideas? Let me know, and I'll point you in the right direction!</div>
-            </div>
-          <!-- 购买 -->
-          <div class="purchase-container" @click="handlePurchaseClick">
-            <div class="purchase-info">
-              <div class="purchase-icon"></div>
-              <div class="purchase-count">x 200</div>
-            </div>
-            <div class="chat-box">Chat</div>
-          </div>
+      </div>
+
+      <div class="pill-wrapper">
+        <div class="purchase-container" @click="handlePurchaseClick">
+          <img class="purchase-icon" src="@/assets/coin.png" alt="" />
+          <div class="purchase-text">
+            <span class="purchase-count">x200</span>
+            <span class="purchase-sub">(Chat)</span>
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="dialog"
-      v-if="showCoinNot"
-      @click.self="showCoinNot = false"
-    >
+
+    <div class="dialog" v-if="showCoinNot" @click.self="showCoinNot = false">
       <CoinNotDialog @recharge="handleRechargeEvent" />
     </div>
   </div>
@@ -61,12 +47,15 @@ import { sendShowLoadingToIOS } from '@/utils/iosBridge'
 const showCoinNot = ref(false)
 
 const currentUserStore = useCurrentUserStore()
-const userStore =  useUserStore()
+const userStore = useUserStore()
 function handlePurchaseClick() {
-  if (currentUserStore.currentUser.coins >= 100) {
+  // 对齐 UI：x200 (Chat)
+  const needCoins = 200
+
+  if (currentUserStore.currentUser.coins >= needCoins) {
     sendShowLoadingToIOS(true)
 
-    const currentCoins = currentUserStore.currentUser.coins - 100
+    const currentCoins = currentUserStore.currentUser.coins - needCoins
     userStore.updateUser(currentUserStore.currentUser.userId, { coins: currentCoins })
 
     const delay = Math.floor(Math.random() * 1500) + 500
@@ -109,8 +98,9 @@ function handleRechargeEvent(value) {
 }
 
 .top-section {
-  margin-top: calc(100vh * 56 / 812);
-  margin-left: calc(100vw * 20 / 375);
+  position: absolute;
+  top: calc(100vh * 56 / 812);
+  left: calc(100vw * 20 / 375);
   z-index: 100;
 }
 
@@ -212,7 +202,8 @@ function handleRechargeEvent(value) {
   align-items: center;
   margin: 0 calc(100vw * 30 / 375);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 255, 255, 0.2); */
+  background: linear-gradient(90deg, #FE14CC 0%, #FFB900 100%);
   box-shadow: 0px 0px calc(100vw * 10 / 375)  rgba(0, 0, 0, 0.06);
   padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
 }
@@ -228,52 +219,135 @@ function handleRechargeEvent(value) {
 } */
 
 .bottom-text {
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  /* font-family: 'OPPOSansRegular', sans-serif; */
+  font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 30 / 375);
   letter-spacing: 0;
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.8);
   text-align: center;
   overflow-y: auto;
 }
 
-.purchase-container {
-  margin-bottom: calc(100vh * 34 / 812);
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 59 / 812);
-  border-radius: calc(100vw * 87 / 375);
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
-  box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8);
+.page-main {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: calc(100vw * 18 / 375);
   box-sizing: border-box;
 }
 
-.purchase-info {
+.hero-area {
+  width: 100%;
   display: flex;
+  justify-content: center;
+  margin-top: calc(100vh * 0 / 812);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  /* 向下压，让底部胶囊按钮略微遮挡图片底部 */
+  transform: translateY(calc(100vh * 60 / 812));
+}
+
+.hero-image {
+  width: calc(100vw * 200 / 375);
+  max-height: calc(100vh * 310 / 812);
+  object-fit: contain;
+}
+
+.info-card {
+  width: calc(100vw * 335 / 375);
+  margin-top: calc(100vh * -6 / 812);
+  border-radius: calc(100vw * 28 / 375);
+  /* background: linear-gradient(
+    141.29deg,
+    rgba(255, 110, 50, 1) 0%,
+    rgba(253, 61, 104, 1) 44.94%,
+    rgba(251, 226, 100, 1) 100%
+  ); */
+  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  border: calc(100vw * 1 / 375) solid rgba(255, 255, 255, 0.35);
+  padding: calc(100vh * 30 / 812) calc(100vw * 36 / 375);
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.card-title {
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-size: calc(100vw * 26 / 375);
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 1);
+}
+
+.card-desc {
+  margin-top: calc(100vh * 18 / 812);
+  margin-bottom: calc(100vh * 12 / 812);
+  font-family: 'OPPOSansRegular', sans-serif;
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 400;
+  line-height: calc(100vw * 22 / 375);
+  color: rgba(255, 255, 255, 0.86);
+  white-space: normal;
+}
+
+.pill-wrapper {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: calc(100vh * 56 / 812);
+  position: relative;
+  z-index: 3;
+}
+
+.purchase-container {
+  margin-bottom: 0;
+  width: calc(100vw * 300 / 375);
+  height: calc(100vh * 59 / 812);
+  border-radius: calc(100vw * 40 / 375);
+  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
+  /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: calc(100vw * 3 / 375);
+  gap: calc(100vw * 14 / 375);
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .purchase-icon {
-  width: calc(100vw * 38 / 375);
-  height: calc(100vh * 37 / 812);
-  background-image: url('@/assets/coin.png'); /* replace with your local image */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: calc(100vw * 32 / 375);
+  height: calc(100vw * 32 / 375);
+  object-fit: contain;
 }
 
 .purchase-count {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-size: calc(100vw * 22 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
+  line-height: 1;
   letter-spacing: 0;
   color: rgb(255, 255, 255);
+}
+
+.purchase-text {
+  display: flex;
+  align-items: baseline;
+  gap: calc(100vw * 8 / 375);
+}
+
+.purchase-sub {
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 1);
+  line-height: 1;
 }
 
 .chat-box {

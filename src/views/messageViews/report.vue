@@ -4,33 +4,42 @@
       <BackButton/>
     </div>
     <div class="page-content">
-        <div class="grid-container">
-            <div class="grid-item" 
-                 v-for="(item, index) in otherStore.other.reportContent" 
-                 :key="index"
-                 :class="{ selected: selectedIndex === index }"
-                 @click="selectedIndex = index">
-                <div class="choose-box">
-                    <div class="check-icon" v-if="selectedIndex === index"></div>
-                </div>
-                <div class="report-content">{{ item }}</div>
-            </div>
+      <div class="category-list">
+        <div
+          class="category-btn"
+          v-for="(item, index) in otherStore.other.reportContent"
+          :key="index"
+          :class="{ selected: selectedIndex === index }"
+          @click="selectedIndex = index"
+        >
+          {{ item }}
         </div>
-        <div class="input-title">Supplementary description</div>
-        <div class="input-box">
-          <textarea v-model="inputText" class="input-field" maxlength="150" placeholder="Supplementary description (optional)"></textarea>
-          <div class="char-count">{{ inputText.length }}/150</div>
-        </div>
-        <div class="btn-box" @click="handleSubmit">Submit</div>
+      </div>
+
+      <div class="input-title">Supplementary description</div>
+
+      <div class="input-box">
+        <textarea
+          v-model="inputText"
+          class="input-field"
+          maxlength="150"
+          placeholder="Please enter"
+        ></textarea>
+        <div class="char-count">{{ inputText.length }}/150</div>
+      </div>
+
+      <div class="btn-box" @click="handleSubmit">Submit</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { defineOptions, ref } from 'vue'
 import BackButton from '@/components/back.vue'
 import { useOtherStore } from '@/stores/other'
 import { goBackOrClose, sendShowLoadingToIOS, sendShowToastToIOS } from '@/utils/iosBridge'
+
+defineOptions({ name: 'ReportView' })
 
 const otherStore =  useOtherStore()
 
@@ -73,79 +82,63 @@ function handleSubmit() {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  padding: 0 calc(100vw * 20 / 375);
+  display: flex;
+  flex-direction: column;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 一行两条 */
-  column-gap: calc(100vw * 7 / 375); /* 左右间距7 */
-  row-gap: calc(100vh * 12 / 812); /* 上下间距12 */
-  padding: calc(100vh * 20 / 812) calc(100vw * 20 / 375) 0; /* 可选左右内边距 */
+.category-list {
+  padding-top: calc(100vh * 22 / 812);
+  display: flex;
+  flex-direction: column;
+  gap: calc(100vh * 12 / 812);
 }
 
-.grid-item {
-  position: relative;
-  border-radius: calc(100vw * 20 / 375);
-  box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
-  background: rgb(255, 255, 255);
-  height: calc(100vw * 115 / 375);
-  overflow: hidden;
-}
-
-.choose-box {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
-  border-radius: calc(100vw * 8 / 375) 0px calc(100vw * 20 / 375) 0px;
-  background: rgba(0, 0, 0, 0.12);
-}
-
-.grid-item.selected .choose-box {
-  background: rgba(253, 61, 104, 1);
-}
-
-.check-icon {
-  position: absolute;
-  top: calc(100vh * 6 / 812);
-  left: calc(100vw * 6 / 375);
-  width: calc(100vw * 20 / 375);
-  height: calc(100vw * 20 / 375);
-  background-image: url('@/assets/checkicon.png');
-  background-size: cover; /* 等比缩放覆盖 */
-  background-position: center; /* 居中显示 */
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.report-content {
-  padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375) 0;
-  color: rgba(51, 24, 13, 1);
+.category-btn {
+  width: 100%;
+  height: calc(100vw * 48 / 375);
+  border-radius: calc(100vw * 999 / 375);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0px calc(100vw * 2 / 375) 0px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 18 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.1 / 375);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.category-btn.selected {
+  background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%);
+  /* background: linear-gradient(90deg, rgba(255, 52, 125, 1) 0%, rgba(72, 81, 253, 1) 55%, rgba(255, 175, 75, 1) 100%); */
+  box-shadow:
+    0px calc(100vw * 6 / 375) calc(100vw * 12 / 375) rgba(72, 81, 253, 0.25),
+    inset 0px 0px 0px 1px rgba(255, 255, 255, 0.18);
 }
 
 .input-title {
-  padding-top: calc(100vh * 30 / 812);
-  padding-left: calc(100vw * 20 / 375);
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  padding-top: calc(100vh * 24 / 812);
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-size: calc(100vw * 22 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
-  color: rgba(45, 33, 45, 1);
+  line-height: calc(100vw * 24.2 / 375);
+  color: rgba(255, 255, 255, 0.96);
 }
 
 .input-box {
   position: relative;
-  margin: calc(100vh * 16 / 812) calc(100vw * 20 / 375) 0;
-  height: calc(100vh * 103 / 812);
-  border-radius: calc(100vw * 16 / 375);
-  background: rgb(255, 255, 255);
-  box-shadow: 0px 0px calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.06);
-  padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375);
+  margin-top: calc(100vh * 14 / 812);
+  height: calc(100vh * 170 / 812);
+  border-radius: calc(100vw * 20 / 375);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(calc(100vw * 10 / 375));
+  -webkit-backdrop-filter: blur(calc(100vw * 10 / 375));
+  box-shadow: 0px 0px calc(100vw * 6 / 375) rgba(0, 0, 0, 0.06);
+  padding: calc(100vh * 14 / 812) calc(100vw * 16 / 375);
   box-sizing: border-box;
 }
 
@@ -157,46 +150,45 @@ function handleSubmit() {
   outline: none;
   background: transparent;
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 16 / 375);
   font-weight: 400;
-  color: rgb(0, 0, 0); /* 输入文本颜色 */
-  line-height: calc(100vw * 18.47 / 375);
+  color: rgba(255, 255, 255, 0.96); /* 输入文本颜色 */
+  line-height: calc(100vw * 22 / 375);
 }
 
-.input-field :placeholder {
-  color: rgba(94, 69, 58, 1);
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.42);
 }
 
 .char-count {
   position: absolute;
-  right: calc(100vw * 8 / 375);
-  bottom: calc(100vh * 8 / 812);
+  right: calc(100vw * 14 / 375);
+  bottom: calc(100vh * 14 / 812);
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 14.5 / 375);
   font-weight: 400;
-  color: rgba(94, 69, 58, 1);
-  line-height: calc(100vw * 18.47 / 375);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1;
 }
 
 .btn-box {
-  margin: 0 auto; /* 新增：水平居中 */
-  margin-top: calc(100vh * 35 / 812);
-  margin-bottom: calc(100vh * 34 / 812);
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 59 / 812);
-  border-radius: calc(100vw * 87 / 375);
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
-  box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8);
+  margin-top: auto;
+  margin-bottom: calc(100vh * 32 / 812);
+  width: 100%;
+  height: calc(100vh * 60 / 812);
+  border-radius: calc(100vw * 999 / 375);
+  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
+  /* box-shadow: 0px calc(100vw * 2 / 375) 0px rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375) rgba(200, 100, 154, 1), inset 0px calc(100vw * 2 / 375) 0px rgba(255, 255, 255, 0.8); */
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: 'PlayfairDisplayBlack', sans-serif;
+  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 900;
+  font-weight: 500;
   line-height: calc(100vw * 26.66 / 375);
   color: rgb(255, 255, 255);
   text-align: center;
-  vertical-align: top;
 }
 </style>
