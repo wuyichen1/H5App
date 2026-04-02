@@ -115,16 +115,10 @@ p, h1 {
 }
 
 .title{
-  font-family: 'PlayfairDisplayBlack', sans-serif;
+  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 900;
-  /* color: #fff; */
-  background: linear-gradient(
-    141.29deg,
-    rgba(255, 110, 50, 1) 0%,
-    rgba(253, 61, 104, 1) 44.94%,
-    rgba(251, 226, 100, 1) 100%
-  );
+  font-weight: 700;
+  background: #fff;
   -webkit-background-clip: text; /* 仅对文本裁剪背景 */
   -webkit-text-fill-color: transparent; /* 文字透明，让背景显示 */
   background-clip: text; /* 标准属性，兼容非 webkit 浏览器 */
@@ -145,6 +139,7 @@ p, h1 {
   font-family: 'OPPOSansRegular', sans-serif;
   font-size:calc(100vw * 24 / 375);
   margin-bottom:calc(100vh * 10 / 812);
+  color: rgba(255, 255, 255, 1);
 }
 
 /* 更新时间 */
@@ -153,6 +148,7 @@ p, h1 {
   font-family: 'OPPOSansRegular', sans-serif;
   font-size:calc(100vw * 12 / 375);
   margin-bottom:calc(100vh * 20 / 812);
+  color: rgba(255, 255, 255, 1);
 }
 
 /* 小标题 */
@@ -170,6 +166,7 @@ p, h1 {
   font-size:calc(100vw * 14 / 375);
   line-height:1.7;
   margin-bottom:calc(100vh * 10 / 812);
+  color: rgba(255, 255, 255, 1);
 }
 
 /* 列表 */
@@ -181,5 +178,6 @@ p, h1 {
   margin-bottom:calc(100vh * 6 / 812);
   font-family: 'OPPOSansRegular', sans-serif;
   font-size:calc(100vw * 14 / 375);
+  color: rgba(255, 255, 255, 1);
 }
 </style>
