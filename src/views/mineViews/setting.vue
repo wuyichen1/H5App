@@ -32,7 +32,7 @@ const options = ref([
   { text: 'User Agreement' },
   { text: 'Blacklist' },
   { text: 'Wallet' },
-  { text: 'Edit personal information' }
+  // { text: 'Edit personal information' }
 ])
 
 const router = useRouter()
