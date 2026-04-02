@@ -7,11 +7,11 @@
       <div class="top-bgc">
         <div class="top-section">
           <BackButton />
-          <p>Glimd AI</p>
+          <p>Zelop AI</p>
         </div>
         <div class="top-ai-out-drection">
           <div class="top-ai-bg-contanier">
-            <div class="top-ai-bg-contanier-text">Glimd AI</div>
+            <div class="top-ai-bg-contanier-text">Zelop AI</div>
             <div class="top-ai-bg-contanier-image"></div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const getFirstTime = () => {
 }
 
 const bottomItems = ref([
-  { sendId: '0', time: getFirstTime(), message: 'Hi there! I\'m Glimd, your AI buddy for all things fun and.'},
+  { sendId: '0', time: getFirstTime(), message: 'Hi there! I\'m Zelop, your AI buddy for all things fun and.'},
 ])
 
 async function handleMessageClick(message) {

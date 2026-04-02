@@ -14,7 +14,7 @@
           <div class="ai-bgc-icon"></div>
           <div class="ai-title-inter">
             <div class="ai-title-inter-one">
-              Hi! In Glimd
+              Hi! In Zelop
             </div>
             <div class="ai-title-inter-two">
               Discover more dazzling makeup looks and your beauty transformation plan. I'm here to assist you!
@@ -24,8 +24,8 @@
         <div class="bottom-section">
           <div class="bottom-container">
             <div class="bottom-top">
-              <!-- <div class="bottom-title">Glimd AI</div> -->
-              <div class="bottom-text">Hi! I'm Glimd, your personal makeup buddy on this app. Looking for a certain beauty style? Want tricks to level up your routine? Or just want to discover new ideas? Let me know, and I'll point you in the right direction!</div>
+              <!-- <div class="bottom-title">Zelop AI</div> -->
+              <div class="bottom-text">Hi! I'm Zelop, your personal makeup buddy on this app. Looking for a certain beauty style? Want tricks to level up your routine? Or just want to discover new ideas? Let me know, and I'll point you in the right direction!</div>
             </div>
           <!-- 购买 -->
           <div class="purchase-container" @click="handlePurchaseClick">

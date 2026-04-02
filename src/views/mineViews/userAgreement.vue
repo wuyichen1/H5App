@@ -10,18 +10,18 @@
     <!-- Content -->
     <div class="agreement-content">
 
-      <h1>Glimd User Agreement</h1>
+      <h1>Zelop User Agreement</h1>
 
       <p class="update-time">Last updated: 2026</p>
 
       <p>
-        Welcome to <strong>Glimd</strong>! Glimd is a social platform designed for dance enthusiasts to connect, learn, and share their passion through innovative features including a vibrant community, AI-powered assistance, and engaging short video tutorials. Before using Glimd, please read this User Agreement carefully. By accessing or using Glimd, you agree to comply with this agreement and all applicable laws.
+        Welcome to <strong>Zelop</strong>! Zelop is a social platform designed for dance enthusiasts to connect, learn, and share their passion through innovative features including a vibrant community, AI-powered assistance, and engaging short video tutorials. Before using Zelop, please read this User Agreement carefully. By accessing or using Zelop, you agree to comply with this agreement and all applicable laws.
       </p>
 
       <h2>1. Project Description</h2>
 
       <p>
-        Glimd aims to create a global community where dancers of all levels can interact, inspire each other, and grow together. Our platform integrates social networking, AI technology, and multimedia content to enhance your dance experience.
+        Zelop aims to create a global community where dancers of all levels can interact, inspire each other, and grow together. Our platform integrates social networking, AI technology, and multimedia content to enhance your dance experience.
       </p>
 
       <h2>2. Core Functions</h2>
@@ -47,13 +47,13 @@
       <h2>5. User Responsibilities</h2>
 
       <p>
-        By using Glimd, you agree to engage respectfully, provide accurate information, and adhere to all applicable laws and platform guidelines.
+        By using Zelop, you agree to engage respectfully, provide accurate information, and adhere to all applicable laws and platform guidelines.
       </p>
 
       <h2>6. Content Guidelines</h2>
 
       <p>
-        All shared content must be appropriate and lawful. Glimd reserves the right to remove content that violates these guidelines or the User Agreement.
+        All shared content must be appropriate and lawful. Zelop reserves the right to remove content that violates these guidelines or the User Agreement.
       </p>
 
       <h2>7. Account Security</h2>
@@ -65,7 +65,7 @@
       <h2>8. Termination</h2>
 
       <p>
-        Glimd may suspend or terminate your account if you violate this agreement or engage in harmful behavior.
+        Zelop may suspend or terminate your account if you violate this agreement or engage in harmful behavior.
       </p>
 
       <h2>9. Updates to Agreement</h2>
@@ -80,10 +80,10 @@
         For any questions or support, please reach out through the in-app support channels.
       </p>
 
-      <h2>11. Join Glimd Today!</h2>
+      <h2>11. Join Zelop Today!</h2>
 
       <p>
-        Embrace your passion for dance and connect with a global community. Download Glimd and start your dance journey now!
+        Embrace your passion for dance and connect with a global community. Download Zelop and start your dance journey now!
       </p>
 
     </div>
