@@ -22,6 +22,11 @@
           <BackButton/>
           <MoreButton v-if="post.userId !== currentUserStore.currentUser.userId" @click="showPostReport = true" />
         </div>
+        <!-- 点赞：锚定在图片区右下角，一半压在图上一半伸入下方内容区 -->
+        <div class="like-box" @click="toggleLike">
+          <img :src="currentUserStore.currentUser.postLikeIds.includes(postId.toString()) ? likeImage : disLikeImage" alt="like" class="like-icon" />
+          <div class="like-count">{{ post.dynamicLikeCount + (currentUserStore.currentUser.postLikeIds.includes(postId.toString()) ? 1 : 0) }}</div>
+        </div>
       </div>
       <!-- 帖子内容 -->
       <div class="post-content">
@@ -44,16 +49,11 @@
             <div class="post-desc">
               {{ post.dynamicDesc }}
             </div>
-            <!-- <div class="tag-box">
+            <div class="tag-box">
               <div class="tag-text"># {{ postTag }}</div>
-            </div> -->
+            </div>
           </div>
           </div>
-        </div>
-        <!-- 点赞内容 -->
-        <div class="like-box" @click="toggleLike">
-          <img :src="currentUserStore.currentUser.postLikeIds.includes(postId.toString()) ? likeImage : disLikeImage" alt="like" class="like-icon" />
-          <div class="like-count">{{ post.dynamicLikeCount + (currentUserStore.currentUser.postLikeIds.includes(postId.toString()) ? 1 : 0) }}</div>
         </div>
       </div>
       <!-- Comments -->
@@ -83,10 +83,12 @@
           <Empty />
         </template>
       <!-- 输入框 -->
-      <div class="input-box">
-        <input type="text" placeholder="Say something" class="input-field" v-model="commentInput" />
-        <div class="send-btn" @click="sendComment">
-          <img src="@/assets/commentsend.png" alt="Send"/>
+      <div class="comment-input-shell">
+        <div class="input-box">
+          <input type="text" placeholder="Say something" class="input-field" v-model="commentInput" />
+          <div class="send-btn" @click="sendComment">
+            <img src="@/assets/commentsend.png" alt="Send"/>
+          </div>
         </div>
       </div>
     </div>
@@ -313,13 +315,15 @@ function sendComment() {
 .swipe-wrapper {
   position: relative;
   height: calc(100vh * 379 / 812);
-  border-radius: 0px 0px calc(100vw * 20 / 375) calc(100vw * 20 / 375);
-  overflow: hidden;
+  /* 不裁剪，便于点赞区伸出底边；圆角与裁剪交给 .swipe-container */
+  overflow: visible;
 }
 
 .swipe-container {
   width: 100%;
   height: 100%; /* 高度填满外层 */
+  border-radius: 0px 0px calc(100vw * 20 / 375) calc(100vw * 20 / 375);
+  overflow: hidden;
 }
 
 .swipe-item {
@@ -358,7 +362,7 @@ function sendComment() {
   width: calc(100vw * 32 / 375);
   height: calc(100vh * 6 / 812);
   border-radius: 45px;
-  background: rgb(255, 255, 255);
+  background: #FF4AD8;
 }
 
 .top-btn {
@@ -374,7 +378,8 @@ function sendComment() {
 
 .post-content {
   display: flex;
-  padding: calc(100vh * 24 / 812) calc(100vw * 20 / 375) 0;
+  /* 顶部留白：为图片区伸出的点赞区留出空间，避免与头像行重叠 */
+  padding: calc(100vh * 24 / 812) calc(100vh * 56 / 812) calc(100vh * 0 / 812) calc(100vw * 20 / 375);
 }
 
 .user-box {
@@ -383,7 +388,7 @@ function sendComment() {
   flex-direction: column;
   align-items: flex-start;
   gap: calc(100vh * 2 / 812);
-  margin-right: calc(100vw * 19 / 375); /* 左间距15 */
+  margin-right: calc(100vw * 15 / 375); /* 左间距15 */
 }
 
 .post-row {
@@ -410,7 +415,7 @@ function sendComment() {
   font-family: 'PoppinsRegular', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.8);
   line-height: calc(100vw * 19.6 / 375);
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -423,7 +428,7 @@ function sendComment() {
   display: inline-flex;
   height: calc(100vh * 28 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(51, 24, 13, 1);
+  background: rgba(255, 255, 255, 0.2);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -471,34 +476,41 @@ function sendComment() {
 
 .user-name {
   width: calc(100vw * 50 / 375);
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 16.96 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: #fff;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .like-box {
+  position: absolute;
+  right: calc(100vw * 20 / 375);
+  bottom: 0;
+  /* 以图片底边为基准，整体下移自身高度的一半，实现跨在图与内容区之间 */
+  transform: translateY(50%);
+  z-index: 9;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: calc(100vh * 4 / 812);
+  pointer-events: auto;
 }
 
 .like-icon {
-  width: calc(100vw * 34 / 375);
-  height: calc(100vw * 34 / 375);
+  width: calc(100vw * 38 / 375);
+  height: calc(100vw * 38 / 375);
 }
 
 .like-count {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 14.84 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: #fff;
   text-align: center;
 }
 
@@ -515,15 +527,15 @@ function sendComment() {
 }
 
 .comments-title-text {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 18 / 375);
   font-weight: 400;
   line-height: calc(100vw * 19.08 / 375);
   color: rgb(255, 255, 255);
-  padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  border-radius: calc(100vw * 10 / 375);
-  background: rgba(0, 0, 0, 1);
-  border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1);
+  padding: calc(100vh * 5 / 812) 0;
+  /* border-radius: calc(100vw * 10 / 375); */
+  /* background: rgba(0, 0, 0, 1); */
+  /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
 }
 
 .comments-box2 {
@@ -533,7 +545,7 @@ function sendComment() {
 }
 
 .comments-list {
-  padding: calc(100vh * 16 / 812) calc(100vw * 20 / 375) calc(100vh * 90 / 812);
+  padding: calc(100vh * 16 / 812) calc(100vw * 20 / 375) calc(100vh * 100 / 812);
   display: flex;
   flex-direction: column;
   gap: calc(100vh * 12 / 812);    /* 行间距 */
@@ -545,7 +557,7 @@ function sendComment() {
   gap: calc(100vh * 4 / 812); /* 评论上下间隔10 */
   padding: calc(100vh * 14 / 812) calc(100vw * 16 / 375);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
 }
 
@@ -569,7 +581,7 @@ function sendComment() {
   font-size: calc(100vw * 12 / 375);
   font-weight: 400;
   flex-shrink: calc(100vw * 15.38 / 375);
-  color: rgba(94, 69, 58, 1);
+  color: #fff;
   text-align: left;
 }
 
@@ -592,11 +604,11 @@ function sendComment() {
 }
 
 .comment-user-name {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 16.96 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: #fff;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -615,21 +627,32 @@ function sendComment() {
   background-repeat: no-repeat;
 }
 
+/* 底部输入区：全宽贴底紫色底栏 */
+.comment-input-shell {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: calc(100vh * 12 / 812) calc(100vw * 20 / 375);
+  padding-bottom: calc(100vh * 29 / 812 + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
+  /* background: #6d28d9; */
+  z-index: 20;
+}
+
 /* 输入框样式 */
 .input-box {
-  position: fixed;
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
-  bottom: calc(100vh * 29 / 812);
-  width: auto;
-  height: calc(100vh * 54 / 812);
-  background: rgba(0, 0, 0, 1);
+  /* width: 100%; */
+  height: calc(100vh * 46 / 812);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(calc(100vw * 32 / 375));  
   border-radius: calc(100vw * 40 / 375);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 calc(100vw * 8 / 375) 0 calc(100vw * 12 / 375);
+  padding: 0 calc(100vw * 8 / 375) 0 calc(100vw * 14 / 375);
   z-index: 20;
 }
 
@@ -648,7 +671,7 @@ function sendComment() {
 }
 
 .input-field::placeholder {
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .send-btn {
