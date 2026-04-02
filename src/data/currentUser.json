@@ -6,11 +6,11 @@
     "name": "Genji",
     "about": "Nice to meet you all.",
     "coins": 0,
-    "follow": [],
+    "follow": ["2"],
     "fans": [
         "3"
     ],
-    "blockList": [],
+    "blockList": ["4"],
     "postLikeIds": [],
     "isdelete": 0
 }

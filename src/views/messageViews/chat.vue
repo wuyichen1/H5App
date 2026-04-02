@@ -429,7 +429,7 @@ function reportSelect(value) {
   line-height: calc(100vw * 15.83 / 375);
   color: rgba(255, 255, 255, 1);
   padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  border-radius: 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375) calc(100vw * 10 / 375);
+  border-radius: calc(100vw * 10 / 375);
   /* background: rgba(251, 226, 100, 1); */
   background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%);
 }
@@ -463,7 +463,7 @@ function reportSelect(value) {
 }
 
 .chat-item.own-message .chat-message {
-  border-radius: calc(100vw * 10 / 375) 0px calc(100vw * 10 / 375) calc(100vw * 10 / 375);
+  border-radius: calc(100vw * 10 / 375);
   background: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
@@ -498,7 +498,7 @@ function reportSelect(value) {
   left: calc(100vw * 20 / 375);
   right: calc(100vw * 20 / 375);
   top: 0;
-  height: calc(100vh * 50 / 812);
+  height: calc(100vh * 48 / 812);
   border-radius: calc(100vw * 40 / 375);
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(calc(100vw * 32 / 375));
@@ -528,8 +528,8 @@ function reportSelect(value) {
 }
 
 .send-btn {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: calc(100vw * 36 / 375);
+  height: calc(100vw * 36 / 375);
   /* border-radius: 50%;
   background: linear-gradient(180deg, rgba(255, 0, 128, 1) 0%, rgba(236, 86, 184, 1) 100%); */
   /* cursor: pointer; */
@@ -541,8 +541,8 @@ function reportSelect(value) {
 }
 
 .send-btn img {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: calc(100vw * 36 / 375);
+  height: calc(100vw * 36 / 375);
 }
 
 .video-call-sheet {

@@ -40,5 +40,19 @@
         "blockList": [],
         "postLikeIds": [],
         "isdelete": 0
+    },
+    {
+        "userId": "4",
+        "email": "",
+        "password": "",
+        "avator": "https://huanniuchat.oss-accelerate.aliyuncs.com/template_development/Fluce_user4.jpg",
+        "name": "Lily",
+        "about": "I'm a new user.",
+        "coins": 0,
+        "follow": [],
+        "fans": [],
+        "blockList": [],
+        "postLikeIds": [],
+        "isdelete": 0
     }
 ]

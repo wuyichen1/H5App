@@ -8,7 +8,7 @@
       <div class="top">
         <div class="top-block" :style="{ backgroundImage: `url(${topBlockImage})` }" @click="chooseAvatar">
             <div class="camera-corner">
-            <img src="@/assets/cameraicon.png" alt="camera" />
+            <img src="@/assets/editicon.png" alt="camera" />
             </div>
         </div>
       </div>
@@ -159,16 +159,16 @@ onMounted(() => {
 }
 
 .edit-title {
-  font-family: 'PlayfairDisplayBlack', sans-serif;
+  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 900;
-  /* color: #fff; */
-  background: linear-gradient(
+  font-weight: 700;
+  background: #fff;
+  /* background: linear-gradient(
     141.29deg,
     rgba(255, 110, 50, 1) 0%,
     rgba(253, 61, 104, 1) 44.94%,
     rgba(251, 226, 100, 1) 100%
-  );
+  ); */
   -webkit-background-clip: text; /* 仅对文本裁剪背景 */
   -webkit-text-fill-color: transparent; /* 文字透明，让背景显示 */
   background-clip: text; /* 标准属性，兼容非 webkit 浏览器 */
@@ -194,7 +194,8 @@ onMounted(() => {
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  /* border: calc(100vw * 1 / 375) solid rgba(255, 255, 255, 1); */
+  border: calc(100vw * 1 / 375) solid #FF4AD8;
+  box-sizing: border-box;
   position: relative;
   margin-top: calc(100vh * 20 / 812);
 }
@@ -206,7 +207,7 @@ onMounted(() => {
   width: calc(100vw * 28 / 375);
   height: calc(100vw * 28 / 375);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 1);
+  /* background: rgba(0, 0, 0, 1); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,8 +215,8 @@ onMounted(() => {
 }
 
 .camera-corner img {
-  width: calc(100vw * 14 / 375);
-  height: calc(100vw * 14 / 375);
+  width: calc(100vw * 24 / 375);
+  height: calc(100vw * 24 / 375);
 }
 
 .second-section {
@@ -228,18 +229,18 @@ onMounted(() => {
 }
 
 .label {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgba(51, 24, 13, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .input-box {
   width: 100%;
   height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -252,16 +253,16 @@ onMounted(() => {
   border: none;
   outline: none;
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 15 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
-  color: #000000;
+  color: #fff;
   background: transparent;
 }
 
 .input-box input::placeholder {
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .third-section {
@@ -284,14 +285,18 @@ onMounted(() => {
   outline: none;
   resize: none;
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 15 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
-  color: #000000;
+  color: #fff;
   background: transparent;
-  padding: calc(100vh * 16 / 812) 0; /* top-left padding */
+  padding: calc(100vh * 16 / 812) 0;
   box-sizing: border-box;
+}
+
+.about-me-box textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .fourth-section {
@@ -302,15 +307,15 @@ onMounted(() => {
 }
 
 .save-btn {
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 59 / 812);
+  width: calc(100vw * 300 / 375);
+  height: calc(100vh * 55 / 812);
   border-radius: calc(100vw * 87 / 375);
-  font-family: 'PlayfairDisplayBlack', sans-serif;
+  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 900;
+  font-weight: 600;
   color: #fff;
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
-  box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
   display: flex;
   align-items: center;
   justify-content: center;

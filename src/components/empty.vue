@@ -21,12 +21,12 @@
 }
 
 .empty-text {
-  margin-top: calc(100vh * 5 / 812); /* 上下间距 */
-  font-family: 'PlayfairDisplayRegular', sans-serif;
-  font-size: calc(100vw * 18 / 375);
+  margin-top: calc(100vh * 16 / 812); /* 上下间距 */
+  /* font-family: 'PlayfairDisplayRegular', sans-serif; */
+  font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   letter-spacing: 0px;
   line-height: calc(100vw * 23.99 / 375);
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.6);
 }
 </style>

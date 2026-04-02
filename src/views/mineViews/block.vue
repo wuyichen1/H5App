@@ -92,16 +92,10 @@ function removeBlock(userId) {
 }
 
 .edit-title {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  /* color: #fff; */
-  background: linear-gradient(
-    141.29deg,
-    rgba(255, 110, 50, 1) 0%,
-    rgba(253, 61, 104, 1) 44.94%,
-    rgba(251, 226, 100, 1) 100%
-  );
+  font-weight: 700;
+  background: #fff;
   -webkit-background-clip: text; /* 仅对文本裁剪背景 */
   -webkit-text-fill-color: transparent; /* 文字透明，让背景显示 */
   background-clip: text; /* 标准属性，兼容非 webkit 浏览器 */
@@ -128,7 +122,7 @@ function removeBlock(userId) {
   align-items: center;
   height: calc(100vh * 79 / 812);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
   padding: 0 calc(100vw * 16 / 375);
   box-sizing: border-box;
@@ -183,34 +177,35 @@ function removeBlock(userId) {
 }
 
 .user-name {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 500;
   line-height: calc(100vw * 16.96 / 375);
-  color: rgba(45, 33, 45, 1);
+  color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .user-intro {
-  font-family: 'OPPOSansRegular', sans-serif;
+  /* font-family: 'OPPOSansRegular', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
-  color: rgba(102, 95, 103, 1);
+  color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .block-right {
-  width: calc(100vw * 50 / 375);
-  height: calc(100vh * 28 / 812);
+  width: 24PX;
+  height: 24PX;
   background-image: url('@/assets/cnacleblock.png');
   background-size: cover; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
   background-repeat: no-repeat;
+  margin-right: calc(100vw * 10 / 375);
 }
 
 .empty {
