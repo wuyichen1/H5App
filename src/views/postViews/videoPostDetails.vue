@@ -465,10 +465,10 @@ function commentReportSelect(value) {
 
 .action-button span {
   /* font-family: 'OPPOSansBold', sans-serif; */
-  font-size: calc(100vw * 12 / 375);
-  font-weight: 500;
+  font-size: calc(100vw * 13 / 375);
+  font-weight: 400;
   line-height: calc(100vw * 15.83 / 375);
-  color: rgb(255, 255, 255, 0.8);
+  color: rgb(255, 255, 255, 0.7);
 }
 
 .comment-overlay {
