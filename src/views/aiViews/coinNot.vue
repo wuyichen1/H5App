@@ -46,7 +46,7 @@ function handleRecharge() {
 .coinnot-bgc {
   /* width: 288PX;
   height: 240PX; */
-  width: calc(100vw * 288 / 375);
+  width: calc(100vw * 320 / 375);
   height: calc(100vh * 240 / 812);
   background-image: url('@/assets/coinnot.png');
   background-size: contain;
