@@ -316,7 +316,7 @@ function reportSelect(value) {
   min-width: 0; */
   /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 600;
   line-height: calc(100vw * 16.96 / 375);
   letter-spacing: 0;
   background: #fff;
@@ -428,8 +428,8 @@ function reportSelect(value) {
   font-weight: 400;
   line-height: calc(100vw * 15.83 / 375);
   color: rgba(255, 255, 255, 1);
-  padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  border-radius: calc(100vw * 10 / 375);
+  padding: calc(100vh * 12 / 812) calc(100vw * 14 / 375);
+  border-radius: calc(100vw * 14 / 375);
   /* background: rgba(251, 226, 100, 1); */
   background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%);
 }
@@ -463,7 +463,7 @@ function reportSelect(value) {
 }
 
 .chat-item.own-message .chat-message {
-  border-radius: calc(100vw * 10 / 375);
+  /* border-radius: calc(100vw * 10 / 375); */
   background: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
