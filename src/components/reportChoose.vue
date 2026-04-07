@@ -43,7 +43,7 @@
   background-position: center;
   background-repeat: no-repeat; */
   border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0px 0px;
-  background: linear-gradient(135deg, rgba(251, 226, 100, 1) 0%, rgba(250, 196, 172, 1) 100%);
+  background: linear-gradient(180deg, rgb(16, 0, 58) 0%, rgb(15, 0, 114) 100%);
   z-index: 1000;
   display: flex;
   justify-self: flex-end;
@@ -77,12 +77,12 @@
   width: calc(100vw * 260 / 375);
   height: calc(100vh * 46 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255, 0.2);
   /* box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.1); */
   font-family: 'OPPOSansRegular', sans-serif;
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 1);
   text-align: center;
 
   display: flex; /* 新增 */
@@ -91,15 +91,15 @@
 }
 
 .cancel {
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 59 / 812);
+  width: calc(100vw * 260 / 375);
+  height: calc(100vh * 55 / 812);
   border-radius: calc(100vw * 87 / 375);
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   color: #fff;
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
-  box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgb(254, 20, 204) 0%, rgb(255, 185, 0) 100%);
+  /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
   display: flex;
   align-items: center;
   justify-content: center;
