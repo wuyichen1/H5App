@@ -77,7 +77,8 @@ function hangup() {
 .bg-colors-111 {
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, rgba(251, 226, 100, 1) 0.31%, rgba(255, 255, 255, 0) 99.84%);
+  background: rgba(0, 0, 0, 0.5);
+  /* background: linear-gradient(0deg, rgba(251, 226, 100, 1) 0.31%, rgba(255, 255, 255, 0) 99.84%); */
 }
 
 .video-call {
@@ -163,11 +164,11 @@ function hangup() {
 }
 
 .user-name {
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -178,7 +179,7 @@ function hangup() {
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
-  color: rgba(94, 69, 58, 1);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .hangup {
@@ -203,8 +204,8 @@ function hangup() {
 }
 
 .hangup-btn img {
-  width: calc(100vw * 91 / 375);
-  height: calc(100vw * 91 / 375);
+  width: calc(100vw * 71 / 375);
+  height: calc(100vw * 71 / 375);
   object-fit: cover;
   overflow: hidden;
 }
