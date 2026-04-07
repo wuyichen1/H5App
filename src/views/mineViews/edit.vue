@@ -238,7 +238,7 @@ onMounted(() => {
 
 .input-box {
   width: 100%;
-  height: calc(100vh * 54 / 812);
+  /* height: calc(100vh * 54 / 812); */
   border-radius: calc(100vw * 16 / 375);
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
@@ -250,6 +250,7 @@ onMounted(() => {
 
 .input-box input {
   width: 100%;
+  height: calc(100vh * 54 / 812);
   border: none;
   outline: none;
   font-family: 'OPPOSansRegular', sans-serif;
@@ -280,7 +281,8 @@ onMounted(() => {
 
 .about-me-box textarea {
   width: 100%;
-  height: 100%;
+  height: calc(100vh * 74 / 812);
+  /* height: 100%; */
   border: none;
   outline: none;
   resize: none;
