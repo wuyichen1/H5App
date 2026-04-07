@@ -459,8 +459,8 @@ function commentReportSelect(value) {
 }
 
 .action-button img {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
+  width: calc(100vw * 40 / 375);
+  height: calc(100vw * 40 / 375);
 }
 
 .action-button span {
