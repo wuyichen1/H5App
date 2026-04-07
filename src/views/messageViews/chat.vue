@@ -53,7 +53,7 @@
       </div>
     </div>
     <!-- 底部输入框 -->
-    <div class="bottom-input-wrap">
+    <div class="bottom-input-wrap" :style="{ transform: `translateY(-${keyboardOffset}px)` }">
       <div class="bottom-input">
         <input type="text" placeholder="Say something" v-model="inputText" />
         <div class="send-btn" @click="sendMessage" >
@@ -74,8 +74,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineOptions } from 'vue'
-import { ref } from 'vue'
+import { defineProps, defineOptions, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useChatsStore } from '@/stores/chat'
 import { useUserStore } from '@/stores/user'
@@ -127,6 +126,44 @@ function formatTime(timeStr) {
 }
 
 const inputText = ref('')
+const keyboardOffset = ref(0)
+let baseViewportHeight = 0
+
+function isEditableElementFocused() {
+  const activeEl = document.activeElement
+  if (!activeEl) return false
+  const tagName = activeEl.tagName
+  return tagName === 'INPUT' || tagName === 'TEXTAREA' || activeEl.isContentEditable
+}
+
+function updateKeyboardOffset() {
+  const viewport = window.visualViewport
+  if (!viewport) return
+
+  if (!isEditableElementFocused()) {
+    baseViewportHeight = viewport.height
+  }
+
+  const nextOffset = baseViewportHeight - viewport.height - viewport.offsetTop
+  keyboardOffset.value = nextOffset > 0 ? nextOffset : 0
+}
+
+onMounted(() => {
+  const viewport = window.visualViewport
+  baseViewportHeight = viewport ? viewport.height : window.innerHeight
+  if (!viewport) return
+
+  viewport.addEventListener('resize', updateKeyboardOffset)
+  viewport.addEventListener('scroll', updateKeyboardOffset)
+})
+
+onUnmounted(() => {
+  const viewport = window.visualViewport
+  if (!viewport) return
+
+  viewport.removeEventListener('resize', updateKeyboardOffset)
+  viewport.removeEventListener('scroll', updateKeyboardOffset)
+})
 
 const imageInput = ref(null)
 
@@ -246,7 +283,8 @@ function reportSelect(value) {
 
 <style scoped>
 .page {
-  position: relative;
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 100vh;
   background: url('@/assets/pagebgc.png') no-repeat center center;
@@ -483,7 +521,7 @@ function reportSelect(value) {
 }
 
 .bottom-input-wrap {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
@@ -491,6 +529,8 @@ function reportSelect(value) {
   background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
   /* border-radius: calc(100vw * 40 / 375); */
   overflow: hidden;
+  transition: transform 0.2s ease;
+  will-change: transform;
 }
 
 .bottom-input {

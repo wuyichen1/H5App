@@ -67,7 +67,7 @@
     </div>
     <!-- 底部输入框 -->
     <!-- bottom input box -->
-    <div class="bottom-input-wrap">
+    <div class="bottom-input-wrap" :style="{ transform: `translateY(-${keyboardOffset}px)` }">
       <div class="bottom-input">
         <input type="text" placeholder="Say something" v-model="chatInput" />
         <div class="send-icon" @click="sendMessage" >
@@ -79,7 +79,7 @@
 </template>
 
 <script setup>
-import { nextTick, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import BackButton from '@/components/back.vue'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { sendShowLoadingToIOS, sendShowToastToIOS } from '@/utils/iosBridge'
@@ -173,6 +173,44 @@ async function handleMessageClick(message) {
 }
 
 const chatInput = ref('')
+const keyboardOffset = ref(0)
+let baseViewportHeight = 0
+
+function isEditableElementFocused() {
+  const activeEl = document.activeElement
+  if (!activeEl) return false
+  const tagName = activeEl.tagName
+  return tagName === 'INPUT' || tagName === 'TEXTAREA' || activeEl.isContentEditable
+}
+
+function updateKeyboardOffset() {
+  const viewport = window.visualViewport
+  if (!viewport) return
+
+  if (!isEditableElementFocused()) {
+    baseViewportHeight = viewport.height
+  }
+
+  const nextOffset = baseViewportHeight - viewport.height - viewport.offsetTop
+  keyboardOffset.value = nextOffset > 0 ? nextOffset : 0
+}
+
+onMounted(() => {
+  const viewport = window.visualViewport
+  baseViewportHeight = viewport ? viewport.height : window.innerHeight
+  if (!viewport) return
+
+  viewport.addEventListener('resize', updateKeyboardOffset)
+  viewport.addEventListener('scroll', updateKeyboardOffset)
+})
+
+onUnmounted(() => {
+  const viewport = window.visualViewport
+  if (!viewport) return
+
+  viewport.removeEventListener('resize', updateKeyboardOffset)
+  viewport.removeEventListener('scroll', updateKeyboardOffset)
+})
 
 async function sendMessage() {
   if (isWaiting.value) return
@@ -249,6 +287,8 @@ async function sendMessage() {
 
 <style scoped>
 .page {
+  position: fixed;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* prevent scrolling */
@@ -581,7 +621,7 @@ async function sendMessage() {
 }
 
 .bottom-input-wrap {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
@@ -589,6 +629,8 @@ async function sendMessage() {
   background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
   overflow: hidden;
   z-index: 200;
+  transition: transform 0.2s ease;
+  will-change: transform;
 }
 
 .bottom-input {
