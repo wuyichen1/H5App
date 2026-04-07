@@ -189,8 +189,8 @@ onMounted(() => {
 }
 
 .top-block {
-  width: calc(100vw * 80 / 375);
-  height: calc(100vw * 80 / 375);
+  width: calc(100vw * 86 / 375);
+  height: calc(100vw * 86 / 375);
   border-radius: 50%;
   background-size: cover;
   background-position: center;
