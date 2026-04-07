@@ -128,7 +128,7 @@ function handleCoinClick(item) {
 .coin-banner-number {
   /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 28 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: calc(100vw * 29.44 / 375);
   color: #fff;
 }
