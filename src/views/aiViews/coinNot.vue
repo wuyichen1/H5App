@@ -9,12 +9,12 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue'
+import { defineEmits } from "vue";
 
-const emit = defineEmits(['recharge'])
+const emit = defineEmits(["recharge"]);
 
 function handleRecharge() {
-  emit('recharge', true)
+  emit("recharge", true);
 }
 </script>
 
@@ -29,7 +29,8 @@ function handleRecharge() {
   top: calc(100vh * -89 / 812);
   width: 100%;
   height: calc(100vh * 401 / 812);
-  background-image: url('@/assets/coinnotbgi.png');
+  pointer-events: none;
+  background-image: url("@/assets/coinnotbgi.png");
   background-size: cover; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
   background-repeat: no-repeat;
@@ -41,14 +42,14 @@ function handleRecharge() {
   flex-direction: column;
   align-items: center;
   gap: calc(100vh * 23 / 812);
-} 
+}
 
 .coinnot-bgc {
   /* width: 288PX;
   height: 240PX; */
   width: calc(100vw * 320 / 375);
   height: calc(100vh * 240 / 812);
-  background-image: url('@/assets/coinnot.png');
+  background-image: url("@/assets/coinnot.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
