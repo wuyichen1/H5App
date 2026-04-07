@@ -402,12 +402,12 @@ function commentReportSelect(value) {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* gap: calc(100vh * 1 / 812); */
+  gap: calc(100vh * 2 / 812);
 }
 
 .username {
   /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 18 / 375);
   font-weight: 700;
   line-height: calc(100vw * 21.33 / 375);
   color: #fff;
@@ -418,7 +418,7 @@ function commentReportSelect(value) {
 
 .video-desc {
   /* font-family: 'PlayfairDisplayRegular', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 15 / 375);
   font-weight: 400;
   letter-spacing: 0px;
   line-height: calc(100vw * 18.66 / 375);
