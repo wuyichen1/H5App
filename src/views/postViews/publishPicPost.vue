@@ -307,7 +307,7 @@ const handleRelease = async () => {
   border-radius: calc(100vw * 87 / 375);
   /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 500;
+  font-weight: 400;
   color: #fff;
   background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
@@ -315,6 +315,6 @@ const handleRelease = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: calc(100vh * 167 / 812) auto calc(100vh * 34 / 812) auto;
+  margin: calc(100vh * 157 / 812) auto calc(100vh * 54 / 812) auto;
 }
 </style>

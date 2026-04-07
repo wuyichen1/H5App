@@ -315,7 +315,7 @@ const getVideoInfo = async (videoUrl) => {
   border-radius: calc(100vw * 87 / 375);
   /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 500;
+  font-weight: 400;
   color: #fff;
   background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
