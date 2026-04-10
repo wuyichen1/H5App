@@ -336,7 +336,7 @@ function commentReportSelect(value) {
 
 .user-left {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: calc(100vw * 16 / 375);
   padding-right: calc(100vw * 56 / 375);
   box-sizing: border-box;
@@ -347,12 +347,12 @@ function commentReportSelect(value) {
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  margin-bottom: calc(100vw * 9 / 375);
+  margin-bottom: calc(100vw * 22 / 375);
 }
 
 .avatar {
-  width: calc(100vw * 48 / 375);
-  height: calc(100vw * 48 / 375);
+  width: 52PX;
+  height: 52PX;
   border-radius: 50%;
   padding: calc(100vh * 1 / 812) calc(100vw * 1 / 375);
   box-sizing: border-box;
@@ -373,15 +373,22 @@ function commentReportSelect(value) {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  /* 设置一个背景图片 */
+  background-image: url('@/assets/avabg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: calc(100vw * 4 / 375);
+  height: 88PX;
 }
 
 .follow {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 7PX;
   transform: translateX(-50%);
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: 22PX;
+  height: 22PX;
   /* border-radius: calc(100vw * 40 / 375); */
   /* background: rgba(255, 255, 255, 1); */
   display: flex;
@@ -393,8 +400,8 @@ function commentReportSelect(value) {
 }
 
 .follow img {
-  width: calc(100vw * 20 / 375);
-  height: calc(100vw * 20 / 375);
+  width: calc(100vw * 22 / 375);
+  height: calc(100vw * 22 / 375);
 }
 
 .user-text {
@@ -403,10 +410,11 @@ function commentReportSelect(value) {
   display: flex;
   flex-direction: column;
   gap: calc(100vh * 2 / 812);
+  padding-bottom: 10PX;
 }
 
 .username {
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 18 / 375);
   font-weight: 700;
   line-height: calc(100vw * 21.33 / 375);
@@ -417,7 +425,7 @@ function commentReportSelect(value) {
 }
 
 .video-desc {
-  /* font-family: 'PlayfairDisplayRegular', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 15 / 375);
   font-weight: 400;
   letter-spacing: 0px;
@@ -430,7 +438,7 @@ function commentReportSelect(value) {
 
 .action-buttons {
   position: absolute;
-  right: 0;
+  right: 16PX;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -441,34 +449,65 @@ function commentReportSelect(value) {
 }
 
 .action-box {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh * 34 / 812);
-  border-radius: calc(100vw * 20 / 375);
+  padding-bottom: calc(100vh * 6 / 812);
+}
+
+/* 背景只占下半段，图标从顶部溢出圆角区域 */
+.action-box::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100vw * 16 / 375);
+  width: calc(100vw * 80 / 375);
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  /* border: 1px solid rgba(255, 255, 255, 0.22); */
+  border-radius: calc(100vw * 12 / 375);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .action-button {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: calc(100vw * 6 / 375);
+  gap: calc(100vw * 3 / 375);
   /* padding: calc(100vh * 6 / 812) calc(100vw * 10 / 375); */
   min-width: calc(100vw * 44 / 375);
 }
 
 .action-button img {
-  width: calc(100vw * 40 / 375);
-  height: calc(100vw * 40 / 375);
+  width: calc(100vw * 35 / 375);
+  height: calc(100vw * 35 / 375);
 }
 
 .action-button span {
   /* font-family: 'OPPOSansBold', sans-serif; */
-  font-size: calc(100vw * 13 / 375);
+  font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 15.83 / 375);
-  color: rgb(255, 255, 255, 0.7);
+  /* line-height: calc(100vw * 15.83 / 375); */
+  color: #fff;
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -1.5px -1.5px 0 rgba(110, 185, 255, 1),
+     1.5px -1.5px 0 rgba(110, 185, 255, 1),
+    -1.5px  1.5px 0 rgba(110, 185, 255, 1),
+     1.5px  1.5px 0 rgba(110, 185, 255, 1),
+     0px  1.5px 0 rgba(110, 185, 255, 1),
+     0px -1.5px 0 rgba(110, 185, 255, 1),
+     1.5px 0px 0 rgba(110, 185, 255, 1),
+    -1.5px 0px 0 rgba(110, 185, 255, 1);
 }
 
 .comment-overlay {

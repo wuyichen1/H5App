@@ -28,6 +28,7 @@
           <div class="like-count">{{ post.dynamicLikeCount + (currentUserStore.currentUser.postLikeIds.includes(postId.toString()) ? 1 : 0) }}</div>
         </div>
       </div>
+      <div class="post-comments-panel">
       <!-- 帖子内容 -->
       <div class="post-content">
         <div class="post-row">
@@ -58,9 +59,9 @@
       </div>
       <!-- Comments -->
       <div class="comments-title">
-        <!-- <div class="comments-box1"></div> -->
+        <div class="comments-box1"></div>
         <div class="comments-title-text">Comments</div>
-        <!-- <div class="comments-box2"></div> -->
+        <div class="comments-box2"></div>
       </div>
       <!-- 评论列表 -->
         <template v-if="comments.length">
@@ -82,6 +83,7 @@
         <template v-else>
           <Empty />
         </template>
+      </div>
       <!-- 输入框 -->
       <div class="comment-input-shell">
         <div class="input-box">
@@ -322,7 +324,7 @@ function sendComment() {
 .swipe-container {
   width: 100%;
   height: 100%; /* 高度填满外层 */
-  border-radius: 0px 0px calc(100vw * 20 / 375) calc(100vw * 20 / 375);
+  /* border-radius: 0px 0px calc(100vw * 20 / 375) calc(100vw * 20 / 375); */
   overflow: hidden;
 }
 
@@ -362,7 +364,7 @@ function sendComment() {
   width: calc(100vw * 32 / 375);
   height: calc(100vh * 6 / 812);
   border-radius: 45px;
-  background: #FF4AD8;
+  background: #fff;
 }
 
 .top-btn {
@@ -374,6 +376,11 @@ function sendComment() {
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+}
+
+.post-comments-panel {
+  background: url('@/assets/detbtbg.png') no-repeat center top;
+  background-size: 100% auto;
 }
 
 .post-content {
@@ -412,10 +419,10 @@ function sendComment() {
 
 .post-desc {
   margin-right: auto; /* 第二个靠左 */
-  font-family: 'PoppinsRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: calc(100vw * 15 / 375);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   line-height: calc(100vw * 19.6 / 375);
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -426,21 +433,21 @@ function sendComment() {
 
 .tag-box {
   display: inline-flex;
-  height: calc(100vh * 28 / 812);
+  height: calc(100vh * 26 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .tag-text {
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 12 / 375);
   font-weight: 400;
   flex-shrink: calc(100vw * 15.38 / 375);
-  color: rgb(255, 255, 255);
-  padding: 0 calc(100vw * 10 / 375);
+  color: rgba(186, 187, 194, 1);
+  padding: 0 calc(100vw * 12 / 375);
   text-align: center;
 }
 /* 
@@ -450,7 +457,7 @@ function sendComment() {
 } */
 
 .avatar-border-box {
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
+  /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -476,11 +483,11 @@ function sendComment() {
 
 .user-name {
   width: calc(100vw * 50 / 375);
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 16.96 / 375);
-  color: #fff;
+  font-weight: 600;
+  /* line-height: calc(100vw * 16.96 / 375); */
+  color: #000;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -496,7 +503,7 @@ function sendComment() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(100vh * 4 / 812);
+  gap: calc(100vh * 6 / 812);
   pointer-events: auto;
 }
 
@@ -506,12 +513,22 @@ function sendComment() {
 }
 
 .like-count {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: calc(100vw * 18 / 375);
   font-weight: 400;
   line-height: calc(100vw * 14.84 / 375);
   color: #fff;
   text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -1.5px -1.5px 0 rgba(110, 185, 255, 1),
+     1.5px -1.5px 0 rgba(110, 185, 255, 1),
+    -1.5px  1.5px 0 rgba(110, 185, 255, 1),
+     1.5px  1.5px 0 rgba(110, 185, 255, 1),
+     0px  1.5px 0 rgba(110, 185, 255, 1),
+     0px -1.5px 0 rgba(110, 185, 255, 1),
+     1.5px 0px 0 rgba(110, 185, 255, 1),
+    -1.5px 0px 0 rgba(110, 185, 255, 1);
 }
 
 .comments-title {
@@ -523,16 +540,16 @@ function sendComment() {
 .comments-box1 {
   width: calc(100vw * 31 / 375);
   height: calc(100vh * 1 / 812);
-  background-color: #fff;
+  background-color: rgba(232, 232, 232, 1);
 }
 
 .comments-title-text {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 18 / 375);
-  font-weight: 400;
+  font-weight: 600;
   line-height: calc(100vw * 19.08 / 375);
-  color: rgb(255, 255, 255);
-  padding: calc(100vh * 5 / 812) 0;
+  color: #000;
+  padding: calc(100vh * 5 / 812);
   /* border-radius: calc(100vw * 10 / 375); */
   /* background: rgba(0, 0, 0, 1); */
   /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
@@ -541,7 +558,7 @@ function sendComment() {
 .comments-box2 {
   flex: 1; /* 自动填充剩余宽度 */
   height: calc(100vh * 1 / 812);
-  background-color: #fff;
+  background-color: rgba(232, 232, 232, 1);
 }
 
 .comments-list {
@@ -557,7 +574,7 @@ function sendComment() {
   gap: calc(100vh * 4 / 812); /* 评论上下间隔10 */
   padding: calc(100vh * 14 / 812) calc(100vw * 16 / 375);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
 }
 
@@ -577,11 +594,11 @@ function sendComment() {
 }
 
 .comment-list-bottom {
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 12 / 375);
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   flex-shrink: calc(100vw * 15.38 / 375);
-  color: #fff;
+  color: #000;
   text-align: left;
 }
 
@@ -604,11 +621,11 @@ function sendComment() {
 }
 
 .comment-user-name {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 600;
   line-height: calc(100vw * 16.96 / 375);
-  color: #fff;
+  color: #000;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -620,8 +637,8 @@ function sendComment() {
 }
 
 .comments-list-more {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: calc(100vw * 20 / 375);
+  height: calc(100vw * 20 / 375);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -637,8 +654,8 @@ function sendComment() {
   box-sizing: border-box;
   padding: calc(100vh * 12 / 812) calc(100vw * 20 / 375);
   padding-bottom: calc(100vh * 29 / 812 + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
-  /* background: #6d28d9; */
+  /* background: linear-gradient(90deg, #10003A 0%, #0F0072 100%); */
+  background: #fff;
   z-index: 20;
 }
 
@@ -646,7 +663,7 @@ function sendComment() {
 .input-box {
   /* width: 100%; */
   height: calc(100vh * 46 / 812);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(245, 245, 245, 1);
   backdrop-filter: blur(calc(100vw * 32 / 375));  
   border-radius: calc(100vw * 40 / 375);
   display: flex;
@@ -662,16 +679,16 @@ function sendComment() {
   border: none;
   outline: none;
   background: transparent;
-  /* font-family: 'OPPOSansRegular', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
-  color: #fff;;
+  color: #000;;
 }
 
 .input-field::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(186, 187, 194, 1);
 }
 
 .send-btn {
@@ -686,7 +703,7 @@ function sendComment() {
 }
 
 .send-btn img {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: 45PX;
+  height: 45PX;
 }
 </style>

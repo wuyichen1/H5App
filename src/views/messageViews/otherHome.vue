@@ -4,97 +4,75 @@
     <div class="avatar-bg" :style="{ '--avatar-url': `url(${currentUser.avator})` }"></div>
     <!-- 可滑动内容 -->
     <div class="scroll-content">
-      <div class="top">
-        <div class="top-avatar-border">
-          <div class="top-avatar" :style="{ '--avatar-url': `url(${currentUser.avator})` }">
-              <div class="follow-btn" v-if="userId !== currentUserStore.currentUser.userId && !currentUserStore.currentUser.follow.includes(userId)" @click="handleFollow" >
-                  <!-- <div class="follow-icon"></div> -->
-              </div> 
+      <div class="profile-block">
+        <div class="top">
+          <div class="top-avatar-border">
+            <div class="top-avatar" :style="{ '--avatar-url': `url(${currentUser.avator})` }">
+              <div
+                class="follow-btn"
+                v-if="userId !== currentUserStore.currentUser.userId && !currentUserStore.currentUser.follow.includes(userId)"
+                @click.stop="handleFollow"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="top-name">{{ currentUser.name }}</div>
+
+        <div class="info-card">
+          <div class="user-stats">
+            <div class="stat-item">
+              <div class="stat-number">{{ userPosts.length || 0 }}</div>
+              <div class="stat-label">Posts</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ formatStatCount(currentUser.fans?.length || 0) }}</div>
+              <div class="stat-label">Fans</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ formatStatCount(currentUser.follow?.length || 0) }}</div>
+              <div class="stat-label">Follow</div>
+            </div>
+          </div>
+          <div class="info-card-footer">
+            <div class="intro-text">{{ currentUser.about }}</div>
+            <template v-if="userId !== currentUserStore.currentUser.userId">
+              <button type="button" class="message-btn" @click.stop="handleChat" aria-label="Chat">
+                <span class="message-btn-icon"></span>
+              </button>
+            </template>
+            <template v-else>
+              <span class="message-btn-spacer" aria-hidden="true"></span>
+            </template>
           </div>
         </div>
       </div>
-      <div class="top-name">{{ currentUser.name }}</div>
-      <!-- jianjie -->
-      <div class="intro-text">{{ currentUser.about }}</div>
-      <!-- guanzhu和chat按钮 -->
-      <div class="intro-chat">
-        <!-- 用户作品数量、粉丝、关注 -->
-      <div class="user-stats">
-        <!-- <div class="stat-item stat-first">
-          <div class="stat-number">{{ userPosts.length || 0 }}</div>
-          <div class="stat-label">Works</div>
-        </div> -->
-        <div class="stat-item">
-          <div class="stat-number">{{ currentUser.fans.length || 0 }}</div>
-          <div class="stat-label">Fans</div>
-        </div>
-        <div class="stat-item stat-first">
-          <div class="stat-number">{{ currentUser.follow.length || 0 }}</div>
-          <div class="stat-label">Follow</div>
-        </div>
-      </div>
-        <!-- <div class="intro-text">{{ currentUser.about }}</div> -->
-        <template v-if="userId !== currentUserStore.currentUser.userId">
-          <div class="chat-btn" @click="handleChat">
-              <div class="chat-icon"></div>
-              <div class="chat-text">Chat</div>
-          </div>
-        </template>
-        <template v-else>
-          <div class="chat-btn-hidden"></div>
-        </template>
-      </div>
-      <!-- Post标题 -->
-      <div class="post-title-container">
-        <div class="post-title">Works</div>
-      </div>
-      <!-- PostList -->
+
+      <div class="works-header">Works</div>
       <div class="post-list">
         <template v-if="userPosts.length > 0">
-          <div class="post-item" v-for="post in userPosts" :key="post.dynamicId" @click="toPostDetail(post.dynamicId, post.dynamicType)">
-            <!-- <div class="post-content"> -->
-              <!-- Top row: avatar + name (left) and report button (right) -->
-              <div class="post-top">
-                  <div class="post-user">
-                    <div class="post-avatar-border">
-                      <div class="post-avatar">
-                        <div class="post-avatar-img" :style="{ backgroundImage: `url(${currentUser.avator})` }"></div>
-                      </div>
-                    </div>
-                    <div class="post-username" :title="currentUser.name">{{ currentUser.name }}</div>
-                  </div>
-                  <div class="post-report" v-if="userId !== currentUserStore.currentUser.userId" @click.stop="showReport = true"></div>
-              </div>
-              <!-- Middle image -->
-              <div class="post-image" :style="{ backgroundImage: `url(${post.dynamicPic[0]})` }">
-                <div class="post-isvideo-icon" v-if="post.dynamicType === 1"></div>
-                <div class="post-content-button">
-                  <div class="post-image-overlay">
-                    <div class="overlay-item overlay-like-item">
-                      <div class="overlay-icon overlay-like"></div>
-                      <div class="overlay-count">{{ post.dynamicLikeCount || 0 }}</div>
-                    </div>
-                    <div class="overlay-item overlay-comment-item">
-                      <div class="overlay-icon overlay-comment"></div>
-                      <div class="overlay-count">{{ post.dynamicCommentCount || 0 }}</div>
-                    </div>
-                  </div>
-                  <div class="post_details">
-                    <div>{{ post.dynamicDesc }}</div>
-                  </div>
-                </div>
-              </div>
-              <!-- Bottom: post type -->
-              <!-- <div class="post-type"># {{ otherStore.getTagByIndex(post.dynamicTitleType) }}</div> -->
-            <!-- </div> -->
-            <!-- 详情 -->
-            <!-- <div class="post_details">
-              <div>{{ post.dynamicDesc }}</div>
-            </div> -->
+          <div
+            class="post-item"
+            v-for="post in userPosts"
+            :key="post.dynamicId"
+            @click="toPostDetail(post.dynamicId, post.dynamicType)"
+          >
+            <div
+              class="post-report"
+              v-if="userId !== currentUserStore.currentUser.userId"
+              @click.stop="showReport = true"
+            ></div>
+            <div class="post-thumb" :style="{ backgroundImage: `url(${post.dynamicPic[0]})` }">
+              <div class="post-isvideo-icon" v-if="post.dynamicType === 1"></div>
+            </div>
+            <div class="post-caption">
+              <span class="post-caption-text">{{ post.dynamicDesc }}</span>
+            </div>
           </div>
         </template>
         <template v-else>
-          <Empty />
+          <div class="post-list-empty">
+            <Empty />
+          </div>
         </template>
       </div>
     </div>
@@ -141,6 +119,18 @@ const chatStore = useChatsStore()
 const router = useRouter()
 
 const showReport = ref(false)
+
+/** 大数字展示为 3.3w 等形式，仅影响展示 */
+function formatStatCount(n) {
+  const num = Number(n) || 0
+  if (num >= 10000) {
+    const w = num / 10000
+    const s = Number.isInteger(w) ? String(w) : w.toFixed(1).replace(/\.0$/, '')
+    return `${s}w`
+  }
+  return String(num)
+}
+
 function reportSelect(value) {
   showReport.value = false
   if (value === 0) {
@@ -260,8 +250,7 @@ function toPostDetail(dynamicId, dynamicType) {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('@/assets/pagebgc.png') no-repeat center center;
-  background-size: cover;
+  background: #f2f3f5;
   overflow: hidden;
 }
 
@@ -269,46 +258,87 @@ function toPostDetail(dynamicId, dynamicType) {
   width: 100%;
   position: absolute;
   top: 0;
-  height: calc(100vh * 348 / 812);
+  left: 0;
+  height: calc(100vh * 400 / 812);
   background: var(--avatar-url) no-repeat center;
   background-size: cover;
-  /* 关键：渐隐 */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(204, 204, 204, 0.55), rgba(204, 204, 204, 0));
-  mask-image: linear-gradient(to bottom, rgba(204, 204, 204, 0.55), rgba(204, 204, 204, 0));
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 头像图上的半透明遮罩（在底图之上、底部渐变之下） */
+.avatar-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.avatar-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(242, 243, 245, 0) 45%,
+    #f2f3f5 100%
+  );
+  pointer-events: none;
 }
 
 .scroll-content {
   position: relative;
-  padding-top: calc(100vh * 117 / 812); /* 自适应顶部间距 */
+  padding-top: calc(100vh * 100 / 812);
   width: 100vw;
-  height: calc(100vh - calc(100vh * 117 / 812));
+  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.profile-block {
+  padding: 140PX 20PX;
+  padding-bottom: 0PX;
 }
 
 .top {
   display: flex;
   justify-content: center;
+  margin-top: calc(100vh * 8 / 812);
 }
 
 .top-avatar-border {
-  border-radius: 50%;
-  background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%);
+  /* border-radius: 50%; */
+  padding: calc(100vw * 3 / 375);
+  height: 80PX;
+  width: auto;
+  /* background: #fff; */
+  /* 设置一个背景图片 */
+  background-image: url('@/assets/avabg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 12 / 375) rgba(0, 0, 0, 0.08); */
+  padding: 6PX 6PX 20PX 6PX;
   display: flex;
   justify-content: center;
 }
 
 .top-avatar {
-  width: calc(100vw * 80 / 375); /* 可以根据需要调整 */
-  height: calc(100vw * 80 / 375);
+  width: 60PX;
+  height: 60PX;
   border-radius: 50%;
-  padding: calc(100vh * 2 / 812) calc(100vw * 2 / 375);
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .top-avatar::before {
@@ -325,22 +355,26 @@ function toPostDetail(dynamicId, dynamicType) {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: calc(100vw * 20 / 375);
-  height: calc(100vh * 20 / 812);
+  width: calc(100vw * 22 / 375);
+  height: calc(100vw * 22 / 375);
   background-image: url('@/assets/follow.png');
-  background-size: cover; /* 等比缩放覆盖 */
-  background-position: center; /* 居中显示 */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  z-index: 1;
 }
 
 .top-name {
-  padding: calc(100vh * 12 / 812) calc(100vw * 20 / 375) 0;
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 600;
-  line-height: calc(100vw * 21.2 / 375);
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  color: rgba(255, 255, 255, 1);
+  margin-top: -20PX;
+  padding: 0 calc(100vw * 8 / 375);
+  font-size: 22PX;
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: #111;
+  text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -348,355 +382,206 @@ function toPostDetail(dynamicId, dynamicType) {
   text-align: center;
 }
 
-/* 用户作品数量、粉丝、关注样式 */
+.info-card {
+  margin-top: calc(100vh * 16 / 812);
+  background: #fff;
+  border-radius: calc(100vw * 20 / 375);
+  padding: calc(100vh * 16 / 812) calc(100vw * 16 / 375) calc(100vh * 12 / 812);
+  /* box-shadow: 0 calc(100vw * 4 / 375) calc(100vw * 24 / 375) rgba(0, 0, 0, 0.06); */
+}
+
 .user-stats {
   display: flex;
-  justify-content: center;
-  gap: calc(100vw * 16 / 375); /* 三个内容间距60 */
-  /* margin-top: calc(100vh * 16 / 812); */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 calc(100vw * 4 / 375);
 }
 
 .stat-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(100vh * 6 / 812); /* 上下结构间距6 */
-  width: calc(100vw * 62 / 375);
+  gap: calc(100vh * 4 / 812);
+  min-width: 0;
 }
 
 .stat-number {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111;
 }
 
 .stat-label {
-  /* font-family: 'OPPOSansRegular', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.47 / 375);
-  color: rgba(255, 255, 255, 0.6);
+  font-size: calc(100vw * 13 / 375);
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.55);
 }
 
-.intro-chat {
+.info-card-footer {
   display: flex;
-  justify-content: space-between; /* 左右对齐 */
   align-items: center;
-  margin-top: calc(100vh * 26 / 812); /* 顶部间距 */
-  padding-left: calc(100vw * 20 / 375);
-  padding-right: calc(100vw * 20 / 375);
-  width: 100%;
-  box-sizing: border-box; /* 确保 padding 生效 */
-  gap: calc(100vw * 10 / 375); /* 左右元素间距 */
+  gap: calc(100vw * 12 / 375);
+  margin-top: calc(100vh * 18 / 812);
+  /* padding-top: calc(100vh * 16 / 812); */
+  /* border-top: 1px solid rgba(0, 0, 0, 0.06); */
 }
 
 .intro-text {
   flex: 1;
-  font-family: 'OPPOSansRegular', sans-serif;
+  min-width: 0;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 16 / 375);
-  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.65);
   word-break: break-word;
-  text-align: center; /* 横向居中文案 */
-  width: 100%;
-  margin-top: calc(100vh * 10 / 812);
+  text-align: left;
 }
 
-.chat-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: calc(100vw * 10 / 375); /* 两个元素间距10 */
-  width: calc(100vw * 142 / 375);
-  height: calc(100vh * 53 / 812);
-  background: rgba(255, 255, 255, 0.2);
-  /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
-  border-radius: calc(100vw * 20 / 375);
-  cursor: pointer;
-}
-
-.chat-btn-hidden {
-  width: calc(100vw * 142 / 375);
-  height: calc(100vh * 53 / 812);
-}
-
-.chat-icon {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
-  background-image: url('@/assets/chat_oth.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.chat-text {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
-}
-
-.post-title-container {
-  margin: calc(100vh * 25 / 812) calc(100vw * 20 / 375) 0;
-  display: flex;
-  justify-content: start;
-}
-
-.post-title {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
-  /* padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375); */
-  /* background: #000; */
-  /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
-  border-radius: calc(100vw * 10 / 375);
-  box-sizing: border-box;
-}
-
-/* PostList styles */
-.post-list {
-  display: flex;
-  flex-direction: column;
-  padding: calc(100vh * 16 / 812) calc(100vw * 20 / 375) calc(100vh * 34 / 812);
-  width: 100%;
-  box-sizing: border-box;
-  gap: calc(100vh * 12 / 812); /* 项间距16 */
-}
-
-/* Post Item new layout */
-.post-item {
-  height: calc(100vh * 221 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: transparent;
-  box-shadow: 0px 0px calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+.message-btn {
+  flex-shrink: 0;
+  width: 70PX;
+  height: 40PX;
   padding: 0;
-  gap: 0;
-  position: relative;
-}
-
-/* Post item new sections */
-/* .post-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375);
-  gap: calc(100vh * 10 / 812);
-} */
-
-.post-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: calc(100vw * 10 / 375);
-  position: absolute;
-  top: calc(100vh * 14 / 812);
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
-  z-index: 2;
-}
-
-.post-user {
-  min-width: 0;
-  flex: 1;
+  border: none;
+  /* border-radius: calc(100vw * 14 / 375); */
+  background: transparent;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 10 / 375);
-}
-
-.post-avatar-border {
-  background: linear-gradient(141.29deg, rgba(255, 45, 214, 1) 0%, rgba(125, 60, 255, 1) 52.94%, rgba(73, 18, 255, 1) 100%);
-  border-radius: 50%;
-  display: flex;
   justify-content: center;
+  cursor: pointer;
+  box-shadow: none;
 }
 
-.post-avatar {
-  width: calc(100vw * 34 / 375);
-  height: calc(100vw * 34 / 375);
-  border-radius: 50%;
-  padding: calc(100vh * 1 / 812) calc(100vw * 1 / 375);
-  box-sizing: border-box;
-  display: flex;
-}
-
-.post-avatar-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-size: cover;
+.message-btn-icon {
+  width: 70PX;
+  height: 40PX;
+  background-image: url('@/assets/chat_oth.png');
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.post-username {
-  flex: 1;
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 600;
-  line-height: calc(100vw * 12.72 / 375);
-  color: rgba(255, 255, 255, 0.95);
-  white-space: nowrap;
+.message-btn-spacer {
+  flex-shrink: 0;
+  width: calc(100vw * 48 / 375);
+  height: calc(100vw * 44 / 375);
+}
+
+.works-header {
+  margin: calc(100vh * 20 / 812) calc(100vw * 20 / 375) calc(100vh * 10 / 812);
+  font-size: calc(100vw * 16 / 375);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(100vw * 12 / 375) calc(100vw * 12 / 375);
+  padding: 0 calc(100vw * 20 / 375) calc(100vh * 34 / 812);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post-list-empty {
+  grid-column: 1 / -1;
+}
+
+.post-item {
+  min-width: 0;
+  border-radius: calc(100vw * 16 / 375);
+  background: #fff;
   overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 12 / 375) rgba(0, 0, 0, 0.06);
 }
 
 .post-report {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  position: absolute;
+  top: calc(100vw * 8 / 375);
+  right: calc(100vw * 8 / 375);
+  width: calc(100vw * 26 / 375);
+  height: calc(100vw * 26 / 375);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
   background-image: url('@/assets/postpiccommentreport.png');
-  background-size: cover;
+  background-size: 65%;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 3;
   cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
-.post-image {
-  flex: 1;
-  border-radius: 0;
+.post-thumb {
+  width: 100%;
+  height: 160PX;
+  aspect-ratio: 3 / 4;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
-}
-
-.post-image::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 40%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
-  z-index: 1;
-  pointer-events: none;
 }
 
 .post-isvideo-icon {
   position: absolute;
-  right: calc(100vw * 16 / 375);
-  bottom: calc(100vh * 16 / 812);
-  width: calc(100vw * 50 / 375);
-  height: calc(100vw * 50 / 375);
-  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 54PX;
+  height: 54PX;
   background-image: url('@/assets/videopluse.png');
-  background-size: cover;
+  background-size: 55%;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 2;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-.post-isvideo-icon::after {
-  /* 改用图片后，禁用原来的伪元素三角形 */
-  content: '';
-  display: none;
-}
-
-.post-content-button {
-  position: absolute;
-  left: calc(100vw * 16 / 375);
-  right: calc(100vw * 16 / 375);
-  bottom: calc(100vh * 20 / 812);
-  z-index: 2;
-  width: auto;
-  display: flex;
-  align-items: center;
-}
-
-.post-image-overlay {
-  display: grid;
-  grid-template-columns: 2fr 2fr 3fr;
-  width: 100%;
-  align-items: center;
-}
-
-.overlay-item {
-  background: transparent;
-  display: flex;
-  align-items: center;
-  gap: calc(100vw * 8 / 375);
-  padding: 0;
-  border-radius: 0;
-  margin: 0;
+/* 外层只负责 padding 与宽度；行数限制放在内层，避免 padding + flex 子项导致 WebView 里 line-clamp 失效 */
+.post-caption {
   min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: calc(100vw * 10 / 375) calc(100vw * 10 / 375) calc(100vw * 12 / 375);
 }
 
-.overlay-like-item {
-  grid-column: 1;
-  justify-self: start;
-}
-
-.overlay-comment-item {
-  grid-column: 2;
-  justify-self: center;
-}
-
-.overlay-icon {
-  width: 32PX; /* 固定 icon 尺寸 */
-  height: 32PX; /* 固定 icon 尺寸 */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.overlay-like {
-  background-image: url('@/assets/like_kong.png');
-  background-position: center;
-  background-size: cover;
-}
-
-.overlay-comment {
-  background-image: url('@/assets/chaticon.png');
-  background-size: cover;
-}
-
-.overlay-count {
-  /* font-family: 'OPPOSansBold', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
+.post-caption-text {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: calc(100vw * 13 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.5 / 375);
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.post_details {
-  display: none; /* 截图样式只保留点赞/评论/播放按钮 */
-}
-
-.post_details div {
-  padding: 0 calc(100vw * 10 / 375);
-  /* font-family: 'OPPOSansRegular', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.47 / 375);
-  color: rgba(255, 255, 255, 1);
-  white-space: nowrap;
+  line-height: 1.4;
+  color: #222;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
   overflow: hidden;
+  /* 硬限制两行：WebView 里 line-clamp 偶发失效时仍不会超过两行（1.4×2≈2.8em） */
+  max-height: 2.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   text-overflow: ellipsis;
 }
 
-/* .post-type {
-  font-family: 'Archivo', sans-serif;
-  text-align: left;
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 15.23 / 375);
-  color: rgba(255, 255, 255, 1);
-} */
+@supports (max-height: 2lh) {
+  .post-caption-text {
+    max-height: 2lh;
+  }
+}
 
 .top-btn {
   position: absolute;

@@ -3,9 +3,9 @@
     <div class="comment-container">
       <!-- 标题部分 -->
       <div class="comment-header">
-        <!-- <div class="header-line" style="max-width: calc(100vw * 31 / 375);"></div> -->
+        <div class="header-line" style="max-width: calc(100vw * 31 / 375);"></div>
         <div class="header-title">Comments</div>
-        <!-- <div class="header-line"></div> -->
+        <div class="header-line"></div>
       </div>
 
       <!-- 评论列表 -->
@@ -27,11 +27,13 @@
     </div>
 
     <!-- Bottom input box -->
-    <div class="bottom-input">
+    <div class="bottom-input-shell">
+      <div class="bottom-input">
       <input type="text" placeholder="Say something" v-model="inputText" />
       <div class="send-btn" @click="sendComment" >
         <img src="@/assets/commentsend.png" alt="send"/>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -150,7 +152,8 @@ watch(
   /* width: 100%; */
   height: calc(100vh * 495 / 812);
   border-radius: calc(100vh * 40 / 812) calc(100vh * 40 / 812) 0 0;
-  background: linear-gradient(180deg, rgb(16, 0, 58) 0%, rgb(15, 0, 114) 100%);
+  background: rgba(245, 245, 245, 1);
+  /* background: linear-gradient(180deg, rgb(16, 0, 58) 0%, rgb(15, 0, 114) 100%); */
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -172,24 +175,25 @@ watch(
   padding: calc(100vh * 30 / 812) calc(100vw * 20 / 375) 0;
 }
 
-/* .header-line {
+.header-line {
   flex: 1;
   height: 1px;
-  background-color: #fff;
-} */
+  background-color: rgba(232, 232, 232, 1);
+}
 
 .header-title {
   /* padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375); */
   border-radius: calc(100vw * 10 / 375);
   /* background: rgba(0, 0, 0, 1); */
   /* border: calc(100vw * 1 / 375) solid rgba(251, 226, 100, 1); */
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 18 / 375);
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: calc(100vw * 16 / 375);
   font-weight: 600;
   line-height: calc(100vw * 19.08 / 375);
   letter-spacing: 0;
-  color: rgb(255, 255, 255);
+  color: #000;
   white-space: nowrap;
+  padding: 0 calc(100vh * 10 / 812);
 /* 
   background: linear-gradient(180deg, rgba(255, 0, 128, 1) 0%, rgba(236, 86, 184, 1) 100%);
   -webkit-background-clip: text;
@@ -219,7 +223,7 @@ watch(
   gap: calc(100vh * 4 / 812);
   padding: calc(100vh * 14 / 812) calc(100vw * 14 / 375) calc(100vh * 16 / 812) calc(100vw * 16 / 375);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   backdrop-filter: blur(calc(100vw * 12 / 375));
 }
 
@@ -257,12 +261,12 @@ watch(
 }
 
 .username {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 600;
   line-height: calc(100vw * 16.96 / 375);
   letter-spacing: 0;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -274,13 +278,26 @@ watch(
 }
 
 .comment-text {
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 12 / 375);
   font-weight: 400;
   flex-shrink: calc(100vw * 15.38 / 375);
   letter-spacing: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: #000;
   text-align: left;
+}
+
+.bottom-input-shell {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: 90PX;
+  /* padding: calc(100vh * 12 / 812) calc(100vw * 20 / 375); */
+  /* padding-bottom: calc(100vh * 29 / 812 + env(safe-area-inset-bottom, 0px)); */
+  background: rgba(255, 255, 255, 1);
 }
 
 .bottom-input {
@@ -288,13 +305,13 @@ watch(
   left: calc(100vw * 20 / 375);
   right: calc(100vw * 20 / 375);
   bottom: calc(100vh * 29 / 812);
-  height: calc(100vh * 54 / 812);
+  height: calc(100vh * 50 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(245, 245, 245, 1);
   backdrop-filter: blur(calc(100vw * 32 / 375));
   display: flex;
   align-items: center;
-  padding: 0 calc(100vw * 10 / 375) 0 calc(100vw * 16 / 375);
+  padding: 0 calc(100vw * 6 / 375) 0 calc(100vw * 16 / 375);
   gap: calc(100vw * 16 / 375);
   box-sizing: border-box;
 }
@@ -307,9 +324,9 @@ watch(
   /* font-family: 'OPPOSansRegular', sans-serif; */
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 18.47 / 375);
+  line-height: calc(100vw * 16.47 / 375);
   letter-spacing: 0;
-  color: #fff;
+  color: #000;
 }
 
 .bottom-input input::placeholder {
@@ -330,8 +347,8 @@ watch(
 }
 
 .send-btn img {
-  width: calc(100vw * 35 / 375);
-  height: calc(100vw * 35 / 375);
+  width: calc(100vw * 46 / 375);
+  height: calc(100vw * 46 / 375);
 }
 
 .empty {

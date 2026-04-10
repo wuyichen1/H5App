@@ -8,20 +8,25 @@
     <div class="container">
       <div v-if="follows.length > 0" class="follow-list">
         <div v-for="(item, index) in follows" :key="index" class="follow-item">
-          <div class="follow-left">
-            <div class="user-info">
-              <div class="avator-box-border">
-                <div class="avatar-box">
-                  <div class="avatar-inner">
-                    <img :src="item.avator" alt="avatar" />
+          <div class="follow-card-bg"></div>
+          <div class="follow-content">
+            <div class="follow-left">
+              <div class="user-info">
+                <div class="user-basic">
+                  <div class="avator-box-border">
+                    <div class="avatar-box">
+                      <div class="avatar-inner">
+                        <img :src="item.avator" alt="avatar" />
+                      </div>
+                    </div>
                   </div>
+                  <div class="user-name">{{ item.name }}</div>
                 </div>
+                <div class="user-intro">{{ item.about }}</div>
               </div>
-              <div class="user-name">{{ item.name }}</div>
             </div>
-            <div class="user-intro">{{ item.about }}</div>
+            <div class="follow-right" @click="cancelFollow(item.userId)"></div>
           </div>
-          <div class="follow-right" @click="cancelFollow(item.userId)"></div>
         </div>
       </div>
       <Empty class="empty" v-else />
@@ -30,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import BackButton from '@/components/back.vue'
@@ -96,15 +101,16 @@ function cancelFollow(userId) {
 .top-header {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 16 / 375);
-  padding: calc(100vh * 58 / 812) calc(100vw * 20 / 375) 0;
+  gap: 16PX;
+  padding: 58PX 20PX 0;
 }
 
 .edit-title {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
   font-weight: 700;
-  background: #fff;
+  font-style: italic;
+  background: #000;
   /* background: linear-gradient(
     141.29deg,
     rgba(255, 110, 50, 1) 0%,
@@ -119,63 +125,92 @@ function cancelFollow(userId) {
 .container {
   flex: 1;
   overflow-y: auto;
-  margin: calc(100vh * 20 / 812) 0 0;
+  margin: 26PX 0 0;
   box-sizing: border-box;
 }
 
 .follow-list {
-  margin: 0 calc(100vw * 20 / 375) 0;
+  margin: 0 20PX 0;
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 16 / 812);
-  padding-bottom: calc(100vh * 34 / 812);
+  gap: 16PX;
+  padding-top: 20PX;
+  padding-bottom: 34PX;
+  overflow: visible;
 }
 
 .follow-item {
+  position: relative;
+  height: 80PX;
+  overflow: visible;
+}
+
+.follow-card-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 20PX;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2PX 4PX rgba(0, 0, 0, 0.06);
+  z-index: 1;
+}
+
+.follow-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: calc(100vh * 79 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
-  padding: 0 calc(100vw * 16 / 375);
+  height: 100%;
+  padding: 16PX 10PX 16PX 0;
   box-sizing: border-box;
 }
 
 .follow-left {
-  width: calc(100% - calc(100vw * 50 / 375));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: calc(100% - 50PX);
   flex: 1;
-  gap: calc(100vh * 8 / 812);
+  min-width: 0;
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 12 / 375);
+  gap: 10PX;
+  width: 100%;
+  overflow: visible;
+}
+
+.user-basic {
+  flex-shrink: 0;
+  width: 66PX;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6PX;
+  overflow: visible;
 }
 
 .avator-box-border {
-  flex-shrink: 0; /* 禁止收缩 */
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
-  border-radius: 50%;
-  background: linear-gradient(
-    141.29deg,
-    rgba(255, 110, 50, 1) 0%,
-    rgba(253, 61, 104, 1) 44.94%,
-    rgba(251, 226, 100, 1) 100%
-  );
-  padding: calc(100vw * 1 / 375);
+  flex-shrink: 0;
+  width: 94PX;
+  height: 94PX;
+  position: relative;
+  top: -14PX;
+  z-index: 2;
+  background: url('@/assets/avabg.png') no-repeat center center;
+  background-size: contain;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding-top: 5PX;
 }
 
 .avatar-box {
-  flex-shrink: 0; /* 禁止收缩 */
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  flex-shrink: 0;
+  width: 54PX;
+  height: 54PX;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -192,32 +227,38 @@ function cancelFollow(userId) {
 }
 
 .user-name {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 16 / 375);
-  font-weight: 500;
-  line-height: calc(100vw * 16.96 / 375);
-  color: rgba(255, 255, 255, 1);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 14PX;
+  font-weight: 700;
+  /* line-height: calc(100vw * 14 / 375); */
+  color: rgba(0, 0, 0, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+  margin-top: -50PX;
+  padding-bottom: 12PX;
 }
 
 .user-intro {
-  /* font-family: 'OPPOSansRegular', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 14PX;
   font-weight: 400;
-  line-height: calc(100vw * 18.47 / 375);
-  color: rgba(255, 255, 255, 1);
+  /* line-height: calc(100vw * 18.47 / 375); */
+  color: rgba(0, 0, 0, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
 
 .follow-right {
-  width: 24PX;
-  height: 24PX;
+  width: 76PX;
+  height: 32PX;
   background-image: url('@/assets/removefollow.png');
-  background-size: cover; /* 等比缩放覆盖 */
+  background-size: contain; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
   background-repeat: no-repeat;
   margin-right: calc(100vw * 10 / 375);

@@ -26,5 +26,18 @@
         "dynamicVideo": "https://huanniuchat.oss-accelerate.aliyuncs.com/template_development/Fluce_video1.mp4",
         "dynamicLikeCount": 234,
         "dynamicCommentCount": 1
-    }
+    },
+    {
+      "dynamicId": "3",
+      "userId": "3",
+      "dynamicType": 1,
+      "dynamicDesc": "Just had the best random chat tonight",
+      "dynamicTitleType": 0,
+      "dynamicPic": [
+          "https://huanniuchat.oss-accelerate.aliyuncs.com/template_development/Fluce_pic4.jpg"
+      ],
+      "dynamicVideo": "https://huanniuchat.oss-accelerate.aliyuncs.com/template_development/Fluce_video1.mp4",
+      "dynamicLikeCount": 234,
+      "dynamicCommentCount": 1
+  }
 ]

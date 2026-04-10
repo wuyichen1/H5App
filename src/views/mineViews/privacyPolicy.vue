@@ -115,10 +115,11 @@ p, h1 {
 }
 
 .title{
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
   font-weight: 700;
-  background: #fff;
+  background: #000;
+  font-style: italic;
   -webkit-background-clip: text; /* 仅对文本裁剪背景 */
   -webkit-text-fill-color: transparent; /* 文字透明，让背景显示 */
   background-clip: text; /* 标准属性，兼容非 webkit 浏览器 */
@@ -136,24 +137,24 @@ p, h1 {
 
 /* 标题 */
 .agreement-content h1{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 24 / 375);
   margin-bottom:calc(100vh * 10 / 812);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 /* 更新时间 */
 .update-time{
   opacity:0.7;
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 12 / 375);
   margin-bottom:calc(100vh * 20 / 812);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 /* 小标题 */
 .agreement-content h2{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 18 / 375);
   margin-top:calc(100vh * 24 / 812);
   margin-bottom:calc(100vh * 10 / 812);
@@ -162,11 +163,11 @@ p, h1 {
 
 /* 正文 */
 .agreement-content p{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 14 / 375);
   line-height:1.7;
   margin-bottom:calc(100vh * 10 / 812);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 /* 列表 */
@@ -176,8 +177,8 @@ p, h1 {
 
 .agreement-content li{
   margin-bottom:calc(100vh * 6 / 812);
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 14 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 </style>

@@ -1,10 +1,7 @@
 <template>
   <div class="page">
-    <!-- 顶部背景层 -->
-    <div class="top-background"></div>
-    <!-- 内容部分 -->
     <div class="content">
-      <!-- 顶部内容 -->
+      <!-- 顶栏：渐变背景上展示返回、对方信息、更多 -->
       <div class="top-content">
         <div class="left-part">
           <BackButton />
@@ -17,25 +14,23 @@
         </div>
 
         <div class="right-part">
-          <div class="icon-group">
-            <img src="@/assets/chatpicicon.png" class="icon" @click="selectImage" />
-            <input ref="imageInput" type="file" accept="image/*" style="display:none" @change="handleImageChange" />
-            <img src="@/assets/chatvideoicon.png" class="icon" @click="openVideoCall" />
-          </div>
           <MoreButton @click="showReport = true" />
         </div>
       </div>
 
-      <!-- 聊天内容 -->
+      <!-- 聊天内容：白色圆角卡片 -->
       <div class="chat-content">
         <div v-for="msg in messages" :key="msg.msgId" :class="['chat-item', { 'own-message': msg.userId === currentUserId }]">
           <!-- 时间：单独占一行 -->
-          <div class="chat-time-row">
+          <!-- <div class="chat-time-row">
             <div class="chat-time">{{ formatTime(msg.sendTime) }}</div>
-          </div>
+          </div> -->
 
-          <!-- 内容：头像 + 气泡 同一行 -->
-          <div class="chat-body">
+          <!-- 文字：头像与气泡分两行；图片消息：头像与图同一行 -->
+          <div
+            class="chat-body"
+            :class="{ 'chat-body--with-image': !!msg.sendPicUrl }"
+          >
             <div class="chat-avatar-border">
               <img class="chat-avatar" @click="goOtherHome(msg.userId)" :src="getUserAvatar(msg.userId)" alt="avatar" />
             </div>
@@ -52,12 +47,21 @@
         </div>
       </div>
     </div>
-    <!-- 底部输入框 -->
+    <!-- 底部：工具栏 + 输入行（白底） -->
     <div class="bottom-input-wrap" :style="{ transform: `translateY(-${keyboardOffset}px)` }">
+      <div class="footer-toolbar">
+        <div class="footer-action-btn" @click="selectImage">
+          <img src="@/assets/chatpicicon.png" class="footer-action-icon" alt="" />
+        </div>
+        <input ref="imageInput" type="file" accept="image/*" style="display:none" @change="handleImageChange" />
+        <div class="footer-action-btn" @click="openVideoCall">
+          <img src="@/assets/chatvideoicon.png" class="footer-action-icon" alt="" />
+        </div>
+      </div>
       <div class="bottom-input">
         <input type="text" placeholder="Say something" v-model="inputText" />
-        <div class="send-btn" @click="sendMessage" >
-          <img src="@/assets/commentsend.png" alt="send"/>
+        <div class="send-btn" @click="sendMessage">
+          <img src="@/assets/commentsend.png" alt="send" />
         </div>
       </div>
     </div>
@@ -287,16 +291,9 @@ function reportSelect(value) {
   inset: 0;
   width: 100%;
   height: 100vh;
-  background: url('@/assets/pagebgc.png') no-repeat center center;
-  background-size: cover;
   overflow: hidden;
-}
-
-.top-background {
-  height: calc(100vh * 162 / 812);
-  /* background-image: url('@/assets/chattopbg.png'); */
-  background-size: cover; /* 等比缩放覆盖 */
-  overflow: hidden;
+  /* background: linear-gradient(90deg, #f8e8f2 0%, #e8f5ee 100%); */
+  background-image: url('@/assets/chatbg.png');
 }
 
 .content {
@@ -307,11 +304,12 @@ function reportSelect(value) {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 16 / 812);
+  min-height: 0;
 }
 
 .top-content {
-  padding:calc(100vh * 56 / 812) calc(100vw * 20 / 375) 0;
+  flex-shrink: 0;
+  padding: calc(100vh * 52 / 812) calc(100vw * 20 / 375) calc(100vh * 12 / 812);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -322,7 +320,7 @@ function reportSelect(value) {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 16 / 375);
+  gap: calc(100vw * 12 / 375);
 }
 
 .user-info {
@@ -330,12 +328,11 @@ function reportSelect(value) {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 12 / 375);
+  gap: calc(100vw * 10 / 375);
 }
 
 .avatar-border-box {
   border-radius: 50%;
-  /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   display: flex;
   justify-content: center;
 }
@@ -343,30 +340,17 @@ function reportSelect(value) {
 .avatar {
   width: calc(100vw * 36 / 375);
   height: calc(100vw * 36 / 375);
-  padding: calc(100vh * 1 / 812) calc(100vw * 1 / 375);
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
 }
 
 .username {
-  /* flex: 1;
-  min-width: 0; */
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 16 / 375);
-  font-weight: 600;
-  line-height: calc(100vw * 16.96 / 375);
+  font-size: calc(100vw * 17 / 375);
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 0;
-  background: #fff;
-  /* background: linear-gradient(
-    141.29deg,
-    rgba(255, 110, 50, 1) 0%,
-    rgba(253, 61, 104, 1) 44.94%,
-    rgba(251, 226, 100, 1) 100%
-  ); */
-  -webkit-background-clip: text; /* 仅对文本裁剪背景 */
-  -webkit-text-fill-color: transparent; /* 文字透明，让背景显示 */
-  background-clip: text; /* 标准属性，兼容非 webkit 浏览器 */
+  color: #111;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -375,80 +359,72 @@ function reportSelect(value) {
 .right-part {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 19 / 375);
-}
-
-.icon-group {
-  display: flex;
-  gap: calc(100vw * 24 / 375);
-}
-
-.icon {
-  width: calc(100vw * 28 / 375);
-  height: calc(100vw * 28 / 375);
-  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .chat-content {
   flex: 1;
-  border-radius: calc(100vw * 20 / 375) calc(100vw * 20 / 375) 0 0;
-  /* background-color: #fff; */
-  /* backdrop-filter: blur(calc(100vw * 12 / 375)); */
+  min-height: 0;
+  background: rgba(245, 245, 245, 1);
+  border-radius: calc(100vw * 22 / 375) calc(100vw * 22 / 375) 0 0;
+  box-shadow: 0 calc(100vw * -4 / 375) calc(100vw * 24 / 375) rgba(0, 0, 0, 0.04);
   overflow-y: auto;
-  padding-top: calc(100vh * 28 / 812);
-  padding-bottom: calc(100vh * 90 / 812);
+  padding: calc(100vh * 20 / 812) calc(100vw * 16 / 375);
+  padding-bottom: calc(100vh * 150 / 812);
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 23 / 812);
+  gap: calc(100vh * 18 / 812);
 }
 
 .chat-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: calc(100vh * 8 / 812);
+  gap: calc(100vh * 6 / 812);
   margin: 0;
 }
 
-/* 时间单独一行 */
 .chat-time-row {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* 头像与气泡同一行 */
 .chat-body {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(100vh * 8 / 812);
+  margin: 0 calc(100vw * 40 / 375) 0 calc(100vw * 12 / 375);
+  max-width: calc(100% - calc(100vw * 12 / 375));
+}
+
+.chat-body.chat-body--with-image {
+  flex-direction: row;
+  align-items: flex-start;
   gap: calc(100vw * 10 / 375);
-  margin: 0 calc(100vw * 80 / 375) 0 calc(100vw * 20 / 375); /* 默认靠左消息 */
 }
 
 .chat-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  /* gap: calc(100vh * 8 / 812); */
+  align-items: flex-start;
+  max-width: min(100%, calc(100vw * 260 / 375));
 }
 
 .chat-avatar-border {
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .chat-avatar {
-  width: calc(100vw * 44 / 375);
-  height: calc(100vw * 44 / 375);
+  width: calc(100vw * 40 / 375);
+  height: calc(100vw * 40 / 375);
   border-radius: 50%;
-  padding: calc(100vh * 2 / 812) calc(100vw * 2 / 375);
   box-sizing: border-box;
   overflow: hidden;
-  display: flex;
-  flex-shrink: 0; /* prevent avatar from being compressed */
   object-fit: cover;
 }
 
@@ -464,36 +440,41 @@ function reportSelect(value) {
   font-family: 'OPPOSansRegular', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 15.83 / 375);
-  color: rgba(255, 255, 255, 1);
-  padding: calc(100vh * 12 / 812) calc(100vw * 14 / 375);
-  border-radius: calc(100vw * 14 / 375);
-  /* background: rgba(251, 226, 100, 1); */
-  background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%);
+  line-height: calc(100vw * 20 / 375);
+  color: #fff;
+  padding: calc(100vh * 11 / 812) calc(100vw * 16 / 375);
+  /* border-radius: calc(100vw * 18 / 375); */
+  border-radius: calc(100vw * 0 / 375) calc(100vw * 18 / 375) calc(100vw * 18 / 375) calc(100vw * 18 / 375);
+  background: rgba(26, 27, 28, 1);
+  word-break: break-word;
 }
 
 .chat-time {
   font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 13 / 375);
+  font-size: calc(100vw * 12 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 21.1 / 375);
-  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.38);
   text-align: center;
 }
 
 .chat-item.own-message {
-  /* flex-direction: row-reverse; */
   align-items: flex-end;
   margin: 0;
 }
 
 .chat-item.own-message .chat-body {
+  align-items: flex-end;
+  margin: 0 calc(100vw * 12 / 375) 0 calc(100vw * 40 / 375);
+}
+
+.chat-item.own-message .chat-body.chat-body--with-image {
   flex-direction: row-reverse;
-  margin: 0 calc(100vw * 20 / 375) 0 calc(100vw * 80 / 375); /* 自己消息靠右 */
+  align-items: flex-start;
 }
 
 .chat-item.own-message .chat-right {
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .chat-item.own-message .chat-time {
@@ -501,23 +482,23 @@ function reportSelect(value) {
 }
 
 .chat-item.own-message .chat-message {
-  /* border-radius: calc(100vw * 10 / 375); */
-  background: rgba(255, 255, 255, 0.25);
+  background: #4da3ff;
   color: #fff;
+  border-radius: calc(100vw * 18 / 375) calc(100vw * 0 / 375) calc(100vw * 18 / 375) calc(100vw * 18 / 375);
 }
 
-/* image message styles */
 .chat-message-image .image-container {
   border-radius: calc(100vw * 20 / 375);
-  /* background: rgba(255, 255, 255, 1);
-  padding: calc(100vw * 5 / 375); */
+  overflow: hidden;
 }
 
 .chat-message-image .image-container img {
-  width: 130PX;
+  display: block;
+  width: 120PX;
+  max-width: calc(100vw * 220 / 375);
   height: auto;
   border-radius: calc(100vw * 20 / 375);
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .bottom-input-wrap {
@@ -525,54 +506,76 @@ function reportSelect(value) {
   left: 0;
   right: 0;
   bottom: 0;
-  height: calc(100vh * 90 / 812);
-  background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
-  /* border-radius: calc(100vw * 40 / 375); */
-  overflow: hidden;
+  z-index: 10;
+  padding: calc(100vh * 10 / 812) calc(100vw * 20 / 375)
+    calc(100vh * 30 / 812 + env(safe-area-inset-bottom, 0px));
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: calc(100vh * 10 / 812);
   transition: transform 0.2s ease;
   will-change: transform;
 }
 
-.bottom-input {
-  position: absolute;
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
-  top: 0;
-  height: calc(100vh * 48 / 812);
-  border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(calc(100vw * 32 / 375));
+.footer-toolbar {
   display: flex;
   align-items: center;
-  margin-top: calc(100vh * 10 / 812);
-  padding: 0 calc(100vw * 10 / 375) 0 calc(100vw * 16 / 375);
+  gap: calc(100vw * 12 / 375);
+}
+
+.footer-action-btn {
+  width: 33PX;
+  height: 33PX;
+  border-radius: calc(100vw * 12 / 375);
+  /* border: 1px solid #9dc8ff; */
+  background: #fff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-action-icon {
+  width: calc(100vw * 33 / 375);
+  height: calc(100vw * 33 / 375);
+  object-fit: contain;
+}
+
+.bottom-input {
+  height: 50PX;
+  min-height: 50PX;
+  border-radius: 999px;
+  background: #f1f2f5;
+  display: flex;
+  align-items: center;
+  padding: 0 calc(100vw * 6 / 375) 0 calc(100vw * 18 / 375);
   gap: calc(100vw * 10 / 375);
   box-sizing: border-box;
 }
 
 .bottom-input input {
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
-  /* font-family: 'OPPOSansRegular', sans-serif; */
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 15 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 18.47 / 375);
+  line-height: 1.3;
   letter-spacing: 0;
-  color: #fff;
+  color: #111;
 }
 
 .bottom-input input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.35);
 }
 
 .send-btn {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
-  /* border-radius: 50%;
-  background: linear-gradient(180deg, rgba(255, 0, 128, 1) 0%, rgba(236, 86, 184, 1) 100%); */
-  /* cursor: pointer; */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  /* background: #4da3ff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -581,8 +584,9 @@ function reportSelect(value) {
 }
 
 .send-btn img {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
+  width: 50PX;
+  height: 50PX;
+  object-fit: contain;
 }
 
 .video-call-sheet {

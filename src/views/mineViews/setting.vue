@@ -2,7 +2,7 @@
   <div class="page">
     <div class="header">
       <BackButton />
-      <h1 class="title">Setting</h1>
+      <h1 class="title">SETTING</h1>
     </div>
     <main class="options-list">
       <div class="option" v-for="(option, index) in options" :key="index" @click="handleOption(index)">
@@ -13,8 +13,8 @@
       </div>
     </main>
     <div class="footer">
-      <button class="btn delete-btn" @click="handleAction(true)">Delete account</button>
-      <button class="btn logout-btn" @click="handleAction(false)">Log out</button>
+      <button class="btn delete-btn" @click="handleAction(true)">DELETE ACCOUNT</button>
+      <button class="btn logout-btn" @click="handleAction(false)">LOG OUT</button>
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ const options = ref([
   { text: 'Privacy Policy' },
   { text: 'User Agreement' },
   { text: 'Blacklist' },
-  { text: 'Wallet' },
+  // { text: 'Wallet' },
   // { text: 'Edit personal information' }
 ])
 
@@ -105,10 +105,11 @@ h1 {
 }
 
 .title {
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
   font-weight: 700;
-  background: #fff;
+  background: #000;
+  font-style: italic;
   /* background: linear-gradient(
     141.29deg,
     rgba(255, 110, 50, 1) 0%,
@@ -133,7 +134,7 @@ h1 {
 
 .option {
   height: calc(100vh * 52 / 812);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   border-radius: calc(100vw * 12 / 375);
   box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
   display: flex;
@@ -143,17 +144,17 @@ h1 {
 }
 
 .option-text {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  color: rgba(255, 255, 255, 1);
-  font-size: calc(100vw * 16 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  color: #000;
+  font-size: 16PX;
   font-weight: 400;
 }
 
 .option-right .arrow-placeholder {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: 14PX;
+  height: 14PX;
   background-image: url('@/assets/seetinggoicon.png');
-  background-size: cover; /* 等比缩放覆盖 */
+  background-size: contain; /* 等比缩放覆盖 */
   background-position: center; /* 居中显示 */
   background-repeat: no-repeat;
   overflow: hidden;
@@ -170,25 +171,35 @@ h1 {
 }
 
 .btn {
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 56 / 812);
+  width: 240PX;
+  height: 56PX;
   border-radius: calc(100vw * 87 / 375);
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 18 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 17PX;
   font-weight: 500;
   color: #fff;
-  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(255, 128, 128, 1),
+     2px -2px 0 rgba(255, 128, 128, 1),
+    -2px  2px 0 rgba(255, 128, 128, 1),
+     2px  2px 0 rgba(255, 128, 128, 1),
+     0px  2px 0 rgba(255, 128, 128, 1),
+     0px -2px 0 rgba(255, 128, 128, 1),
+     2px 0px 0 rgba(255, 128, 128, 1),
+    -2px 0px 0 rgba(255, 128, 128, 1);
+  background: rgba(252, 177, 177, 0.4);
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
-  border: 0px solid;
+  border: 2PX solid rgba(252, 177, 177, 1);
 }
 
 .delete-btn {
-  background: #FF456B;
-  /* background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%); */
+  background: rgba(252, 177, 177, 0.4);
 }
 
 .logout-btn {
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  background: rgba(252, 177, 177, 0.4);
 }
 </style>

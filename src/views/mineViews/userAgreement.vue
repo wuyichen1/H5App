@@ -122,10 +122,11 @@ p {
 }
 
 .title{
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
   font-weight: 700;
-  background: #fff;
+  background: #000;
+  font-style: italic;
   /* background: linear-gradient(
     141.29deg,
     rgba(255, 110, 50, 1) 0%,
@@ -149,23 +150,23 @@ p {
 
 /* Main Title */
 .agreement-content h1{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 24 / 375);
   margin-bottom:calc(100vh * 10 / 812);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 /* Update Time */
 .update-time{
   opacity:0.7;
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 12 / 375);
   margin-bottom:calc(100vh * 20 / 812);
 }
 
 /* Section Titles */
 .agreement-content h2{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 18 / 375);
   margin-top:calc(100vh * 24 / 812);
   margin-bottom:calc(100vh * 10 / 812);
@@ -174,11 +175,11 @@ p {
 
 /* Paragraphs */
 .agreement-content p{
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 14 / 375);
   line-height:1.7;
   margin-bottom:calc(100vh * 10 / 812);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 /* Lists */
@@ -188,9 +189,9 @@ p {
 
 .agreement-content li{
   margin-bottom:calc(100vh * 6 / 812);
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size:calc(100vw * 14 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 </style>

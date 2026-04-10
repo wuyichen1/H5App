@@ -15,13 +15,13 @@
           <div class="text-count">{{ text.length }}/150</div>
         </div>
         <!-- Theme -->
-        <div class="theme-label">Theme</div>
+        <div class="theme-label">TOPIC</div>
         <!-- ThemeList -->
         <div class="theme-list">
           <div v-for="(theme, index) in otherStore.other.postTheme" :key="index" class="theme-item" :class="{ selected: selectedTheme === index }" @click="selectedTheme = index">{{ theme }}</div>
         </div>
         <!-- Upload（Pic） -->
-        <div class="theme-label">Upload（Pic）</div>
+        <div class="theme-label">UPLOAD (PIC)</div>
         <!-- 图片上传 -->
         <div class="upload-list">
           <!-- 添加图片按钮 -->
@@ -48,7 +48,7 @@
           </template>
         </div>
         <!-- Release -->
-        <div class="release-button" @click="handleRelease">Release</div>
+        <div class="release-button" @click="handleRelease">RELEASE</div>
     </div>
   </div>
 </template>
@@ -162,7 +162,7 @@ const handleRelease = async () => {
   margin-right: calc(100vw * 20 / 375);
   height: calc(100vh * 174 / 812);
   border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(35, 30, 36, 1);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
   padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375);
   box-sizing: border-box;
@@ -190,7 +190,7 @@ const handleRelease = async () => {
   position: absolute;
   right: calc(100vw * 13 / 375);
   bottom: calc(100vh * 16 / 812);
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
@@ -200,12 +200,13 @@ const handleRelease = async () => {
 .theme-label {
   margin-top: calc(100vh * 24 / 812);
   margin-left: calc(100vw * 20 / 375);
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: calc(100vw * 16 / 375);
+  font-weight: 900;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
   text-align: left;
+  font-style: italic;
 }
 
 .theme-list {
@@ -219,8 +220,8 @@ const handleRelease = async () => {
 .theme-item {
   width: calc(100vw * 94 / 375);
   height: calc(100vh * 40 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.16);
+  border-radius: calc(100vw * 50 / 375);
+  background: rgba(232, 232, 232, 1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,14 +230,17 @@ const handleRelease = async () => {
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
   letter-spacing: 0;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(186, 187, 194, 1);
   cursor: pointer;
 }
 
 .theme-item.selected {
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  background: rgba(176, 224, 252, 0.4);
   /* background: linear-gradient(135deg, rgba(255, 159, 142, 1) 0%, rgba(241, 213, 160, 1) 32.13%, rgba(201, 255, 221, 1) 67.84%, rgba(157, 255, 255, 1) 100%); */
-  color: #fff;
+  border: 2PX solid rgba(176, 224, 252, 1);
+  color: #000;
+  font-weight: 500;
+  font-family: "Barlow-Black", system-ui, sans-serif;
 }
 
 .upload-list {
@@ -259,7 +263,7 @@ const handleRelease = async () => {
   height: calc(100vw * 108 / 375);
   flex-shrink: 0;
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(23, 23, 23, 1);
   backdrop-filter: blur(calc(100vw * 12 / 375));
   display: flex;
   justify-content: center;
@@ -280,7 +284,7 @@ const handleRelease = async () => {
 .upload-add {
   width: calc(100vw * 24 / 375);
   height: calc(100vw * 24 / 375);
-  background-image: url('@/assets/uploadpic.png');
+  background-image: url('@/assets/cameraicon.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -302,16 +306,32 @@ const handleRelease = async () => {
 
 /* Release Button Styles */
 .release-button {
-  width: calc(100vw * 260 / 375);
-  height: calc(100vh * 56 / 812);
+  width: 260PX;
+  height: 56PX;
   border-radius: calc(100vw * 87 / 375);
   /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-size: 18PX;
+  font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(19, 106, 161, 1),
+     2px -2px 0 rgba(19, 106, 161, 1),
+    -2px  2px 0 rgba(19, 106, 161, 1),
+     2px  2px 0 rgba(19, 106, 161, 1),
+     0px  2px 0 rgba(19, 106, 161, 1),
+     0px -2px 0 rgba(19, 106, 161, 1),
+     2px 0px 0 rgba(19, 106, 161, 1),
+    -2px 0px 0 rgba(19, 106, 161, 1);
+  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  /* 设置背景图片 */
+  background-image: url('@/assets/buttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

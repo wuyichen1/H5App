@@ -15,7 +15,7 @@
           <div class="text-count">{{ text.length }}/150</div>
         </div>
         <!-- Upload（video） -->
-        <div class="theme-label">Upload（video）</div>
+        <div class="theme-label">UPLOAD (VIDEO)</div>
         <!-- 视频上传 -->
         <div class="upload-list">
           <!-- 添加视频按钮 -->
@@ -33,7 +33,7 @@
           </template>
         </div>
         <!-- Release -->
-        <div class="release-button" @click="handleRelease">Release</div>
+        <div class="release-button" @click="handleRelease">RELEASE</div>
     </div>
   </div>
 </template>
@@ -204,7 +204,7 @@ const getVideoInfo = async (videoUrl) => {
   margin-right: calc(100vw * 20 / 375);
   height: calc(100vh * 174 / 812);
   border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 0.25);
+  background: #fff;
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
   padding: calc(100vh * 12 / 812) calc(100vw * 12 / 375);
 }
@@ -215,38 +215,39 @@ const getVideoInfo = async (videoUrl) => {
   border: none;
   outline: none;
   resize: none;
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: 14PX;
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   background: transparent;
-  color: #fff;
+  color: #000;
 }
 
 .post-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(186, 187, 194, 1);
 }
 
 .text-count {
   position: absolute;
   right: calc(100vw * 13 / 375);
   bottom: calc(100vh * 16 / 812);
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: "Barlow-Black", system-ui, sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(186, 187, 194, 1);
 }
 
 .theme-label {
   margin-top: calc(100vh * 24 / 812);
   margin-left: calc(100vw * 20 / 375);
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-family: "Barlow-Black", system-ui, sans-serif;
+  font-size: 18PX;
+  font-weight: 900;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
   text-align: left;
+  font-style: italic;
 }
 
 .upload-list {
@@ -269,7 +270,7 @@ const getVideoInfo = async (videoUrl) => {
   height: calc(100vw * 108 / 375);
   flex-shrink: 0;
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(23, 23, 23, 1);
   backdrop-filter: blur(calc(100vw * 12 / 375));
   display: flex;
   justify-content: center;
@@ -286,8 +287,8 @@ const getVideoInfo = async (videoUrl) => {
 }
 
 .upload-add {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: calc(100vw * 30 / 375);
+  height: calc(100vw * 30 / 375);
   background-image: url('@/assets/uploadpic.png');
   background-size: cover;
   background-position: center;
@@ -310,16 +311,31 @@ const getVideoInfo = async (videoUrl) => {
 
 /* Release Button Styles */
 .release-button {
-  width: calc(100vw * 260 / 375);
-  height: calc(100vh * 56 / 812);
+  width: 260PX;
+  height: 56PX;
   border-radius: calc(100vw * 87 / 375);
   /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-size: 18PX;
   font-weight: 400;
   color: #fff;
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(19, 106, 161, 1),
+     2px -2px 0 rgba(19, 106, 161, 1),
+    -2px  2px 0 rgba(19, 106, 161, 1),
+     2px  2px 0 rgba(19, 106, 161, 1),
+     0px  2px 0 rgba(19, 106, 161, 1),
+     0px -2px 0 rgba(19, 106, 161, 1),
+     2px 0px 0 rgba(19, 106, 161, 1),
+    -2px 0px 0 rgba(19, 106, 161, 1);
+  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  background-image: url('@/assets/buttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

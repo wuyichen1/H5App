@@ -57,17 +57,25 @@ function handleRecharge() {
 }
 
 .recharge-button {
-  width: calc(100vw * 240 / 375);
-  height: calc(100vh * 59 / 812);
+  width: 220PX;
+  height: 50PX;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100vh * 12 / 812);
+  transform: translateX(-50%);
   border-radius: calc(100vw * 87 / 375);
-  background: linear-gradient(135deg, rgb(254, 20, 204) 0%, rgb(255, 185, 0) 100%);
+  /* background: linear-gradient(135deg, rgb(254, 20, 204) 0%, rgb(255, 185, 0) 100%); */
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  background-image: url('@/assets/rechargebg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 18PX;
   font-weight: 500;
   line-height: calc(100vw * 26.66 / 375);
   color: rgb(255, 255, 255);

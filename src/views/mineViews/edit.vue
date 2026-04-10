@@ -2,7 +2,7 @@
   <div class="page">
     <div class="top-header">
       <BackButton />
-      <span class="edit-title">Edit</span>
+      <span class="edit-title">EDIT</span>
     </div>
     <div class="content">
       <div class="top">
@@ -21,7 +21,7 @@
       />
       <div class="second">
         <div class="second-section">
-            <div class="label">Name</div>
+            <div class="label">NAME</div>
             <div class="input-box">
             <input v-model="name" type="text" placeholder="Please enter" />
             </div>
@@ -29,14 +29,14 @@
       </div>
       <div class="third">
         <div class="third-section">
-            <div class="label">About me</div>
+            <div class="label">ABOUT ME</div>
             <div class="input-box about-me-box">
             <textarea v-model="aboutMe" placeholder="Please enter"></textarea>
             </div>
         </div>
       </div>
       <div class="fourth-section">
-        <div class="save-btn" @click="saveProfile">Save</div>
+        <div class="save-btn" @click="saveProfile">SAVE</div>
       </div>
     </div>
   </div>
@@ -159,10 +159,11 @@ onMounted(() => {
 }
 
 .edit-title {
-  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
   font-weight: 700;
-  background: #fff;
+  font-style: italic;
+  background: #000;
   /* background: linear-gradient(
     141.29deg,
     rgba(255, 110, 50, 1) 0%,
@@ -194,7 +195,7 @@ onMounted(() => {
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  border: calc(100vw * 1 / 375) solid #FF4AD8;
+  border: calc(100vw * 2 / 375) solid #fff;
   box-sizing: border-box;
   position: relative;
   margin-top: calc(100vh * 20 / 812);
@@ -229,18 +230,19 @@ onMounted(() => {
 }
 
 .label {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 18PX;
+  font-weight: 900;
+  font-style: italic;
   line-height: calc(100vw * 21.2 / 375);
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 .input-box {
   width: 100%;
   /* height: calc(100vh * 54 / 812); */
   border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(23, 23, 23, 1);
   box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -316,8 +318,23 @@ onMounted(() => {
   font-size: calc(100vw * 20 / 375);
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(19, 106, 161, 1),
+     2px -2px 0 rgba(19, 106, 161, 1),
+    -2px  2px 0 rgba(19, 106, 161, 1),
+     2px  2px 0 rgba(19, 106, 161, 1),
+     0px  2px 0 rgba(19, 106, 161, 1),
+     0px -2px 0 rgba(19, 106, 161, 1),
+     2px 0px 0 rgba(19, 106, 161, 1),
+    -2px 0px 0 rgba(19, 106, 161, 1);
+  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  background-image: url('@/assets/buttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

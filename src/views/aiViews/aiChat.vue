@@ -7,11 +7,11 @@
       <div class="top-bgc">
         <div class="top-section">
           <BackButton />
-          <p>Tati AI</p>
+          <!-- <p>Tati AI</p> -->
         </div>
         <div class="top-ai-out-drection">
           <!-- 这里写一段文字 -->
-          <div class="top-ai-bg-contanier-text">Welcome to Tati! If you have any requests, just let me know and we'll enjoy the fun of hip-hop together!</div>
+          <!-- <div class="top-ai-bg-contanier-text">Welcome to Tati! If you have any requests, just let me know and we'll enjoy the fun of hip-hop together!</div> -->
           <!-- <div class="top-ai-bg-contanier">
             <div class="top-ai-bg-contanier-text">Tati AI</div>
             <div class="top-ai-bg-contanier-image"></div>
@@ -34,7 +34,7 @@
         <div class="bottom-scroll" ref="bottomScrollRef">
           <div v-for="(item, index) in bottomItems" :key="index" class="chat-item">
             <div class="chat-choose" v-if="item.sendId === '0'">
-                <div class="chat-time">{{ item.time }}</div>
+                <!-- <div class="chat-time">{{ item.time }}</div> -->
                     <div class="chat-content">
                     <img class="chat-avatar" src="@/assets/aiavator.png" alt="AI Avatar" />
                     <div class="chat-message">
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="chat-choose" v-else>
-                <div class="chat-time">{{ item.time }}</div>
+                <!-- <div class="chat-time">{{ item.time }}</div> -->
                     <div class="chat-content-rigth">
                     <div class="chat-message-rigth">{{ item.message }}</div>
                     <div class="chat-avatar-rigth-border-box">
@@ -545,14 +545,15 @@ async function sendMessage() {
 
 .chat-message {
   border-radius: calc(100vw * 10 / 375);
-  background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%);
+  /* background: linear-gradient(90deg, #FB10FF 0%, #4851FD 100%); */
+  background: rgba(26, 27, 28, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 14PX;
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
@@ -606,14 +607,14 @@ async function sendMessage() {
 
 .chat-message-rigth {
   border-radius: calc(100vw * 10 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(110, 185, 255, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: calc(100vh * 10 / 812) calc(100vw * 10 / 375);
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
+  padding: 12PX 12PX;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 15PX;
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
@@ -626,7 +627,7 @@ async function sendMessage() {
   right: 0;
   bottom: 0;
   height: calc(100vh * 90 / 812);
-  background: linear-gradient(90deg, #10003A 0%, #0F0072 100%);
+  background: #fff;
   overflow: hidden;
   z-index: 200;
   transition: transform 0.2s ease;
@@ -635,13 +636,13 @@ async function sendMessage() {
 
 .bottom-input {
   position: absolute;
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
+  left: 20PX;
+  right: 20PX;
   top: 0;
   margin-top: calc(100vh * 10 / 812);
   height: calc(100vh * 48 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(245, 245, 245, 1);
   backdrop-filter: blur(calc(100vw * 32 / 375));
   display: flex;
   align-items: center;
@@ -656,20 +657,21 @@ async function sendMessage() {
   outline: none;
   background: transparent;
   /* font-family: 'OPPOSansRegular', sans-serif; */
-  font-size: calc(100vw * 15 / 375);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 15PX;
   font-weight: 400;
   line-height: calc(100vw * 18.47 / 375);
   letter-spacing: 0;
-  color: #fff;
+  color: #000;
 }
 
 .bottom-input input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(186, 187, 194, 1);
 }
 
 .send-icon {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
+  width: 30PX;
+  height: 30PX;
   /* border-radius: 50%;
   background: linear-gradient(180deg, rgba(255, 0, 128, 1) 0%, rgba(236, 86, 184, 1) 100%); */
   /* cursor: pointer; */
@@ -681,7 +683,7 @@ async function sendMessage() {
 }
 
 .send-icon img {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
+  width: 48PX;
+  height: 48PX;
 }
 </style>

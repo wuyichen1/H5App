@@ -23,7 +23,9 @@
           <img class="purchase-icon" src="@/assets/coin.png" alt="" />
           <div class="purchase-text">
             <span class="purchase-count">x200</span>
-            <span class="purchase-sub">(Chat)</span>
+            <!-- 增加一个小图片 -->
+            <img class="purchase-sub-icon" src="@/assets/chatright.png" alt="" />
+            <!-- <span class="purchase-sub">(Chat)</span> -->
           </div>
         </div>
       </div>
@@ -242,16 +244,16 @@ function handleRechargeEvent(value) {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: calc(100vh * 0 / 812);
+  margin-top: calc(100vh * 50 / 812);
   flex-shrink: 0;
   position: relative;
   z-index: 1;
   /* 向下压，让底部胶囊按钮略微遮挡图片底部 */
-  transform: translateY(calc(100vh * 60 / 812));
+  /* transform: translateY(calc(100vh * 60 / 812)); */
 }
 
 .hero-image {
-  width: calc(100vw * 200 / 375);
+  width: 100%;
   max-height: calc(100vh * 310 / 812);
   object-fit: contain;
 }
@@ -266,9 +268,9 @@ function handleRechargeEvent(value) {
     rgba(253, 61, 104, 1) 44.94%,
     rgba(251, 226, 100, 1) 100%
   ); */
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
   border: calc(100vw * 1 / 375) solid rgba(255, 255, 255, 0.35);
-  padding: calc(100vh * 30 / 812) calc(100vw * 36 / 375);
+  padding: calc(100vh * 30 / 812) calc(100vw * 26 / 375);
   box-sizing: border-box;
   text-align: center;
   position: relative;
@@ -276,21 +278,22 @@ function handleRechargeEvent(value) {
 }
 
 .card-title {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 26 / 375);
-  font-weight: 700;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
+  font-weight: 900;
+  font-style: italic;
   line-height: 1;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 .card-desc {
   margin-top: calc(100vh * 18 / 812);
   margin-bottom: calc(100vh * 12 / 812);
-  font-family: 'OPPOSansRegular', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 22 / 375);
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(0, 0, 0, 0.86);
   white-space: normal;
 }
 
@@ -309,9 +312,13 @@ function handleRechargeEvent(value) {
   width: calc(100vw * 300 / 375);
   height: calc(100vh * 59 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%);
+  /* background: linear-gradient(135deg, #FE14CC 0%, #FFB900 100%); */
   /* background: linear-gradient(141.29deg, rgba(255, 110, 50, 1) 0%, rgba(253, 61, 104, 1) 44.94%, rgba(251, 226, 100, 1) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  background-image: url('@/assets/aibuttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -321,18 +328,30 @@ function handleRechargeEvent(value) {
 }
 
 .purchase-icon {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: 68PX;
+  height: 68PX;
   object-fit: contain;
 }
 
 .purchase-count {
-  /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size: calc(100vw * 22 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: 0;
+  margin: 0 10PX 0 -10PX;
   color: rgb(255, 255, 255);
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(175, 56, 199, 1),
+     2px -2px 0 rgba(175, 56, 199, 1),
+    -2px  2px 0 rgba(175, 56, 199, 1),
+     2px  2px 0 rgba(175, 56, 199, 1),
+     0px  2px 0 rgba(175, 56, 199, 1),
+     0px -2px 0 rgba(175, 56, 199, 1),
+     2px 0px 0 rgba(175, 56, 199, 1),
+    -2px 0px 0 rgba(175, 56, 199, 1);
 }
 
 .purchase-text {
@@ -350,6 +369,12 @@ function handleRechargeEvent(value) {
   line-height: 1;
 }
 
+.purchase-sub-icon {
+  width: 20PX;
+  height: 20PX;
+  object-fit: contain;
+}
+
 .chat-box {
   /* width: calc(100vw * 73 / 375);
   height: calc(100vh * 38 / 812);
@@ -358,9 +383,9 @@ function handleRechargeEvent(value) {
   display: flex;
   justify-content: center;
   align-items: center; */
-  font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: calc(100vw * 16.96 / 375);
   letter-spacing: 0;
   color: rgba(255, 255, 255, 1);
