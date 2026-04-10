@@ -7,13 +7,13 @@
       <div class="top-bgc">
         <div class="top-section">
           <BackButton />
-          <p>Zelop AI</p>
+          <p>Tati AI</p>
         </div>
         <div class="top-ai-out-drection">
           <!-- 这里写一段文字 -->
-          <div class="top-ai-bg-contanier-text">Welcome to Zelop! If you have any requests, just let me know and we'll enjoy the fun of hip-hop together!</div>
+          <div class="top-ai-bg-contanier-text">Welcome to Tati! If you have any requests, just let me know and we'll enjoy the fun of hip-hop together!</div>
           <!-- <div class="top-ai-bg-contanier">
-            <div class="top-ai-bg-contanier-text">Zelop AI</div>
+            <div class="top-ai-bg-contanier-text">Tati AI</div>
             <div class="top-ai-bg-contanier-image"></div>
           </div> -->
         </div>
@@ -116,7 +116,7 @@ const getFirstTime = () => {
 }
 
 const bottomItems = ref([
-  { sendId: '0', time: getFirstTime(), message: 'Hi there! I\'m Zelop, your AI buddy for all things fun and.'},
+  { sendId: '0', time: getFirstTime(), message: 'Hi there! I\'m Tati, your AI buddy for all things fun and.'},
 ])
 
 const isWaiting = ref(false)

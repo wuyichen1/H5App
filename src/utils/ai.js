@@ -4,7 +4,7 @@ import aiClient from './aiClient'
 export function aiChat(message) {
   return aiClient.post('/opi/v1/yVZSfGAs', {
     system:
-      'You are Zelop—an AI companion dedicated to bringing you all sorts of fun and interesting things.',
+      'You are Tati—an AI companion dedicated to bringing you all sorts of fun and interesting things.',
     dashScopeMessageDTOList: [
       {
         role: 'user',

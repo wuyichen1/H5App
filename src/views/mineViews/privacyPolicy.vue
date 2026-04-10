@@ -10,16 +10,16 @@
     <!-- content -->
     <div class="agreement-content">
 
-      <h1>Zelop Privacy Policy</h1>
+      <h1>Tati Privacy Policy</h1>
       <p class="update-time">Last updated: 2026</p>
 
       <p>
-        Welcome to <strong>Zelop</strong>, your ultimate AI-powered makeup assistant and short video tutorial platform. At Zelop, we are dedicated to helping you enhance your beauty routine with personalized AI recommendations and engaging video content. Your privacy is our priority. This Privacy Policy explains how Zelop collects, uses, and protects your information when you use our app and services.
+        Welcome to <strong>Tati</strong>, your ultimate AI-powered makeup assistant and short video tutorial platform. At Tati, we are dedicated to helping you enhance your beauty routine with personalized AI recommendations and engaging video content. Your privacy is our priority. This Privacy Policy explains how Tati collects, uses, and protects your information when you use our app and services.
       </p>
 
       <h2>1. Information We Collect</h2>
 
-      <p>We collect information to provide and improve Zelop, including:</p>
+      <p>We collect information to provide and improve Tati, including:</p>
 
       <ul>
         <li>Account details such as username, profile picture, and email address</li>
@@ -34,7 +34,7 @@
       <p>Your information helps us to:</p>
 
       <ul>
-        <li>Deliver and enhance Zelop’s AI makeup assistant and tutorial features</li>
+        <li>Deliver and enhance Tati’s AI makeup assistant and tutorial features</li>
         <li>Personalize your experience and content recommendations</li>
         <li>Maintain a safe and supportive community environment</li>
         <li>Process transactions and manage subscriptions</li>
@@ -47,7 +47,7 @@
 
       <ul>
         <li>With trusted service providers who support our platform operations</li>
-        <li>When required by law or to protect Zelop’s rights and user safety</li>
+        <li>When required by law or to protect Tati’s rights and user safety</li>
         <li>To prevent fraud and abuse within the community</li>
       </ul>
 
@@ -61,7 +61,7 @@
 
       <h2>6. Children’s Privacy</h2>
 
-      <p>Zelop is not intended for users under the age required by applicable law. We do not knowingly collect personal information from children.</p>
+      <p>Tati is not intended for users under the age required by applicable law. We do not knowingly collect personal information from children.</p>
 
       <h2>7. Your Rights</h2>
 
@@ -75,11 +75,11 @@
 
       <h2>8. Changes to This Policy</h2>
 
-      <p>We may update this Privacy Policy periodically. Continued use of Zelop after changes means you accept the updated terms.</p>
+      <p>We may update this Privacy Policy periodically. Continued use of Tati after changes means you accept the updated terms.</p>
 
       <h2>9. Contact Us</h2>
 
-      <p>If you have any questions or concerns about this Privacy Policy, please contact us through the support channels available within the Zelop app.</p>
+      <p>If you have any questions or concerns about this Privacy Policy, please contact us through the support channels available within the Tati app.</p>
 
     </div>
   </div>

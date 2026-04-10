@@ -6,13 +6,13 @@
 
     <div class="page-main">
       <div class="hero-area">
-        <img class="hero-image" src="@/assets/aiuserpic.png" alt="Zelop AI" />
+        <img class="hero-image" src="@/assets/aiuserpic.png" alt="Tati AI" />
       </div>
 
       <div class="info-card">
-        <div class="card-title">Zelop AI</div>
+        <div class="card-title">Tati AI</div>
         <div class="card-desc">
-          Hi! I'm Zelop AI, your personal hip-hop AI assistant. Whether you're a newbie writing
+          Hi! I'm Tati AI, your personal hip-hop AI assistant. Whether you're a newbie writing
           your first verse or a seasoned MC crafting fire tracks, I am here to help you with
           flows, bars, beats, and ideas, and help you shine in every rhyme. Are you ready?
         </div>
