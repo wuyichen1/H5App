@@ -98,13 +98,14 @@ function handleRecharge() {
 }
 
 .coin-banner {
-  width: calc(100vw * 335 / 375);
-  height: calc(100vh * 106 / 812);
-  margin: calc(100vh * 24 / 812) auto 0;
+  width: 90%;
+  height: 125PX;
+  margin: 24PX auto 0;
   background-image: url('@/assets/coinbgc.png');
   background-size: cover;
   background-position: center;
-  border-radius: calc(100vw * 24 / 375);
+  background-repeat: no-repeat;
+  border-radius: 20PX;
 }
 
 .coin-banner-inner {
@@ -112,14 +113,14 @@ function handleRecharge() {
   height: 100%;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 12 / 375);
-  padding: 0 calc(100vw * 24 / 375) 0 calc(100vw * 16 / 375);
+  gap: 14PX;
+  padding: 0 24PX 0 16PX;
   box-sizing: border-box;
 }
 
 .coin-banner-icon {
-  width: calc(100vw * 90 / 375);
-  height: calc(100vw * 90 / 375);
+  width: 90PX;
+  height: 90PX;
   object-fit: cover;
   display: block;
   padding: 0 20PX 0 0;
