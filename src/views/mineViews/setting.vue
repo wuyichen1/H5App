@@ -31,8 +31,8 @@ const options = ref([
   { text: 'Privacy Policy' },
   { text: 'User Agreement' },
   { text: 'Blacklist' },
+  { text: 'Edit personal information' },
   // { text: 'Wallet' },
-  // { text: 'Edit personal information' }
 ])
 
 const router = useRouter()
@@ -51,10 +51,10 @@ function handleOption(index) {
       router.push({ name: 'block' })
       break
     case 3:
-      router.push({ name: 'coins' })
+      router.push({ name: 'edit' })
       break
     case 4:
-      router.push({ name: 'edit' })
+      router.push({ name: 'coins' })
       break
     default:
       break
