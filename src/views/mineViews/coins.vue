@@ -249,6 +249,7 @@ function handleRecharge() {
      2px 0px 0 rgba(19, 106, 161, 1),
     -2px 0px 0 rgba(19, 106, 161, 1);
   text-transform: uppercase;
+  background: transparent;
   background-image: url('@/assets/buttonbg.png');
   background-size: contain;
   background-position: center;
