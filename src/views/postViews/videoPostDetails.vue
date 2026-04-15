@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <div class="top-gradient-bar" aria-hidden="true"></div>
     <!-- 全屏视频播放器 -->
     <video
       ref="videoRef"
@@ -254,6 +255,22 @@ function commentReportSelect(value) {
   height: 100vh;
   background: rgba(14, 8, 15, 1);
   overflow: hidden;
+}
+
+.top-gradient-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200PX;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.12) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 .video-player {
