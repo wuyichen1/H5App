@@ -338,13 +338,14 @@ function toPostDetail(dynamicId, dynamicType) {
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .top-avatar::before {
   content: '';
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   border-radius: 50%;
   background-image: var(--avatar-url);
   background-size: cover;
@@ -353,15 +354,16 @@ function toPostDetail(dynamicId, dynamicType) {
 
 .follow-btn {
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   width: calc(100vw * 22 / 375);
   height: calc(100vw * 22 / 375);
   background-image: url('@/assets/follow.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .top-name {

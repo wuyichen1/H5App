@@ -3,10 +3,10 @@
     <div class="dialog-container">
       <div class="dialog-content">
         <div class="dialog-options">
-          <div class="option" @click="$emit('select', 0)">Report</div>
-          <div class="option" @click="$emit('select', 1)">Shield</div>
+          <div class="option" @click="$emit('select', 0)">REPORT</div>
+          <div class="option" @click="$emit('select', 1)">SHIELD</div>
         </div>
-        <div class="cancel" @click.self="$emit('close')">Cancel</div>
+        <div class="cancel" @click.self="$emit('close')">CANCEL</div>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
   background-position: center;
   background-repeat: no-repeat; */
   border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0px 0px;
-  background: linear-gradient(180deg, rgb(16, 0, 58) 0%, rgb(15, 0, 114) 100%);
+  background: rgba(245, 245, 245, 1);
   z-index: 1000;
   display: flex;
   justify-self: flex-end;
@@ -74,15 +74,26 @@
 }
 
 .option {
-  width: calc(100vw * 260 / 375);
-  height: calc(100vh * 46 / 812);
-  border-radius: calc(100vw * 40 / 375);
-  background: rgb(255, 255, 255, 0.2);
-  /* box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.1); */
-  font-family: 'OPPOSansRegular', sans-serif;
-  font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
+  width: 240PX;
+  height: 48PX;
+  border-radius: 60PX;
+  background: rgba(252, 177, 177, 0.4);
+  border: 2PX solid rgba(252, 177, 177, 1);
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 16PX;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(255, 128, 128, 1),
+     2px -2px 0 rgba(255, 128, 128, 1),
+    -2px  2px 0 rgba(255, 128, 128, 1),
+     2px  2px 0 rgba(255, 128, 128, 1),
+     0px  2px 0 rgba(255, 128, 128, 1),
+     0px -2px 0 rgba(255, 128, 128, 1),
+     2px 0px 0 rgba(255, 128, 128, 1),
+    -2px 0px 0 rgba(255, 128, 128, 1);
   text-align: center;
 
   display: flex; /* 新增 */
@@ -91,15 +102,30 @@
 }
 
 .cancel {
-  width: calc(100vw * 260 / 375);
-  height: calc(100vh * 55 / 812);
-  border-radius: calc(100vw * 87 / 375);
+  width: 260PX;
+  height: 56PX;
+  border-radius: 87PX;
   /* font-family: 'PangMenZhengDaoBiaoTiTiMianFeiBan', sans-serif; */
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
+  font-size: 18PX;
+  font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, rgb(254, 20, 204) 0%, rgb(255, 185, 0) 100%);
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(19, 106, 161, 1),
+     2px -2px 0 rgba(19, 106, 161, 1),
+    -2px  2px 0 rgba(19, 106, 161, 1),
+     2px  2px 0 rgba(19, 106, 161, 1),
+     0px  2px 0 rgba(19, 106, 161, 1),
+     0px -2px 0 rgba(19, 106, 161, 1),
+     2px 0px 0 rgba(19, 106, 161, 1),
+    -2px 0px 0 rgba(19, 106, 161, 1);
+  /* background: linear-gradient(135deg, rgb(254, 20, 204) 0%, rgb(255, 185, 0) 100%); */
   /* box-shadow: 0px calc(100vw * 2 / 375) 0px  rgba(200, 100, 154, 1), 0px calc(100vw * 2 / 375) calc(100vw * 6 / 375)  rgba(200, 100, 154, 1),inset 0px calc(100vw * 2 / 375) 0px  rgba(255, 255, 255, 0.8); */
+  background-image: url('@/assets/buttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
