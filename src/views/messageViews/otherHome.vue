@@ -59,7 +59,7 @@
             <div
               class="post-report"
               v-if="userId !== currentUserStore.currentUser.userId"
-              @click.stop="showReport = true"
+              @click.stop="showReportFunc()"
             ></div>
             <div class="post-thumb" :style="{ backgroundImage: `url(${post.dynamicPic[0]})` }">
               <div class="post-isvideo-icon" v-if="post.dynamicType === 1"></div>
@@ -79,7 +79,7 @@
     <!-- 顶部按钮 -->
     <div class="top-btn">
         <BackButton/>
-        <MoreButton v-if="userId !== currentUserStore.currentUser.userId" @click="showReport = true" />
+        <MoreButton v-if="userId !== currentUserStore.currentUser.userId" @click="showReportFunc()" />
     </div>
     <ReportDialog v-if="showReport" @close="showReport = false" @select="reportSelect" >
     </ReportDialog>
@@ -98,7 +98,7 @@ import BackButton from '@/components/back.vue'
 import MoreButton from '@/components/more.vue'
 import ReportDialog from '@/components/reportChoose.vue'
 import Empty from '@/components/empty.vue'
-import { goBackOrClose, sendShowLoadingToIOS, sendShowToastToIOS } from '@/utils/iosBridge'
+import { goBackOrClose, sendShowLoadingToIOS, sendShowToastToIOS, sendShowToLoginToIOS } from '@/utils/iosBridge'
 
 const { userId } = defineProps({
   userId: {
@@ -129,6 +129,14 @@ function formatStatCount(n) {
     return `${s}w`
   }
   return String(num)
+}
+
+function showReportFunc() {
+  if (currentUserStore.currentUser.isguest == 1) {
+    sendShowToLoginToIOS()
+    return
+  }
+  showReport.value = true
 }
 
 function reportSelect(value) {
@@ -164,6 +172,10 @@ function reportSelect(value) {
 
 // Handle follow action
 function handleFollow() {
+  if (currentUserStore.currentUser.isguest == 1) {
+    sendShowToLoginToIOS()
+    return
+  }
   const currentUserId = currentUserStore.currentUser.userId
 
   // Update current user's follow list
@@ -187,6 +199,25 @@ function handleFollow() {
 }
 
 function handleChat() {
+  if (currentUserStore.currentUser.isguest == 1) {
+    sendShowToLoginToIOS()
+    return
+  }
+  const currentUserFollow = Array.isArray(currentUserStore.currentUser.follow)
+    ? currentUserStore.currentUser.follow
+    : []
+
+  const targetUserFans = Array.isArray(currentUser.value?.follow)
+    ? currentUser.value.follow
+    : []
+
+  const postrCurrentUserId = currentUserStore.currentUser.userId
+
+  if (!currentUserFollow.includes(userId) || !targetUserFans.includes(postrCurrentUserId)) {
+    sendShowToastToIOS('You can only chat if you follow each other.')
+    return
+  }
+
   sendShowLoadingToIOS(true)
   const currentUserId = currentUserStore.currentUser.userId
 

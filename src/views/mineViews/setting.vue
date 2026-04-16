@@ -25,7 +25,7 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import BackButton from '@/components/back.vue'
-import { sendLogoutToIOS, sendShowLoadingToIOS } from '@/utils/iosBridge'
+import { sendLogoutToIOS, sendShowLoadingToIOS, sendShowToLoginToIOS } from '@/utils/iosBridge'
 
 const options = ref([
   { text: 'Privacy Policy' },
@@ -51,10 +51,11 @@ function handleOption(index) {
       router.push({ name: 'block' })
       break
     case 3:
+      if (currentUserStore.currentUser.isguest == 1) {
+        sendShowToLoginToIOS()
+        return
+      }
       router.push({ name: 'edit' })
-      break
-    case 4:
-      router.push({ name: 'coins' })
       break
     default:
       break

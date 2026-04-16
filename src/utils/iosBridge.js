@@ -176,3 +176,37 @@ export function sendShowToastToIOS(toastMsg) {
         console.error('sendShowToastToIOS error', e)
     }
 }
+
+// Send new user data to iOS
+export function sendNewUserDataToIOS(newUserData) {
+    try {
+        if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.newUserData
+        ) {
+            window.webkit.messageHandlers.newUserData.postMessage({ newUserData: newUserData })
+        } else {
+            console.warn('iOS handler newUserData not found')
+        }
+    } catch (e) {
+        console.error('sendNewUserDataToIOS error', e)
+    }
+}
+
+// Handle page back or close action
+export function sendShowToLoginToIOS() {
+    try {
+        if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.showToLogin
+        ) {
+            window.webkit.messageHandlers.showToLogin.postMessage()
+        } else {
+            console.warn('iOS handler showToLogin not found')
+        }
+    } catch (e) {
+        console.error('sendShowToLoginToIOS error', e)
+    }
+}

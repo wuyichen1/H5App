@@ -12,5 +12,6 @@
     ],
     "blockList": ["4"],
     "postLikeIds": [],
-    "isdelete": 0
+    "isdelete": 0,
+    "isguest": 0
 }
