@@ -395,7 +395,7 @@ const saveProfile = async () => {
 .save-btn {
   width: calc(100vw * 264 / 375);
   height: calc(100vh * 60 / 812);
-  background-image: url('@/assets/zhubtnbgi.png');
+  background-image: url('@/assets/pagebgc.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
