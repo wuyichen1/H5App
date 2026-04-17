@@ -1,38 +1,44 @@
 <template>
   <div class="page">
-    <div class="top-header">
+    <header class="top-header">
       <BackButton />
-    </div>
+      <h1 class="page-title">EDIT</h1>
+    </header>
+
     <div class="content">
-      <div class="top">
-        <div class="top-block" :style="{ backgroundImage: `url(${topBlockImage})` }" @click="chooseAvatar">
-            <div class="camera-corner">
-            <img src="@/assets/cameraicon.png" alt="camera" />
-            </div>
+      <div class="avatar-block" @click="chooseAvatar">
+        <div
+          class="avatar-circle"
+          :style="{ backgroundImage: `url(${topBlockImage})` }"
+          role="img"
+          aria-label="Avatar"
+        />
+        <div class="camera-badge" aria-hidden="true">
+          <img src="@/assets/cameraicon.png" alt="" />
         </div>
       </div>
+
       <input
         ref="fileInput"
         type="file"
         accept="image/*"
-        style="display:none"
+        class="visually-hidden"
         @change="onFileChange"
       />
-      <div class="second">
-        <div class="second-section">
-            <div class="label">Name</div>
-            <div class="input-box">
-            <input v-model="name" type="text" placeholder="Please enter" />
-            </div>
+
+      <section class="form-stack">
+        <div class="field">
+          <div class="field-label">EMAIL</div>
+          <div class="field-input dark">
+            <input v-model="email" type="email" inputmode="email" autocomplete="email" placeholder="Please enter" />
+          </div>
         </div>
-      </div>
-      <div class="third">
-        <div class="third-section">
-            <div class="label">Birthday</div>
-            <div class="input-box birthday-content" @click="openBirthdayPicker">
-                <div class="birthday-input">{{ birthday }}</div>
-                <div class="birthday-icon"></div>
-            </div>
+
+        <div class="field">
+          <div class="field-label">BIRTHDAY</div>
+          <div class="field-input dark row" @click="openBirthdayPicker">
+            <span class="row-text" :class="{ muted: !birthday }">{{ birthday || 'Please select' }}</span>
+            <span class="chevron" aria-hidden="true" />
             <input
               ref="birthdayInput"
               v-model="birthday"
@@ -42,56 +48,77 @@
               lang="en-US"
               @click.stop
             />
+          </div>
         </div>
-      </div>
-      <div class="third">
-        <div class="third-section">
-            <div class="label">Gender</div>
-            <div class="gender-content">
-                <div class="gender" @click="genderIndex = 0">
-                    <div class="gender-box" :class="{ 'gender-box-active': genderIndex === 0 }">
-                        <div class="gender-woman-icon"></div>
-                    </div>
-                    <div class="gender-text">Female</div>
-                </div>
-                <div class="gender" @click="genderIndex = 1">
-                    <div class="gender-box" :class="{ 'gender-box-active': genderIndex === 1 }">
-                        <div class="gender-man-icon"></div>
-                    </div>
-                    <div class="gender-text">Male</div>
-                </div>
-            </div>
+
+        <div class="field">
+          <div class="field-label">LOCATION</div>
+          <div class="field-input dark row" @click="openLocationPicker">
+            <span class="row-text">{{ location }}</span>
+            <span class="chevron" aria-hidden="true" />
+          </div>
         </div>
-      </div>
-      <div class="fourth-section">
-        <div class="save-btn" @click="saveProfile">Save</div>
-      </div>
+
+        <div class="field">
+          <div class="field-label">GENDER</div>
+          <div class="gender-row">
+            <button
+              type="button"
+              class="gender-card"
+              :class="{ 'is-selected': genderIndex === 0 }"
+              @click="genderIndex = 0"
+            >
+              <div class="gender-card-icon woman" />
+              <span class="gender-card-mark" :class="{ on: genderIndex === 0 }" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              class="gender-card"
+              :class="{ 'is-selected': genderIndex === 1 }"
+              @click="genderIndex = 1"
+            >
+              <div class="gender-card-icon man" />
+              <span class="gender-card-mark" :class="{ on: genderIndex === 1 }" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- <div class="footer-actions">
+        <button type="button" class="next-btn" @click="saveProfile">
+          <span class="next-btn-dots" aria-hidden="true" />
+          <span class="next-btn-label">NEXT</span>
+        </button>
+      </div> -->
+      <div class="next-btn" @click="saveProfile">NEXT</div>
     </div>
+
+    <van-action-sheet
+      v-model:show="locationSheetShow"
+      :actions="locationActions"
+      cancel-text="Cancel"
+      close-on-click-action
+      @select="onLocationSelect"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import BackButton from '@/components/back.vue'
-import { goBackOrClose, sendShowLoadingToIOS, sendShowToastToIOS, sendNewUserDataToIOS } from '@/utils/iosBridge'
+import { sendShowLoadingToIOS, sendShowToastToIOS, sendNewUserDataToIOS } from '@/utils/iosBridge'
 import { uploadSingleImage } from '@/utils/ossUpload'
+import defaultAvatar from '@/assets/avataricon.png'
 
-// Use relative path for web build
-const topBlockImage = ref('/src/assets/avataricon.png')
+const topBlockImage = ref(defaultAvatar)
 
-const name = ref('')
+const email = ref('')
 
 const formatDate = (date) => {
   const y = date.getFullYear()
   const m = String(date.getMonth() + 1).padStart(2, '0')
   const d = String(date.getDate()).padStart(2, '0')
   return `${y}-${m}-${d}`
-}
-
-const getDefaultBirthday = () => {
-  const now = new Date()
-  now.setFullYear(now.getFullYear() - 20)
-  return formatDate(now)
 }
 
 const getMaxBirthday = () => {
@@ -101,7 +128,13 @@ const getMaxBirthday = () => {
 }
 
 const maxBirthday = getMaxBirthday()
-const birthday = ref(getDefaultBirthday())
+const birthday = ref('2003-01-01')
+
+const location = ref('LA')
+const LOCATION_OPTIONS = ['LA', 'NYC', 'London', 'Tokyo', 'Shanghai']
+const locationSheetShow = ref(false)
+const locationActions = computed(() => LOCATION_OPTIONS.map((name) => ({ name })))
+
 const genderIndex = ref(0)
 
 const fileInput = ref(null)
@@ -109,9 +142,7 @@ const birthdayInput = ref(null)
 const avatarFile = ref(null)
 
 const chooseAvatar = () => {
-  if (fileInput.value) {
-    fileInput.value.click()
-  }
+  fileInput.value?.click()
 }
 
 const openBirthdayPicker = () => {
@@ -129,23 +160,38 @@ const openBirthdayPicker = () => {
   }
 }
 
+const openLocationPicker = () => {
+  locationSheetShow.value = true
+}
+
+const onLocationSelect = (action) => {
+  if (action?.name) {
+    location.value = action.name
+  }
+}
+
 const onFileChange = (e) => {
-  const file = e.target.files[0]
+  const file = e.target.files?.[0]
   if (!file) return
 
   avatarFile.value = file
 
-  // 本地预览
   const reader = new FileReader()
   reader.onload = (ev) => {
-    topBlockImage.value = ev.target.result
+    topBlockImage.value = ev.target?.result ?? defaultAvatar
   }
   reader.readAsDataURL(file)
 }
 
+const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+
 const saveProfile = async () => {
-  if (!name.value.trim()) {
-    sendShowToastToIOS('Please enter name')
+  if (!email.value.trim()) {
+    sendShowToastToIOS('Please enter email')
+    return
+  }
+  if (!isValidEmail(email.value)) {
+    sendShowToastToIOS('Please enter a valid email')
     return
   }
 
@@ -158,130 +204,189 @@ const saveProfile = async () => {
       avatarUrl = await uploadSingleImage(avatarFile.value, 'template_development')
     }
 
-    let newUserData = {
-        'avator':avatarUrl,
-        'name':name.value,
-      }
+    const nameFromEmail = email.value.trim().split('@')[0] || email.value.trim()
 
-      sendShowLoadingToIOS(false)
+    const newUserData = {
+      avator: avatarUrl,
+      email: email.value.trim(),
+      name: nameFromEmail,
+      birthday: birthday.value,
+      location: location.value,
+      gender: genderIndex.value,
+    }
 
-      sendNewUserDataToIOS(newUserData)
-
+    sendShowLoadingToIOS(false)
+    sendNewUserDataToIOS(newUserData)
   } catch (e) {
     console.error(e)
     sendShowLoadingToIOS(false)
     sendShowToastToIOS('Updated failed, please check your network.')
   }
 }
-
 </script>
 
 <style scoped>
 .page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
   background: url('@/assets/pagebgc.png') no-repeat center center;
   background-size: cover;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .top-header {
-  min-height: 0;
   display: flex;
   align-items: center;
-  gap: calc(100vw * 16 / 375);
-  padding: calc(100vh * 58 / 812) calc(100vw * 20 / 375) 0;
+  gap: calc(100vw * 12 / 375);
+  padding: calc(100vh * 52 / 812) calc(100vw * 20 / 375) calc(100vh * 8 / 812);
+  flex-shrink: 0;
+}
+
+.page-title {
+  margin: 0;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: 20PX;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  line-height: 1;
 }
 
 .content {
-  min-height: 0;
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-}
-
-.top, .second, .third {
-  display: flex;
-  justify-content: center;
-}
-
-.top-block {
-  width: calc(100vw * 80 / 375);
-  height: calc(100vw * 80 / 375);
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  border: calc(100vw * 1 / 375) solid rgba(255, 255, 255, 1);
-  position: relative;
-  /* margin-top: calc(100vh * 20 / 812); */
-}
-
-.camera-corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: calc(100vw * 28 / 375);
-  height: calc(100vw * 28 / 375);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* transform: translate(calc(100vw * 4 / 375), calc(100vw * 4 / 812)); */
-}
-
-.camera-corner img {
-  width: calc(100vw * 14 / 375);
-  height: calc(100vw * 14 / 375);
-}
-
-.second-section {
+  padding: 0 calc(100vw * 24 / 375) calc(100vh * 28 / 812);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: calc(100vh * 10 / 812);
-  width: calc(100% - calc(100vh * 40 / 812));
-  margin: calc(100vh * 30 / 812) 0 0;
+  align-items: stretch;
 }
 
-.label {
-  font-family: 'ArchivoNarrowBold', sans-serif;
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 700;
-  line-height: calc(100vw * 26.94 / 375);
-  color: rgb(255, 255, 255);
+.avatar-block {
+  position: relative;
+  align-self: center;
+  margin-top: calc(100vh * 8 / 812);
+  margin-bottom: calc(100vh * 28 / 812);
+  width: 100PX;
+  height: 100PX;
 }
 
-.input-box {
+.avatar-circle {
   width: 100%;
-  height: calc(100vh * 54 / 812);
-  border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 1);
-  /* box-shadow: 0px calc(100vw * 2 / 375) calc(100vw * 4 / 375)  rgba(0, 0, 0, 0.1); */
-  backdrop-filter: calc(100vw * 12 / 375);
+  height: 100%;
+  border-radius: 50%;
+  background-color: #bfe9ff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 calc(100vw * 3 / 375) rgba(255, 255, 255, 0.65);
+}
+
+.camera-badge {
+  position: absolute;
+  right: calc(100vw * 4 / 375);
+  bottom: calc(100vw * 4 / 375);
+  width: 28PX;
+  height: 28PX;
+  border-radius: 50%;
+  background: #0a0a0a;
   display: flex;
   align-items: center;
-  padding: 0 calc(100vw * 16 / 375);
+  justify-content: center;
+}
+
+.camera-badge img {
+  width: 17PX;
+  height: 17PX;
+  object-fit: contain;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: calc(100vh * 20 / 812);
+}
+
+.field-label {
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: calc(100vw * 15 / 375);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  margin-bottom: calc(100vh * 8 / 812);
+}
+
+.field-input.dark {
+  width: 100%;
+  min-height: calc(100vh * 52 / 812);
+  border-radius: calc(100vw * 22 / 375);
+  background: #0a0a0a;
   box-sizing: border-box;
-  cursor: pointer;
+  padding: 0 calc(100vw * 18 / 375);
+  display: flex;
+  align-items: center;
 }
 
-.birthday-content {
+.field-input.dark.row {
   justify-content: space-between;
-  font-family: 'ArchivoNarrowRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.86 / 375);
-  letter-spacing: 0;
-  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  position: relative;
 }
 
-.birthday-input {
-  flex: 1;
+.field-input.dark input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'PoppinsRegular', system-ui, sans-serif;
+  font-size: calc(100vw * 15 / 375);
+  color: #c8c8c8;
+  padding: calc(100vh * 14 / 812) 0;
+}
+
+.field-input.dark input::placeholder {
+  color: #8a8a8a;
+}
+
+.row-text {
+  font-family: 'PoppinsRegular', system-ui, sans-serif;
+  font-size: calc(100vw * 15 / 375);
+  color: #c8c8c8;
+}
+
+.row-text.muted {
+  color: #8a8a8a;
+}
+
+.chevron {
+  width: 0;
+  height: 0;
+  border-left: calc(100vw * 5 / 375) solid transparent;
+  border-right: calc(100vw * 5 / 375) solid transparent;
+  border-top: calc(100vw * 7 / 375) solid #fff;
+  flex-shrink: 0;
+  margin-left: calc(100vw * 10 / 375);
 }
 
 .birthday-native-input {
@@ -292,120 +397,163 @@ const saveProfile = async () => {
   height: 0;
 }
 
-.birthday-icon {
-  width: calc(100vw * 19 / 375);
-  height: calc(100vh * 19 / 812);
-  background-image: url('@/assets/birthdayicon.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.input-box input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-family: 'ArchivoNarrowRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.86 / 375);
-  letter-spacing: 0;
-  color: #000000;
-  background: transparent;
-}
-
-.input-box input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.third-section {
+.gender-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: calc(100vh * 10 / 812);
-  width: calc(100% - calc(100vh * 40 / 812));
-  margin-top: calc(100vh * 20 / 812);
+  gap: calc(100vw * 14 / 375);
+  margin-top: calc(100vh * 4 / 812);
+}
+
+.gender-card {
+  flex: 1;
   position: relative;
-}
-
-.gender-content {
-  display: flex;
-  gap: calc(100vw * 54 / 375);
-  margin-top: calc(100vh * 16 / 812);
-}
-
-.gender {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: calc(100vh * 10 / 375);
+  min-height: calc(100vw * 118 / 375);
+  border: none;
+  padding: calc(100vh * 18 / 812) calc(100vw * 8 / 375);
+  border-radius: calc(100vw * 20 / 375);
+  background: #fff;
+  box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 12 / 375) rgba(0, 0, 0, 0.06);
   cursor: pointer;
-}
-
-.gender-woman-icon {
-  width: calc(100vw * 41 / 375);
-  height: calc(100vh * 41 / 812);
-  background-image: url('@/assets/registerwomanicon.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.gender-man-icon {
-  width: calc(100vw * 37 / 375);
-  height: calc(100vh * 41 / 812);
-  background-image: url('@/assets/registermanicon.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.gender-text {
-  font-family: 'ArchivoNarrowRegular', sans-serif;
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.86 / 375);
-  letter-spacing: 0;
-  color: #ffffff;
-}
-
-.gender-box {
-  width: calc(100vw * 60 / 375);
-  height: calc(100vh * 60 / 812);
-  background: rgba(255, 255, 255, 1);
-  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: calc(100vw * 2 / 375) solid transparent;
+  justify-content: center;
+}
+
+.gender-card.is-selected {
+  box-shadow:
+    0 calc(100vw * 2 / 375) calc(100vw * 12 / 375) rgba(0, 0, 0, 0.06),
+    inset 0 0 0 calc(100vw * 2 / 375) rgba(160, 132, 232, 0.35);
+}
+
+.gender-card-icon {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.gender-card-icon.woman {
+  width: calc(100vw * 48 / 375);
+  height: calc(100vw * 48 / 375);
+  background-image: url('@/assets/registerwomanicon.png');
+}
+
+.gender-card-icon.man {
+  width: calc(100vw * 44 / 375);
+  height: calc(100vw * 48 / 375);
+  background-image: url('@/assets/registermanicon.png');
+}
+
+.gender-card-mark {
+  position: absolute;
+  right: calc(100vw * 10 / 375);
+  bottom: calc(100vw * 10 / 375);
+  width: calc(100vw * 22 / 375);
+  height: calc(100vw * 22 / 375);
+  border-radius: 50%;
+  border: calc(100vw * 2 / 375) solid rgba(0, 0, 0, 0.12);
+  background: transparent;
   box-sizing: border-box;
 }
 
-.gender-box-active {
-  border: calc(100vw * 2 / 375) solid rgba(142, 108, 219, 1);
+.gender-card-mark.on {
+  border: 2PX solid rgba(176, 224, 252, 1);
+  background: rgba(176, 224, 252, 0.4);
 }
 
-.fourth-section {
-  margin: calc(100vh * 37 / 812) 0 calc(100vh * 34 / 812);
+.gender-card-mark.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: calc(100vw * 6 / 375);
+  height: calc(100vw * 10 / 375);
+  border: 2PX solid rgba(171, 83, 252, 1);
+  border-width: 0 calc(100vw * 2.2 / 375) calc(100vw * 2.2 / 375) 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.footer-actions {
+  margin-top: auto;
+  padding-top: calc(100vh * 28 / 812);
   display: flex;
   justify-content: center;
-  width: 100%;
+  padding-bottom: calc(100vh * 12 / 812);
 }
 
-.save-btn {
-  width: calc(100vw * 264 / 375);
-  height: calc(100vh * 60 / 812);
-  background-image: url('@/assets/pagebgc.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'ArchivoNarrowBold', sans-serif;
-  font-size: calc(100vw * 24 / 375);
-  font-weight: 700;
-  line-height: calc(100vw * 32.33 / 375);
-  color: #fff;
+/* .next-btn {
+  position: relative;
+  width: calc(100vw * 288 / 375);
+  min-height: calc(100vh * 56 / 812);
+  border: none;
+  border-radius: calc(100vw * 999 / 375);
+  padding: 0 calc(100vw * 24 / 375);
+  background: linear-gradient(180deg, #c9ecff 0%, #a8dfff 100%);
+  box-shadow:
+    0 calc(100vw * 4 / 375) calc(100vw * 14 / 375) rgba(100, 180, 220, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+} */
+
+.next-btn {
+  width: 260PX;
+  height: 56PX;
+  border-radius: 87PX;
+  /* font-family: 'PlayfairDisplayBlack', sans-serif; */
+  font-size: 18PX;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  /* 蓝色描边 */
+  text-shadow:
+    -2px -2px 0 rgba(19, 106, 161, 1),
+     2px -2px 0 rgba(19, 106, 161, 1),
+    -2px  2px 0 rgba(19, 106, 161, 1),
+     2px  2px 0 rgba(19, 106, 161, 1),
+     0px  2px 0 rgba(19, 106, 161, 1),
+     0px -2px 0 rgba(19, 106, 161, 1),
+     2px 0px 0 rgba(19, 106, 161, 1),
+    -2px 0px 0 rgba(19, 106, 161, 1);
+  background-image: url('@/assets/buttonbg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 24PX auto 34PX auto;
+}
+
+.next-btn-dots {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1.2px, transparent 1.5px);
+  background-size: calc(100vw * 10 / 375) calc(100vw * 10 / 375);
+  opacity: 0.55;
+}
+
+.next-btn-label {
+  position: relative;
+  z-index: 1;
+  font-family: 'Barlow-Black', system-ui, sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #136aa1;
+}
+
+@media (min-width: 480px) {
+  .page-title {
+    font-size: 22px;
+  }
 }
 </style>
