@@ -84,16 +84,11 @@
         </div>
       </section>
 
-      <!-- <div class="footer-actions">
-        <button type="button" class="next-btn" @click="saveProfile">
-          <span class="next-btn-dots" aria-hidden="true" />
-          <span class="next-btn-label">NEXT</span>
-        </button>
-      </div> -->
       <div class="next-btn" @click="saveProfile">NEXT</div>
     </div>
 
     <van-action-sheet
+      class="register-location-sheet"
       v-model:show="locationSheetShow"
       :actions="locationActions"
       cancel-text="Cancel"
@@ -145,19 +140,26 @@ const chooseAvatar = () => {
   fileInput.value?.click()
 }
 
+// const openBirthdayPicker = () => {
+//   const input = birthdayInput.value
+//   if (!input) return
+
+//   if (birthday.value > maxBirthday) {
+//     birthday.value = maxBirthday
+//   }
+
+//   if (typeof input.showPicker === 'function') {
+//     input.showPicker()
+//   } else {
+//     input.click()
+//   }
+// }
+
 const openBirthdayPicker = () => {
-  const input = birthdayInput.value
-  if (!input) return
-
-  if (birthday.value > maxBirthday) {
-    birthday.value = maxBirthday
-  }
-
-  if (typeof input.showPicker === 'function') {
-    input.showPicker()
-  } else {
-    input.click()
-  }
+  const el = birthdayInput.value
+  if (!el) return
+  el.focus()
+  el.click()
 }
 
 const openLocationPicker = () => {
@@ -331,7 +333,7 @@ const saveProfile = async () => {
   font-size: calc(100vw * 15 / 375);
   font-weight: 900;
   font-style: italic;
-  letter-spacing: 0.06em;
+  /* letter-spacing: 0.06em; */
   text-transform: uppercase;
   color: #0a0a0a;
   margin-bottom: calc(100vh * 8 / 812);
@@ -340,7 +342,7 @@ const saveProfile = async () => {
 .field-input.dark {
   width: 100%;
   min-height: calc(100vh * 52 / 812);
-  border-radius: calc(100vw * 22 / 375);
+  border-radius: 18PX;
   background: #0a0a0a;
   box-sizing: border-box;
   padding: 0 calc(100vw * 18 / 375);
@@ -498,8 +500,8 @@ const saveProfile = async () => {
 } */
 
 .next-btn {
-  width: 260PX;
-  height: 56PX;
+  width: 280PX;
+  height: 60PX;
   border-radius: 87PX;
   /* font-family: 'PlayfairDisplayBlack', sans-serif; */
   font-size: 18PX;
@@ -524,7 +526,7 @@ const saveProfile = async () => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin: 24PX auto 34PX auto;
+  margin: 34PX auto 34PX auto;
 }
 
 .next-btn-dots {
@@ -555,5 +557,18 @@ const saveProfile = async () => {
   .page-title {
     font-size: 22px;
   }
+}
+
+/* ActionSheet 挂载到 body，用 :global 覆盖字号 */
+:global(.register-location-sheet) {
+  --van-action-sheet-item-font-size: 18PX;
+  --van-action-sheet-item-line-height: 1.45;
+  padding-top: 12PX;
+  padding-bottom: 24PX;
+}
+
+:global(.register-location-sheet .van-action-sheet__item),
+:global(.register-location-sheet .van-action-sheet__cancel) {
+  font-family: 'PoppinsRegular', system-ui, sans-serif;
 }
 </style>
