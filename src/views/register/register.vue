@@ -570,5 +570,6 @@ const saveProfile = async () => {
 :global(.register-location-sheet .van-action-sheet__item),
 :global(.register-location-sheet .van-action-sheet__cancel) {
   font-family: 'PoppinsRegular', system-ui, sans-serif;
+  padding-bottom: 8PX;
 }
 </style>
